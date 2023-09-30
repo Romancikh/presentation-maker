@@ -41,7 +41,7 @@ type Image = Block & {
 
 type Primitive = Block & {
   type: "PRIMITIVE";
-  form: "TRIANGLE" | "CIRCLE" | "RECTANGLE";
+  form: "TRIANGLE" | "ELLIPSE" | "RECTANGLE";
 };
 
 type Operation = {
