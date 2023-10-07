@@ -83,3 +83,5 @@ const operation: Operation = {
 const history: History = {
   topOperation: operation,
 };
+
+export default presentation;

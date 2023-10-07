@@ -9,3 +9,5 @@ const presentation: Presentation = {
   selectSlides: [],
   slides: [],
 };
+
+export default presentation;
