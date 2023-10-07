@@ -1,4 +1,3 @@
-import "./App.css";
 import { Presentation } from "./types/types.ts";
 
 type AppProps = {
