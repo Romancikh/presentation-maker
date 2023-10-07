@@ -4,8 +4,8 @@ import { Presentation } from "../types";
 
 // @ts-ignore
 const presentation: Presentation = {
-  name: "",
   currentSlide: null,
+  name: "",
   selectSlides: [],
   slides: [],
 };
