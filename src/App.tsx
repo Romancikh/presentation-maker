@@ -5,6 +5,7 @@ type AppProps = {
   presentation: Presentation;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function App({ presentation }: AppProps) {
   return <></>;
 }
