@@ -13,8 +13,8 @@
     "lint:stylelint": "stylelint --max-warnings=0 src/**/*.css",
     "fix": "run-s fix:*",
     "fix:eslint": "npx eslint . --fix",
-    "fix:stylelint": "npx stylelint src/**/*.css --fix",
-    "fix:prettier": "prettier . --write"
+    "fix:prettier": "prettier . --write",
+    "fix:stylelint": "npx stylelint src/**/*.css --fix --allow-empty-input"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
