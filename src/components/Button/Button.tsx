@@ -1,19 +1,13 @@
 type ButtonProps = {
-  text: string | null;
-  imagePath: string | null;
-  imageAlt: string | null;
+  text?: string;
+  icon?: string;
 };
 
-function Button({ text, imagePath, imageAlt }: ButtonProps) {
+function Button({ text, icon }: ButtonProps) {
   return (
     <>
-      {text === null && imagePath !== null && imageAlt !== null ? (
-        <button>
-          <img src={imagePath} alt={imageAlt} />
-        </button>
-      ) : (
-        <button>text</button>
-      )}
+      {icon && <span className="material-symbols-outlined">{icon}</span>}
+      {text}
     </>
   );
 }

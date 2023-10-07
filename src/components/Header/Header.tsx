@@ -1,11 +1,11 @@
-import Button from "../Button/Button.tsx";
+import MenuBar from "../MenuBar/MenuBar.tsx";
+import ToolBar from "../ToolBar/ToolBar.tsx";
 
 function Header() {
   return (
     <>
-      <div>
-        <Button text={"Файл"} imagePath={null} imageAlt={null} />
-      </div>
+      <MenuBar />
+      <ToolBar />
     </>
   );
 }
