@@ -5,3 +5,5 @@ function PopUpMenu() {
     </>
   );
 }
+
+export default PopUpMenu;
