@@ -30,18 +30,18 @@ type Block = {
 };
 
 type Text = Block & {
-  type: "TEXT";
+  type: "text";
   content: Char[];
 };
 
 type Image = Block & {
-  type: "IMAGE";
+  type: "image";
   content: string;
 };
 
 type Primitive = Block & {
-  type: "PRIMITIVE";
-  form: "TRIANGLE" | "ELLIPSE" | "RECTANGLE";
+  type: "primitive";
+  form: "triangle" | "ellipse" | "rectangle";
 };
 
 type Operation = {
