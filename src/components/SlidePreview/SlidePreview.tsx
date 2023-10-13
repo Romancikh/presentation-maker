@@ -1,11 +1,11 @@
 import { Slide } from "../../types/types.ts";
 
-type slidePreviewProps = {
+type SlidePreviewProps = {
   index: number;
   slide: Slide;
 };
 
-function SlidePreview({ index, slide }: slidePreviewProps) {
+function SlidePreview({ index, slide }: SlidePreviewProps) {
   return (
     <div>
       <div>{index}</div>

@@ -1,9 +1,9 @@
-type menuElementProps = {
+type MenuElementProps = {
   text: string;
   shortcut?: string;
 };
 
-function MenuElement({ text, shortcut }: menuElementProps) {
+function MenuElement({ text, shortcut }: MenuElementProps) {
   return (
     <span>
       <span> {text} </span>

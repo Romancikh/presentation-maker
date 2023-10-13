@@ -1,11 +1,11 @@
 import { Slide } from "../../types/types.ts";
 import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 
-type slideBarProps = {
+type SlideBarProps = {
   slides: Slide[];
 };
 
-function SlideBar({ slides }: slideBarProps) {
+function SlideBar({ slides }: SlideBarProps) {
   return (
     <div>
       {slides.map((slide, index) => (

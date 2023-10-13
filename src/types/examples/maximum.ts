@@ -46,7 +46,7 @@ const text: Text = {
   position: position,
   rotation: 0,
   size: size,
-  type: "TEXT",
+  type: "text",
 };
 
 const image: Image = {
@@ -55,34 +55,34 @@ const image: Image = {
   position: position,
   rotation: 0,
   size: size,
-  type: "IMAGE",
+  type: "image",
 };
 
 const triangle: Primitive = {
-  form: "TRIANGLE",
+  form: "triangle",
   id: uuidv4(),
   position: position,
   rotation: 0,
   size: size,
-  type: "PRIMITIVE",
+  type: "primitive",
 };
 
 const ellipse: Primitive = {
-  form: "ELLIPSE",
+  form: "ellipse",
   id: uuidv4(),
   position: position,
   rotation: 0,
   size: size,
-  type: "PRIMITIVE",
+  type: "primitive",
 };
 
 const rectangle: Primitive = {
-  form: "RECTANGLE",
+  form: "rectangle",
   id: uuidv4(),
   position: position,
   rotation: 0,
   size: size,
-  type: "PRIMITIVE",
+  type: "primitive",
 };
 
 const slide: Slide = {

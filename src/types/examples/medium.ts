@@ -45,7 +45,7 @@ const text: Text = {
   position: position,
   rotation: 0,
   size: size,
-  type: "TEXT",
+  type: "text",
 };
 
 const image: Image = {
@@ -54,7 +54,7 @@ const image: Image = {
   position: position,
   rotation: 0,
   size: size,
-  type: "IMAGE",
+  type: "image",
 };
 
 const slide: Slide = {
