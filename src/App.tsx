@@ -1,7 +1,6 @@
 import { Color, Presentation, Slide } from "./types/types.ts";
 import Header from "./components/Header/Header.tsx";
-import SlideBar from "./components/SlideBar/SlideBar.tsx";
-import Workspace from "./components/Workspace/Workspace.tsx";
+import BodyEditor from "./components/BodyEditor/BodyEditor.tsx";
 
 type AppProps = {
   presentation: Presentation;
@@ -29,8 +28,7 @@ function App({ presentation }: AppProps) {
   return (
     <div>
       <Header />
-      <SlideBar slides={presentation.slides} />
-      <Workspace slide={presentation.currentSlide} />
+      <BodyEditor presentation={presentation} />
     </div>
   );
 }
