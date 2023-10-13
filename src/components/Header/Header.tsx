@@ -1,9 +1,10 @@
 import MenuBar from "../MenuBar/MenuBar.tsx";
 import ToolBar from "../ToolBar/ToolBar.tsx";
+import classes from "./Header.module.css";
 
 function Header() {
   return (
-    <div>
+    <div className={classes.header}>
       <MenuBar />
       <ToolBar />
     </div>

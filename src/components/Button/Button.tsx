@@ -1,3 +1,5 @@
+import classes from "./Button.module.css";
+
 type ButtonProps = {
   text?: string;
   icon?: string;
@@ -5,7 +7,7 @@ type ButtonProps = {
 
 function Button({ text, icon }: ButtonProps) {
   return (
-    <button>
+    <button className={icon ? classes.button__icon : classes.button__text}>
       {icon && <span className="material-symbols-outlined">{icon}</span>}
       {text}
     </button>
