@@ -64,7 +64,7 @@ type Slide = {
 
 type Presentation = {
   name: string;
-  currentSlide: Slide;
+  currentSlide: Slide | null;
   selectSlides: Slide[];
   slides: Slide[];
 };
