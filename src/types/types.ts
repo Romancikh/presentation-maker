@@ -69,6 +69,11 @@ type Presentation = {
   slides: Slide[];
 };
 
+type Option = {
+  value: number | string;
+  label: string;
+};
+
 export type {
   Block,
   Char,
@@ -83,4 +88,5 @@ export type {
   Size,
   Slide,
   Text,
+  Option,
 };
