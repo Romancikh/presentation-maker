@@ -1,11 +1,11 @@
+import "./ToolBar.css";
 import Button from "../Button/Button.tsx";
-import classes from "./ToolBar.module.css";
 
 function ToolBar() {
   return (
-    <div className={classes.tool__bar}>
-      <Button icon={"undo"} />
-      <Button icon={"redo"} />
+    <div className="tool-bar">
+      <Button icon={"undo"} position="toolbar" />
+      <Button icon={"redo"} position="toolbar" />
     </div>
   );
 }
