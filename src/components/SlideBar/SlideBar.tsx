@@ -7,13 +7,11 @@ type slideBarProps = {
 
 function SlideBar({ slides }: slideBarProps) {
   return (
-    <>
-      <div>
-        {slides.map((el, ind) => {
-          return <SlidePreview index={ind} slide={el} />;
-        })}
-      </div>
-    </>
+    <div>
+      {slides.map((slide, index) => (
+        <SlidePreview key={slide.id} index={index} slide={slide} />
+      ))}
+    </div>
   );
 }
 
