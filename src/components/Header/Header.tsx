@@ -3,10 +3,10 @@ import ToolBar from "../ToolBar/ToolBar.tsx";
 
 function Header() {
   return (
-    <>
+    <div>
       <MenuBar />
       <ToolBar />
-    </>
+    </div>
   );
 }
 

@@ -7,10 +7,10 @@ type slidePreviewProps = {
 
 function SlidePreview({ index, slide }: slidePreviewProps) {
   return (
-    <>
+    <div>
       <div>{index}</div>
       <div>{slide.background}</div>
-    </>
+    </div>
   );
 }
 
