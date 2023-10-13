@@ -1,25 +1,24 @@
+import { CSSProperties } from "react";
 import { Char } from "../../types/types.ts";
 
 type CharComponentProps = Char;
 
 function CharComponent({
-  value,
-  fontSize,
-  fontFamily,
   color,
+  fontFamily,
+  fontSize,
+  value,
   bold,
   italic,
   underlined,
 }: CharComponentProps) {
-  const style = {
-    fontSize: fontSize,
-    // eslint-disable-next-line sort-keys
-    fontFamily: fontFamily,
-    // eslint-disable-next-line sort-keys
-    color: color,
-    fontStyle: italic ? "italic" : "",
-    fontWeight: bold ? "bold" : "",
-    textDecoration: underlined ? "underline" : "",
+  const style: CSSProperties = {
+    color,
+    fontFamily,
+    fontSize,
+    fontStyle: italic ? "italic" : "normal",
+    fontWeight: bold ? "bold" : "normal",
+    textDecoration: underlined ? "underline" : "none",
   };
   return <span style={style}>{value}</span>;
 }
