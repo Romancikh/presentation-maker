@@ -6,7 +6,7 @@ type WorkspaceProps = {
 };
 
 function Workspace({ slide }: WorkspaceProps) {
-  return <div key={slide.id} className={classes.workspace}></div>;
+  return <div className={classes.workspace}>{slide.id}</div>;
 }
 
 export default Workspace;
