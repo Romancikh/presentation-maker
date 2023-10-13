@@ -1,10 +1,10 @@
-.button__text {
+.button_text {
   height: 22px;
   font-size: 15px;
   margin: 1px 5px;
 }
 
-.button__icon {
+.button_icon {
   width: 24px;
   height: 24px;
   margin: 1px 5px;
