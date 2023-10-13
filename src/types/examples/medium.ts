@@ -64,7 +64,6 @@ const slide: Slide = {
   selectObjects: [text],
 };
 
-// @ts-ignore
 const presentation: Presentation = {
   currentSlide: slide,
   name: "The first",
