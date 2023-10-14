@@ -24,6 +24,7 @@ function Text({ text, position, size }: TextElementProps) {
       <span style={style}>
         {text.map((char) => (
           <Char
+            key={char.id}
             value={char.value}
             fontSize={char.fontSize}
             fontFamily={char.fontFamily}

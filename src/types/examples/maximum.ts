@@ -35,13 +35,14 @@ const char: Char = {
   color: color,
   fontFamily: fontFamily,
   fontSize: 12,
+  id: uuidv4(),
   italic: true,
   underlined: false,
   value: "A",
 };
 
 const text: Text = {
-  content: [char, char],
+  content: [char],
   id: uuidv4(),
   position: position,
   rotation: 0,

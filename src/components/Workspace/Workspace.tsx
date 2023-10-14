@@ -17,6 +17,7 @@ function Workspace({ slide }: WorkspaceProps) {
           if (object.type === "text") {
             return (
               <Text
+                key={object.id}
                 text={object.content}
                 position={object.position}
                 size={object.size}
@@ -26,6 +27,7 @@ function Workspace({ slide }: WorkspaceProps) {
           } else if (object.type === "image") {
             return (
               <Image
+                key={object.id}
                 src={object.content}
                 alt={object.alt}
                 position={object.position}
@@ -36,6 +38,7 @@ function Workspace({ slide }: WorkspaceProps) {
           } else if (object.type === "primitive") {
             return (
               <Primitive
+                key={object.id}
                 position={object.position}
                 size={object.size}
                 rotation={object.rotation}

@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { Char } from "../../types/types.ts";
 
-type CharComponentProps = Char;
+type CharComponentProps = Omit<Char, "id">;
 
 function Char({
   color,

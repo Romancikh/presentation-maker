@@ -13,6 +13,7 @@ type Size = {
 };
 
 type Char = {
+  id: string;
   value: string;
   fontSize: number;
   fontFamily: FontFamily;
