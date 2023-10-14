@@ -1,9 +1,7 @@
 {
-  "extends": ["stylelint-config-standard"],
+  "extends": ["stylelint-config-standard", "stylelint-config-idiomatic-order"],
   "plugins": ["stylelint-order", "stylelint-prettier"],
   "rules": {
-    "order/order": ["custom-properties", "declarations"],
-    "order/properties-order": ["width", "height"],
     "color-hex-length": "long",
     "color-no-invalid-hex": true,
     "prettier/prettier": true,

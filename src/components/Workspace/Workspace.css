@@ -2,6 +2,6 @@
   width: 815px;
   height: 458px;
   border: 1px solid #000000;
-  position: relative;
-  overflow: hidden;
+
+  /* margin: 50px 175px; */
 }

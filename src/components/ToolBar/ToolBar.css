@@ -1,9 +1,9 @@
 .tool-bar {
-  background-color: beige;
+  display: flex;
   width: 500px;
-  margin-top: 15px;
+  flex-direction: row;
   padding: 5px;
   border-radius: 15px;
-  display: flex;
-  flex-direction: row;
+  margin-top: 15px;
+  background-color: #edf2fa;
 }

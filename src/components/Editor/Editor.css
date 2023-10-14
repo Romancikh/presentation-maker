@@ -1,6 +1,6 @@
 .editor {
   display: flex;
   flex-direction: row;
-  gap: 150px;
   margin: 15px;
+  gap: 150px;
 }
