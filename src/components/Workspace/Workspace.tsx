@@ -1,8 +1,8 @@
 import "./Workspace.css";
-import { Slide } from "../../types/types.ts";
-import Text from "../Text/Text.tsx";
 import Image from "../Image/Image.tsx";
 import Primitive from "../Primitive/Primitive.tsx";
+import { Slide } from "../../types/types.ts";
+import Text from "../Text/Text.tsx";
 
 type WorkspaceProps = {
   slide: Slide | null;

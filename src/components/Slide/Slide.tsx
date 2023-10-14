@@ -1,9 +1,9 @@
 import "./Slide.css";
 import { CSSProperties } from "react";
-import { Slide } from "../../types/types.ts";
-import Text from "../Text/Text.tsx";
 import Image from "../Image/Image.tsx";
 import Primitive from "../Primitive/Primitive.tsx";
+import { Slide } from "../../types/types.ts";
+import Text from "../Text/Text.tsx";
 
 type SlidePreviewProps = {
   index: number;

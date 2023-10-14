@@ -1,7 +1,7 @@
 .workspace {
+  position: relative;
+  overflow: hidden;
   width: 815px;
   height: 458px;
   border: 1px solid #000000;
-
-  /* margin: 50px 175px; */
 }
