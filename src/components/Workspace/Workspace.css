@@ -1,7 +1,28 @@
 .workspace {
+  display: flex;
+}
+
+.workspace__new-slide {
+  position: absolute;
+  display: flex;
+  width: 1366px;
+  height: 768px;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #999999;
+  border-radius: 15px;
+  background: none;
+  color: #999999;
+  cursor: pointer;
+  font:
+    400 italic 24px/1 Roboto,
+    sans-serif;
+}
+
+.workspace__slide {
   position: relative;
-  overflow: hidden;
-  width: 815px;
-  height: 458px;
-  border: 1px solid #000000;
+  width: 1366px;
+  height: 768px;
+  border: 2px solid #000000;
+  background: #ffffff;
 }

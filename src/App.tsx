@@ -1,3 +1,4 @@
+import "./App.css";
 import Editor from "./components/Editor/Editor.tsx";
 import Header from "./components/Header/Header.tsx";
 import { Presentation } from "./types/types.ts";
@@ -8,7 +9,7 @@ type AppProps = {
 
 function App({ presentation }: AppProps) {
   return (
-    <div>
+    <div className="app">
       <Header />
       <Editor presentation={presentation} />
     </div>
