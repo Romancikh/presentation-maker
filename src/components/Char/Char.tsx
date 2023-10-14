@@ -3,7 +3,7 @@ import { Char } from "../../types/types.ts";
 
 type CharComponentProps = Char;
 
-function CharComponent({
+function Char({
   color,
   fontFamily,
   fontSize,
@@ -23,4 +23,4 @@ function CharComponent({
   return <span style={style}>{value}</span>;
 }
 
-export default CharComponent;
+export default Char;

@@ -37,6 +37,7 @@ type Text = Block & {
 type Image = Block & {
   type: "image";
   content: string;
+  alt: string;
 };
 
 type Primitive = Block & {

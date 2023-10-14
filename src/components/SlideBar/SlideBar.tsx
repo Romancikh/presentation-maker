@@ -1,16 +1,16 @@
 import "./SlideBar.css";
-import { Slide } from "../../types/types.ts";
-import SlidePreview from "../SlidePreview/SlidePreview.tsx";
+import Slide from "../Slide/Slide.tsx";
+import { Slide as TSlide } from "../../types/types.ts";
 
 type SlideBarProps = {
-  slides: Slide[];
+  slides: TSlide[];
 };
 
 function SlideBar({ slides }: SlideBarProps) {
   return (
     <div className="slide-bar">
       {slides.map((slide, index) => (
-        <SlidePreview key={slide.id} index={index} slide={slide} />
+        <Slide key={slide.id} index={index} slide={slide} />
       ))}
     </div>
   );

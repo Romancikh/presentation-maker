@@ -5,7 +5,7 @@ type SlidePreviewProps = {
   slide: Slide;
 };
 
-function SlidePreview({ index, slide }: SlidePreviewProps) {
+function Slide({ index, slide }: SlidePreviewProps) {
   return (
     <div>
       <div>{index}</div>
@@ -14,4 +14,4 @@ function SlidePreview({ index, slide }: SlidePreviewProps) {
   );
 }
 
-export default SlidePreview;
+export default Slide;
