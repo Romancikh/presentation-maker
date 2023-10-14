@@ -1,15 +1,13 @@
-.button_text {
-  height: 22px;
-  font-size: 15px;
-  margin: 1px 5px;
+.button {
+  display: flex;
+  min-width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 5px 1px;
 }
 
-.button_icon {
-  width: 24px;
-  height: 24px;
-  margin: 1px 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.button__icon {
+  color: #444746;
 }

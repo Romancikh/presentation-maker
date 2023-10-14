@@ -12,6 +12,7 @@ function Button({ text, icon }: ButtonProps) {
 
   return (
     <button
+      type="button"
       className={classNames("button", {
         button_icon: isIconButton,
         button_text: isTextButton,
