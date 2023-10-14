@@ -75,6 +75,15 @@ type Option = {
   label: string;
 };
 
+type MenuElement = {
+  text: string;
+  shortcut?: string;
+};
+
+type Menu = {
+  menuElements: MenuElement[];
+};
+
 export type {
   Block,
   Char,
@@ -90,4 +99,6 @@ export type {
   Slide,
   Text,
   Option,
+  MenuElement,
+  Menu,
 };

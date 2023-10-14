@@ -1,10 +1,14 @@
 import MenuElement from "../MenuElement/MenuElement.tsx";
+import { Menu as TMenu } from "../../types/types.ts";
 
-function Menu() {
+type MenuProps = TMenu;
+
+function Menu({ menuElements }: MenuProps) {
   return (
     <div>
-      <MenuElement text={"Копировать"} shortcut={"Ctrl+C"} />
-      <MenuElement text={"Вставить"} shortcut={"Ctrl+V"} />
+      {menuElements.map((menuElement) => (
+        <MenuElement text={menuElement.text} shortcut={menuElement.shortcut} />
+      ))}
     </div>
   );
 }
