@@ -3,11 +3,11 @@ import { Presentation } from "../../types/types.ts";
 import SlideBar from "../SlideBar/SlideBar.tsx";
 import Workspace from "../Workspace/Workspace.tsx";
 
-type BodyEditorProps = {
+type EditorProps = {
   presentation: Presentation;
 };
 
-function Editor({ presentation }: BodyEditorProps) {
+function Editor({ presentation }: EditorProps) {
   return (
     <div className="editor">
       <SlideBar slides={presentation.slides} />

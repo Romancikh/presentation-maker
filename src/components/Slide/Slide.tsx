@@ -5,12 +5,12 @@ import Primitive from "../Primitive/Primitive.tsx";
 import { Slide } from "../../types/types.ts";
 import Text from "../Text/Text.tsx";
 
-type SlidePreviewProps = {
+type SlideProps = {
   index: number;
   slide: Slide;
 };
 
-function Slide({ index, slide }: SlidePreviewProps) {
+function Slide({ index, slide }: SlideProps) {
   const style: CSSProperties = {
     background: slide.background,
   };

@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { Char } from "../../types/types.ts";
 
-type CharComponentProps = Omit<Char, "id">;
+type CharProps = Omit<Char, "id">;
 
 function Char({
   color,
@@ -11,7 +11,7 @@ function Char({
   bold,
   italic,
   underlined,
-}: CharComponentProps) {
+}: CharProps) {
   const style: CSSProperties = {
     color,
     fontFamily,

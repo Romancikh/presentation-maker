@@ -4,14 +4,14 @@ import { Position } from "../../types/types.ts";
 import { Size } from "../../types/types.ts";
 import { Char as TChar } from "../../types/types.ts";
 
-type TextElementProps = {
+type TextProps = {
   text: TChar[];
   position: Position;
   size: Size;
   rotation: number;
 };
 
-function Text({ text, position, size }: TextElementProps) {
+function Text({ text, position, size }: TextProps) {
   const style: CSSProperties = {
     height: size.height,
     left: position.x,
