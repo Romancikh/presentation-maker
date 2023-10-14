@@ -1,0 +1,11 @@
+.slide {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.slide__preview {
+  width: 203px;
+  height: 114px;
+  border: 1px solid #000000;
+}

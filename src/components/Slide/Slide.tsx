@@ -1,3 +1,5 @@
+import "./Slide.css";
+import { CSSProperties } from "react";
 import { Slide } from "../../types/types.ts";
 
 type SlidePreviewProps = {
@@ -6,10 +8,14 @@ type SlidePreviewProps = {
 };
 
 function Slide({ index, slide }: SlidePreviewProps) {
+  const style: CSSProperties = {
+    background: slide.background,
+  };
+
   return (
-    <div>
+    <div className={"slide"}>
       <div>{index}</div>
-      <div>{slide.background}</div>
+      <div className={"slide__preview"} style={style}></div>
     </div>
   );
 }

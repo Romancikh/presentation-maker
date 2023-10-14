@@ -50,6 +50,7 @@ const text: Text = {
 };
 
 const image: Image = {
+  alt: "base",
   content: "base64:image/jpeg...",
   id: uuidv4(),
   position: position,
