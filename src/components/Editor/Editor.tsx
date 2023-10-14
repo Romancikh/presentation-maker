@@ -7,7 +7,7 @@ type BodyEditorProps = {
   presentation: Presentation;
 };
 
-function BodyEditor({ presentation }: BodyEditorProps) {
+function Editor({ presentation }: BodyEditorProps) {
   return (
     <div className="editor">
       <SlideBar slides={presentation.slides} />
@@ -16,4 +16,4 @@ function BodyEditor({ presentation }: BodyEditorProps) {
   );
 }
 
-export default BodyEditor;
+export default Editor;
