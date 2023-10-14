@@ -1,4 +1,4 @@
-import "./BodyEditor.css";
+import "./Editor.css";
 import { Presentation } from "../../types/types.ts";
 import SlideBar from "../SlideBar/SlideBar.tsx";
 import Workspace from "../Workspace/Workspace.tsx";
