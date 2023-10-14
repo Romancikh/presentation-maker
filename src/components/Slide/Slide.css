@@ -8,4 +8,11 @@
   width: 203px;
   height: 114px;
   border: 1px solid #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide__preview_scale {
+  transform-origin: center;
+  transform: scale(0.5);
 }
