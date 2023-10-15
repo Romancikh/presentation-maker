@@ -1,3 +1,4 @@
+import "./index.css";
 import "normalize.css";
 import App from "./App.tsx";
 import React from "react";

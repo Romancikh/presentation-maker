@@ -6,6 +6,7 @@ function ToolBar() {
     <div className="tool-bar">
       <Button icon={"undo"} />
       <Button icon={"redo"} />
+      <Button text={"Тема"} />
     </div>
   );
 }

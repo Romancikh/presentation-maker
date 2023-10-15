@@ -1,5 +1,6 @@
 .workspace {
   display: flex;
+  margin: 0 auto;
 }
 
 .workspace__new-slide {
@@ -23,6 +24,6 @@
   position: relative;
   width: 1366px;
   height: 768px;
-  border: 2px solid #000000;
+  border: 1px solid #dbdedc;
   background: #ffffff;
 }

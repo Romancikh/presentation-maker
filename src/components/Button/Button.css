@@ -4,10 +4,26 @@
   height: 28px;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 1px;
+  border: none;
+  border-radius: 4px;
   margin: 5px 1px;
+  background: none;
+  color: #000000b3;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #44474614;
 }
 
 .button__icon {
-  color: #444746;
+  font-size: 20px;
+}
+
+.button__text {
+  padding: 1px 8px;
+  font:
+    500 normal 14px/1 Roboto,
+    sans-serif;
 }

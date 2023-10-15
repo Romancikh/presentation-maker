@@ -5,7 +5,7 @@ function MenuBar() {
   return (
     <div className="menu">
       <MenuButton label={"Файл"} />
-      <MenuButton label={"Вид"} />
+      <MenuButton label={"Правка"} />
     </div>
   );
 }
