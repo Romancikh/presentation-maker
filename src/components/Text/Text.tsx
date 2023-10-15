@@ -15,6 +15,7 @@ function Text({ text, position, size }: TextProps) {
   const style: CSSProperties = {
     height: size.height,
     left: position.x,
+    position: "absolute",
     top: position.y,
     width: size.width,
   };

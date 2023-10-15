@@ -13,6 +13,7 @@ function Image({ src, alt, size, position }: ImageProps) {
   const style: CSSProperties = {
     height: size.height,
     left: position.x,
+    position: "absolute",
     top: position.y,
     width: size.width,
   };
