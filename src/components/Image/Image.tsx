@@ -1,24 +1,20 @@
-import { Position, Size } from "../../types/types.ts";
 import { CSSProperties } from "react";
+import { Size } from "../../types/types";
 
 type ImageProps = {
-  src: string;
-  alt: string;
-  position: Position;
-  size: Size;
-  rotation: number;
+  data: {
+    src: string;
+    alt: string;
+    size: Size;
+  };
 };
 
-function Image({ src, alt, size, position }: ImageProps) {
+function Image({ data }: ImageProps) {
   const style: CSSProperties = {
-    height: size.height,
-    left: position.x,
-    position: "absolute",
-    top: position.y,
-    width: size.width,
+    height: data.size.height,
+    width: data.size.width,
   };
-
-  return <img style={style} src={src} alt={alt} />;
+  return <img style={style} src={data.src} alt={data.alt} />;
 }
 
 export default Image;

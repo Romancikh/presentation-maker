@@ -32,29 +32,36 @@ type Block = {
 
 type Text = Block & {
   type: "text";
-  content: Char[];
+  data: {
+    text: Char[];
+  };
 };
 
 type Image = Block & {
   type: "image";
-  content: string;
-  alt: string;
+  data: {
+    alt: string;
+    src: string;
+    size: Size;
+  };
 };
 
 type Primitive = Block & {
   type: "primitive";
-  form: "triangle" | "ellipse" | "rectangle";
+  data: {
+    size: Size;
+    form: "triangle" | "ellipse" | "rectangle";
+  };
 };
 
 type Operation = {
   id: string;
   data: object;
-  prev: Operation | null;
-  next: Operation | null;
 };
 
 type History = {
-  topOperation: Operation;
+  operations: Operation[];
+  undidOperations: Operation[];
 };
 
 type Slide = {

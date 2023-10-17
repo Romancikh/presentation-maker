@@ -41,7 +41,9 @@ const char: Char = {
 };
 
 const text: Text = {
-  content: [char],
+  data: {
+    text: [char],
+  },
   id: uuidv4(),
   position: position,
   rotation: 0,
@@ -50,8 +52,11 @@ const text: Text = {
 };
 
 const image: Image = {
-  alt: "",
-  content: "base64:image/jpeg...",
+  data: {
+    alt: "",
+    size: size,
+    src: "base64:image/jpeg...",
+  },
   id: uuidv4(),
   position: position,
   rotation: 0,
@@ -76,13 +81,12 @@ const presentation: Presentation = {
 const operation: Operation = {
   data: {},
   id: uuidv4(),
-  next: null,
-  prev: null,
 };
 
 // @ts-ignore
 const history: History = {
-  topOperation: operation,
+  operations: [operation],
+  undidOperations: [],
 };
 
 export default presentation;

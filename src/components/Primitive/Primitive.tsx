@@ -1,11 +1,10 @@
-import { Position, Size } from "../../types/types";
-import { CSSProperties } from "react";
+import { Size } from "../../types/types";
 
 type PrimitiveProps = {
-  position: Position;
-  size: Size;
-  rotation: number;
-  form: "triangle" | "ellipse" | "rectangle";
+  data: {
+    size: Size;
+    form: "triangle" | "ellipse" | "rectangle";
+  };
 };
 
 function calculateTriangleCoordinates(width: number, height: number): string {
@@ -19,20 +18,13 @@ function calculateTriangleCoordinates(width: number, height: number): string {
   return `${x1},${y1} ${x2},${y2} ${x3},${y3}`;
 }
 
-function Primitive({ position, size, rotation, form }: PrimitiveProps) {
+function Primitive({ data }: PrimitiveProps) {
+  const { size, form } = data;
   const centerX = size.width / 2;
   const centerY = size.height / 2;
 
-  const style: CSSProperties = {
-    left: position.x,
-    position: "absolute",
-    top: position.y,
-    transform: `rotate(${rotation}deg)`,
-    transformOrigin: `${centerX}px ${centerY}px`,
-  };
-
   return (
-    <svg width={size.width} height={size.height} style={style}>
+    <svg width={size.width} height={size.height}>
       <g>
         {form === "ellipse" && (
           <ellipse
