@@ -57,10 +57,12 @@ function Block({ position, size, rotation, type, data }: BlockProps) {
   const centerY = size.height / 2;
 
   const style: CSSProperties = {
+    height: size.height,
     left: position.x,
     top: position.y,
     transform: `rotate(${rotation}deg)`,
     transformOrigin: `${centerX}px ${centerY}px`,
+    width: size.width,
   };
 
   return (
