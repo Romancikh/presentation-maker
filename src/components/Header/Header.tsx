@@ -1,5 +1,5 @@
 import "./Header.css";
-import MenuBar from "../MenuBar/MenuBar.tsx";
+import MenuBar from "../common/MenuBar/MenuBar.tsx";
 import ToolBar from "../ToolBar/ToolBar.tsx";
 
 function Header() {

@@ -1,5 +1,5 @@
 import MenuElement from "../MenuElement/MenuElement.tsx";
-import { Menu as TMenu } from "../../types/types.ts";
+import { Menu as TMenu } from "../../../types/types.ts";
 
 type MenuProps = TMenu;
 

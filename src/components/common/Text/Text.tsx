@@ -1,5 +1,5 @@
 import Char from "../Char/Char.tsx";
-import { Char as TChar } from "../../types/types.ts";
+import { Char as TChar } from "../../../types/types.ts";
 
 type TextProps = {
   data: {

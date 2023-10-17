@@ -4,7 +4,7 @@ import {
   Image as TImage,
   Primitive as TPrimitive,
   Text as TText,
-} from "../../types/types";
+} from "../../../types/types";
 import { CSSProperties } from "react";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";

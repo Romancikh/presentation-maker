@@ -1,4 +1,4 @@
-import { Option } from "../../types/types.ts";
+import { Option } from "../../../types/types.ts";
 
 type SelectProps = {
   options: Option[];

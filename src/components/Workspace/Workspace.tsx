@@ -1,5 +1,5 @@
 import "./Workspace.css";
-import Block from "../Block/Block.tsx";
+import Block from "../common/Block/Block.tsx";
 import { Slide } from "../../types/types.ts";
 
 type WorkspaceProps = {

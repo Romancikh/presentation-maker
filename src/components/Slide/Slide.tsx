@@ -1,5 +1,5 @@
 import "./Slide.css";
-import Block from "../Block/Block.tsx";
+import Block from "../common/Block/Block.tsx";
 import { CSSProperties } from "react";
 import { Slide } from "../../types/types.ts";
 

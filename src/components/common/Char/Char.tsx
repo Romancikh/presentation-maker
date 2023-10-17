@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { Char } from "../../types/types.ts";
+import { Char } from "../../../types/types.ts";
 
 type CharProps = Omit<Char, "id">;
 

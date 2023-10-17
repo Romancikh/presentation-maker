@@ -1,5 +1,5 @@
 import "./ToolBar.css";
-import Button from "../Button/Button.tsx";
+import Button from "../common/Button/Button.tsx";
 
 function ToolBar() {
   return (
