@@ -3,4 +3,17 @@
   flex-direction: column;
   padding-right: 20px;
   border-right: 1px solid #c4c7c5;
+  gap: 15px;
+  overflow-y: scroll;
+}
+
+.slide-bar__wrapper {
+  width: calc(1366px * 0.3);
+  height: calc(768px * 0.3);
+}
+
+.slide-bar__slide {
+  overflow: hidden;
+  transform: scale(0.3);
+  transform-origin: 0 0;
 }

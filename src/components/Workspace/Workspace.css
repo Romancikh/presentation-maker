@@ -19,11 +19,3 @@
     400 italic 24px/1 Roboto,
     sans-serif;
 }
-
-.workspace__slide {
-  position: relative;
-  width: 1366px;
-  height: 768px;
-  border: 1px solid #dbdedc;
-  background: #ffffff;
-}

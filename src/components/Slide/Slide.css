@@ -1,18 +1,9 @@
 .slide {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
-.slide__preview {
   position: relative;
-  overflow: hidden;
-  width: 203px;
-  height: 114px;
-  border: 1px solid #000000;
-}
-
-.slide__preview_scale {
-  transform: scale(0.5);
-  transform-origin: center;
+  display: flex;
+  width: 1366px;
+  height: 768px;
+  flex-direction: row;
+  border: 1px solid #dbdedc;
+  gap: 20px;
 }

@@ -1,9 +1,9 @@
 import "./Workspace.css";
-import Block from "../common/Block/Block.tsx";
-import { Slide } from "../../types/types.ts";
+import Slide from "../Slide/Slide.tsx";
+import { Slide as TSlide } from "../../types/types.ts";
 
 type WorkspaceProps = {
-  slide: Slide | null;
+  slide: TSlide | null;
 };
 
 function Workspace({ slide }: WorkspaceProps) {
@@ -12,20 +12,7 @@ function Workspace({ slide }: WorkspaceProps) {
       <div className="workspace__new-slide">
         Нажмите, чтобы добавить новый слайд
       </div>
-      {slide && (
-        <div className="workspace__slide">
-          {slide.objects.map(({ id, data, position, rotation, size, type }) => (
-            <Block
-              key={id}
-              data={data}
-              type={type}
-              position={position}
-              rotation={rotation}
-              size={size}
-            />
-          ))}
-        </div>
-      )}
+      {slide && <Slide slide={slide} className="workspace__slide" />}
     </div>
   );
 }
