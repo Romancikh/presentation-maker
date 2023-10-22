@@ -10,9 +10,12 @@ function SlideBar({ slides }: SlideBarProps) {
   return (
     <div className="slide-bar">
       {slides.length > 0 &&
-        slides.map((slide) => (
-          <div className="slide-bar__wrapper">
-            <Slide slide={slide} className="slide-bar__slide" />
+        slides.map((slide, index) => (
+          <div className="slide-bar__element">
+            <div className="slide-bar__index">{index + 1}</div>
+            <div className="slide-bar__wrapper">
+              <Slide slide={slide} className="slide-bar__slide" />
+            </div>
           </div>
         ))}
     </div>
