@@ -12,7 +12,9 @@ function Workspace({ slide }: WorkspaceProps) {
       <div className="workspace__new-slide">
         Нажмите, чтобы добавить новый слайд
       </div>
-      {slide && <Slide slide={slide} className="workspace__slide" />}
+      {slide && (
+        <Slide key={slide.id} slide={slide} className="workspace__slide" />
+      )}
     </div>
   );
 }

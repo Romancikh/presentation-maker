@@ -11,7 +11,7 @@ function SlideBar({ slides }: SlideBarProps) {
     <div className="slide-bar">
       {slides.length > 0 &&
         slides.map((slide, index) => (
-          <div className="slide-bar__element">
+          <div key={slide.id} className="slide-bar__element">
             <div className="slide-bar__index">{index + 1}</div>
             <div className="slide-bar__wrapper">
               <Slide slide={slide} className="slide-bar__slide" />
