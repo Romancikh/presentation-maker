@@ -1,3 +1,5 @@
+import "./MenuElement.css";
+
 type MenuElementProps = {
   text: string;
   shortcut?: string;
@@ -5,7 +7,7 @@ type MenuElementProps = {
 
 function MenuElement({ text, shortcut }: MenuElementProps) {
   return (
-    <span>
+    <span className={"menu-element_body"}>
       <span> {text} </span>
       {shortcut && <span> {shortcut} </span>}
     </span>
