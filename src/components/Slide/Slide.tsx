@@ -6,13 +6,19 @@ import classNames from "classnames";
 
 type SlideProps = {
   slide: TSlide;
+  isCurrentSlide: boolean;
   className?: string;
 };
 
-function Slide({ slide, className }: SlideProps) {
+function Slide({ slide, isCurrentSlide, className }: SlideProps) {
   const style: CSSProperties = {
     background: slide.background,
   };
+
+  if (isCurrentSlide) {
+    style.border = `10px solid #0000FF`;
+    style.boxShadow = `0 0 20px rgb(0 0 0 / 100%)`;
+  }
 
   return (
     <div className={classNames("slide", className)} style={style}>
