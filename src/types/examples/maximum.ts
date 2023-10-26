@@ -117,11 +117,32 @@ const slide: Slide = {
   selectObjects: [text],
 };
 
+const slide2: Slide = {
+  background: color,
+  id: uuidv4(),
+  objects: [image, text, triangle, rectangle, ellipse],
+  selectObjects: [text],
+};
+
+const slide3: Slide = {
+  background: color,
+  id: uuidv4(),
+  objects: [image, text, triangle, rectangle, ellipse],
+  selectObjects: [text],
+};
+
+const slide4: Slide = {
+  background: color,
+  id: uuidv4(),
+  objects: [image, text, triangle, rectangle, ellipse],
+  selectObjects: [text],
+};
+
 const presentation: Presentation = {
   currentSlide: slide,
   name: "The first",
-  selectSlides: [slide],
-  slides: [slide],
+  selectSlides: [slide, slide3, slide4],
+  slides: [slide, slide2, slide3, slide4],
 };
 
 const operation: Operation = {

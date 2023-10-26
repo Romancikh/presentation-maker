@@ -11,7 +11,7 @@ function Editor({ presentation }: EditorProps) {
   return (
     <div className="editor">
       <SlideBar
-        currentSlide={presentation.currentSlide}
+        selectSlides={presentation.selectSlides}
         slides={presentation.slides}
       />
       <Workspace slide={presentation.currentSlide} />

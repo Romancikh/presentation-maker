@@ -16,8 +16,8 @@ function Slide({ slide, isCurrentSlide, className }: SlideProps) {
   };
 
   if (isCurrentSlide) {
-    style.border = `10px solid #0000FF`;
     style.boxShadow = `0 0 20px rgb(0 0 0 / 100%)`;
+    style.outline = `10px solid #0000FF`;
   }
 
   return (
