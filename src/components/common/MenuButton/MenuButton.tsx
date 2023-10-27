@@ -11,7 +11,7 @@ function MenuButton({ label, menu }: MenuButtonProps) {
   return (
     <div>
       <div className="menu-bar__button">{label}</div>
-      <Menu menuElements={menu.menuElements} />
+      {/*<Menu menuElements={menu.menuElements} />*/}
     </div>
   );
 }

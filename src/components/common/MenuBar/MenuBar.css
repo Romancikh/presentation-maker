@@ -1,3 +1,20 @@
 .menu {
   display: flex;
+  flex-direction: row;
+}
+
+.menu__main-icon {
+  width: 48px;
+  height: 48px;
+  margin: 5px;
+}
+
+.menu__input-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__buttons {
+  display: flex;
+  flex-direction: row;
 }

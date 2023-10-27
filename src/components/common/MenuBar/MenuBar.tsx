@@ -1,8 +1,13 @@
 import "./MenuBar.css";
 import { Menu, MenuElement } from "../../../types/types.ts";
+import Input from "../Input/Input.tsx";
 import MenuButton from "../MenuButton/MenuButton.tsx";
 
-function MenuBar() {
+type MenuBarProps = {
+  namePresentation: string;
+};
+
+function MenuBar({ namePresentation }: MenuBarProps) {
   const fileMenuElements: MenuElement[] = [
     {
       text: "Создать",
@@ -33,8 +38,18 @@ function MenuBar() {
 
   return (
     <div className="menu">
-      <MenuButton label={"Файл"} menu={fileMenu} />
-      <MenuButton label={"Правка"} menu={correctionMenu} />
+      <img
+        className={"menu__main-icon"}
+        alt={"main-icon"}
+        src={"presentation_icon.png"}
+      />
+      <div className={"menu__input-buttons"}>
+        <Input defaultValue={namePresentation} />
+        <div className={"menu__buttons"}>
+          <MenuButton label={"Файл"} menu={fileMenu} />
+          <MenuButton label={"Правка"} menu={correctionMenu} />
+        </div>
+      </div>
     </div>
   );
 }

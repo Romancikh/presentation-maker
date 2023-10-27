@@ -2,10 +2,14 @@ import "./Header.css";
 import MenuBar from "../common/MenuBar/MenuBar.tsx";
 import ToolBar from "../ToolBar/ToolBar.tsx";
 
-function Header() {
+type HeaderProps = {
+  namePresentation: string;
+};
+
+function Header({ namePresentation }: HeaderProps) {
   return (
     <div className="header">
-      <MenuBar />
+      <MenuBar namePresentation={namePresentation} />
       <ToolBar />
     </div>
   );
