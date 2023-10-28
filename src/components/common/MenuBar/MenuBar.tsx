@@ -44,7 +44,10 @@ function MenuBar({ namePresentation }: MenuBarProps) {
         src={"presentation_icon.png"}
       />
       <div className={"menu__input-buttons"}>
-        <Input defaultValue={namePresentation} />
+        <Input
+          className={"name-presentation__input"}
+          defaultValue={namePresentation}
+        />
         <div className={"menu__buttons"}>
           <MenuButton label={"Файл"} menu={fileMenu} />
           <MenuButton label={"Правка"} menu={correctionMenu} />

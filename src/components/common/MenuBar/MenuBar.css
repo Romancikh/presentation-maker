@@ -12,9 +12,22 @@
 .menu__input-buttons {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 }
 
 .menu__buttons {
   display: flex;
   flex-direction: row;
+  margin-top: 5px;
+}
+
+.name-presentation__input {
+  border: none;
+  border-radius: 5px;
+  margin: 1px;
+}
+
+.name-presentation__input:hover {
+  border: 1px solid #000000;
+  margin: 0;
 }
