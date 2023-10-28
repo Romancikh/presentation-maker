@@ -1,3 +1,4 @@
+import "./Option.css";
 import { Option } from "../../../types/types.ts";
 
 type OptionProps = {
@@ -7,9 +8,9 @@ type OptionProps = {
 
 function Option({ option }: OptionProps) {
   return (
-    <div>
-      <option value={option.value}>{option.label}</option>
-    </div>
+    <option className={"font_option"} value={option.value}>
+      {option.label}
+    </option>
   );
 }
 

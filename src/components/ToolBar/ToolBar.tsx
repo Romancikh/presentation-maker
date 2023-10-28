@@ -24,7 +24,7 @@ function ToolBar() {
       <Button icon={"category"} />
       <Button icon={"insert_text"} />
       <Button icon={"image"} />
-      <Select options={fontOptions} />
+      <Select options={fontOptions} className={"font__select"} />
       <Button icon={"remove"} />
       <Input defaultValue={11} className={"size-shrift__input"} />
       <Button icon={"add"} />

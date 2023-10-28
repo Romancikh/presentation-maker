@@ -3,11 +3,12 @@ import { Option as TOption } from "../../../types/types.ts";
 
 type SelectProps = {
   options: TOption[];
+  className?: string;
 };
 
-function Select({ options }: SelectProps) {
+function Select({ className, options }: SelectProps) {
   return (
-    <select>
+    <select className={className}>
       {options.map((option) => (
         <Option option={option} />
       ))}

@@ -21,3 +21,18 @@
   color: #000000b3;
   cursor: pointer;
 }
+
+.font__select {
+  display: flex;
+  width: 100px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 1px;
+  background: none;
+  color: #000000b3;
+  cursor: pointer;
+}
