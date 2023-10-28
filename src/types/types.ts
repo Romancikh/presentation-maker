@@ -13,6 +13,7 @@ type Size = {
 };
 
 type Char = {
+  id: string;
   value: string;
   fontSize: number;
   fontFamily: FontFamily;
@@ -30,29 +31,37 @@ type Block = {
 };
 
 type Text = Block & {
-  type: "TEXT";
-  content: Char[];
+  type: "text";
+  data: {
+    text: Char[];
+  };
 };
 
 type Image = Block & {
-  type: "IMAGE";
-  content: string;
+  type: "image";
+  data: {
+    alt: string;
+    src: string;
+    size: Size;
+  };
 };
 
 type Primitive = Block & {
-  type: "PRIMITIVE";
-  form: "TRIANGLE" | "ELLIPSE" | "RECTANGLE";
+  type: "primitive";
+  data: {
+    size: Size;
+    form: "triangle" | "ellipse" | "rectangle";
+  };
 };
 
 type Operation = {
   id: string;
   data: object;
-  prev: Operation | null;
-  next: Operation | null;
 };
 
 type History = {
-  topOperation: Operation;
+  operations: Operation[];
+  undidOperations: Operation[];
 };
 
 type Slide = {
@@ -69,6 +78,22 @@ type Presentation = {
   slides: Slide[];
 };
 
+type Option = {
+  id: string;
+  value: number | string;
+  label: string;
+};
+
+type MenuElement = {
+  id: string;
+  text: string;
+  shortcut?: string;
+};
+
+type Menu = {
+  menuElements: MenuElement[];
+};
+
 export type {
   Block,
   Char,
@@ -83,4 +108,7 @@ export type {
   Size,
   Slide,
   Text,
+  Option,
+  MenuElement,
+  Menu,
 };

@@ -1,0 +1,38 @@
+.tool-bar {
+  display: flex;
+  min-height: 40px;
+  padding: 0 8px;
+  border-radius: 24px;
+  margin: 6px 0;
+  background-color: #edf2fa;
+}
+
+.size-shrift__input {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 1px;
+  background: none;
+  color: #000000b3;
+  cursor: pointer;
+}
+
+.font__select {
+  display: flex;
+  width: 100px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 1px;
+  background: none;
+  color: #000000b3;
+  cursor: pointer;
+}

@@ -16,6 +16,13 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "prettier/prettier": "warn",
+    "prettier/prettier": [
+      "warn",
+      {
+        endOfLine: "crlf",
+      },
+    ],
+    "sort-imports": "error",
+    "sort-keys": "error",
   },
 };

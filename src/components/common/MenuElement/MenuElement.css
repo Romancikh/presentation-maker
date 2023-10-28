@@ -1,0 +1,14 @@
+.menu-element_body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
+  padding: 2px 6px;
+  font:
+    400 normal 14px/1.5 Roboto,
+    sans-serif;
+}
+
+.menu-element_body:hover {
+  background: #44474614;
+}

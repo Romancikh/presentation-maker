@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { v4 as uuidv4 } from "uuid";
 import {
   Char,
   Color,
@@ -14,14 +13,15 @@ import {
   Slide,
   Text,
 } from "../types";
+import { v4 as uuidv4 } from "uuid";
 
 const fontFamily: FontFamily = "Arial";
 
 const color: Color = "#aaaaaa";
 
 const size: Size = {
-  width: 400,
   height: 500,
+  width: 400,
 };
 
 const position: Position = {
@@ -30,56 +30,63 @@ const position: Position = {
 };
 
 const char: Char = {
-  value: "A",
-  fontSize: 12,
-  fontFamily: fontFamily,
-  color: color,
   bold: false,
+  color: color,
+  fontFamily: fontFamily,
+  fontSize: 12,
+  id: uuidv4(),
   italic: true,
   underlined: false,
+  value: "A",
 };
 
 const text: Text = {
+  data: {
+    text: [char],
+  },
   id: uuidv4(),
   position: position,
-  size: size,
   rotation: 0,
-  type: "TEXT",
-  content: [char, char],
+  size: size,
+  type: "text",
 };
 
 const image: Image = {
+  data: {
+    alt: "",
+    size: size,
+    src: "base64:image/jpeg...",
+  },
   id: uuidv4(),
   position: position,
-  size: size,
   rotation: 0,
-  type: "IMAGE",
-  content: "base64:image/jpeg...",
+  size: size,
+  type: "image",
 };
 
 const slide: Slide = {
-  id: uuidv4(),
   background: color,
-  selectObjects: [text],
+  id: uuidv4(),
   objects: [image, text],
+  selectObjects: [text],
 };
 
-// @ts-ignore
 const presentation: Presentation = {
-  name: "The first",
   currentSlide: slide,
+  name: "The first",
   selectSlides: [],
   slides: [slide],
 };
 
 const operation: Operation = {
-  id: uuidv4(),
   data: {},
-  prev: null,
-  next: null,
+  id: uuidv4(),
 };
 
 // @ts-ignore
 const history: History = {
-  topOperation: operation,
+  operations: [operation],
+  undidOperations: [],
 };
+
+export default presentation;
