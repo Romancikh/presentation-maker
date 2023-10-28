@@ -6,3 +6,18 @@
   margin: 6px 0;
   background-color: #edf2fa;
 }
+
+.size-shrift__input {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 1px;
+  background: none;
+  color: #000000b3;
+  cursor: pointer;
+}

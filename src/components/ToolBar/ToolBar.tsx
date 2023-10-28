@@ -1,6 +1,7 @@
 import "./ToolBar.css";
 import Button from "../common/Button/Button.tsx";
 import { Option } from "../../types/types.ts";
+import Input from "../common/Input/Input.tsx";
 import Select from "../common/Select/Select.tsx";
 
 function ToolBar() {
@@ -25,6 +26,7 @@ function ToolBar() {
       <Button icon={"image"} />
       <Select options={fontOptions} />
       <Button icon={"remove"} />
+      <Input defaultValue={11} className={"size-shrift__input"} />
       <Button icon={"add"} />
       <Button icon={"format_bold"} />
       <Button icon={"format_italic"} />

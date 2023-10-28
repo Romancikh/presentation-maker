@@ -1,5 +1,5 @@
 type InputProps = {
-  defaultValue?: string;
+  defaultValue?: string | number;
   placeholder?: string;
   className?: string;
 };
