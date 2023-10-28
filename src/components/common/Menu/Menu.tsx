@@ -7,9 +7,9 @@ type MenuProps = TMenu;
 function Menu({ menuElements }: MenuProps) {
   return (
     <div className="menu__body">
-      {menuElements.map((menuElement, index) => (
+      {menuElements.map((menuElement) => (
         <MenuElement
-          key={index}
+          key={menuElement.id}
           text={menuElement.text}
           shortcut={menuElement.shortcut}
         />

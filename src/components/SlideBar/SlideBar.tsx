@@ -16,7 +16,7 @@ function SlideBar({ selectSlides, slides }: SlideBarProps) {
             <div className="slide-bar__index">{index + 1}</div>
             <div className="slide-bar__wrapper">
               <Slide
-                isCurrentSlide={selectSlides.includes(slide)}
+                isSelectedSlide={selectSlides.includes(slide)}
                 slide={slide}
                 className="slide-bar__slide"
               />

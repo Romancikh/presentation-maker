@@ -1,24 +1,10 @@
 import "./ToolBar.css";
 import Button from "../common/Button/Button.tsx";
 import Input from "../common/Input/Input.tsx";
-import { Option } from "../../types/types.ts";
 import Select from "../common/Select/Select.tsx";
-import { v4 as uuidv4 } from "uuid";
+import { fontOptions } from "../../constants/ToolBar.ts";
 
 function ToolBar() {
-  const fontOptions: Option[] = [
-    {
-      id: uuidv4(),
-      label: "Roboto",
-      value: "Roboto",
-    },
-    {
-      id: uuidv4(),
-      label: "Arial",
-      value: "Arial",
-    },
-  ];
-
   return (
     <div className="tool-bar">
       <Button icon={"undo"} />

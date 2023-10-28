@@ -1,41 +1,13 @@
 import "./MenuBar.css";
-import { Menu, MenuElement } from "../../../types/types.ts";
+import { correctionMenu, fileMenu } from "../../../constants/MenuBar.ts";
 import Input from "../Input/Input.tsx";
 import MenuButton from "../MenuButton/MenuButton.tsx";
 
 type MenuBarProps = {
-  namePresentation: string;
+  presentationName: string;
 };
 
-function MenuBar({ namePresentation }: MenuBarProps) {
-  const fileMenuElements: MenuElement[] = [
-    {
-      text: "Создать",
-    },
-
-    {
-      text: "Скачать",
-    },
-  ];
-  const fileMenu: Menu = {
-    menuElements: fileMenuElements,
-  };
-
-  const correctionMenuElements: MenuElement[] = [
-    {
-      shortcut: "Ctrl+Z",
-      text: "Отменить",
-    },
-
-    {
-      shortcut: "Ctrl+Y",
-      text: "Повторить",
-    },
-  ];
-  const correctionMenu: Menu = {
-    menuElements: correctionMenuElements,
-  };
-
+function MenuBar({ presentationName }: MenuBarProps) {
   return (
     <div className="menu">
       <img
@@ -46,7 +18,7 @@ function MenuBar({ namePresentation }: MenuBarProps) {
       <div className={"menu__input-buttons"}>
         <Input
           className={"name-presentation__input"}
-          defaultValue={namePresentation}
+          defaultValue={presentationName}
         />
         <div className={"menu__buttons"}>
           <MenuButton label={"Файл"} menu={fileMenu} />

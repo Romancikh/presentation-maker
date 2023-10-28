@@ -3,13 +3,13 @@ import MenuBar from "../common/MenuBar/MenuBar.tsx";
 import ToolBar from "../ToolBar/ToolBar.tsx";
 
 type HeaderProps = {
-  namePresentation: string;
+  presentationName: string;
 };
 
-function Header({ namePresentation }: HeaderProps) {
+function Header({ presentationName }: HeaderProps) {
   return (
     <div className="header">
-      <MenuBar namePresentation={namePresentation} />
+      <MenuBar presentationName={presentationName} />
       <ToolBar />
     </div>
   );

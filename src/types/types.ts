@@ -85,6 +85,7 @@ type Option = {
 };
 
 type MenuElement = {
+  id: string;
   text: string;
   shortcut?: string;
 };

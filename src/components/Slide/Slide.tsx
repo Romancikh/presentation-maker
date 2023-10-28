@@ -6,22 +6,25 @@ import classNames from "classnames";
 
 type SlideProps = {
   slide: TSlide;
-  isCurrentSlide: boolean;
+  isSelectedSlide: boolean;
   className?: string;
 };
 
-function Slide({ slide, isCurrentSlide, className }: SlideProps) {
+function Slide({ slide, isSelectedSlide, className }: SlideProps) {
   const style: CSSProperties = {
     background: slide.background,
   };
 
-  if (isCurrentSlide) {
-    style.boxShadow = `0 0 20px rgb(0 0 0 / 100%)`;
-    style.outline = `10px solid #0000FF`;
+  let classSlideSelect: string = "";
+  if (isSelectedSlide) {
+    classSlideSelect = "slide__select";
   }
 
   return (
-    <div className={classNames("slide", className)} style={style}>
+    <div
+      className={classNames("slide", className, classSlideSelect)}
+      style={style}
+    >
       {slide.objects.map((object) => (
         <Block key={object.id} {...object} />
       ))}

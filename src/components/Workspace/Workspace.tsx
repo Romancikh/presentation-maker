@@ -14,8 +14,7 @@ function Workspace({ slide }: WorkspaceProps) {
       </div>
       {slide && (
         <Slide
-          isCurrentSlide={false}
-          key={slide.id}
+          isSelectedSlide={false}
           slide={slide}
           className="workspace__slide"
         />
