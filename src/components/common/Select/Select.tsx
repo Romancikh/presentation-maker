@@ -10,7 +10,7 @@ function Select({ className, options }: SelectProps) {
   return (
     <select className={className}>
       {options.map((option) => (
-        <Option option={option} />
+        <Option key={option.id} option={option} />
       ))}
     </select>
   );

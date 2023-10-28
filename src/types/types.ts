@@ -79,6 +79,7 @@ type Presentation = {
 };
 
 type Option = {
+  id: string;
   value: number | string;
   label: string;
 };

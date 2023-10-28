@@ -1,16 +1,19 @@
 import "./ToolBar.css";
 import Button from "../common/Button/Button.tsx";
-import { Option } from "../../types/types.ts";
 import Input from "../common/Input/Input.tsx";
+import { Option } from "../../types/types.ts";
 import Select from "../common/Select/Select.tsx";
+import { v4 as uuidv4 } from "uuid";
 
 function ToolBar() {
   const fontOptions: Option[] = [
     {
+      id: uuidv4(),
       label: "Roboto",
       value: "Roboto",
     },
     {
+      id: uuidv4(),
       label: "Arial",
       value: "Arial",
     },
