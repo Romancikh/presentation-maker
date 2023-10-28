@@ -1,16 +1,15 @@
-import { Option } from "../../../types/types.ts";
+import Option from "../Option/Option.tsx";
+import { Option as TOption } from "../../../types/types.ts";
 
 type SelectProps = {
-  options: Option[];
+  options: TOption[];
 };
 
 function Select({ options }: SelectProps) {
   return (
     <select>
       {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
+        <Option option={option} />
       ))}
     </select>
   );
