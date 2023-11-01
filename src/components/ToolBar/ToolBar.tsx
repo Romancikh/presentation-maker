@@ -3,6 +3,7 @@ import Button from "../common/Button/Button.tsx";
 import Input from "../common/Input/Input.tsx";
 import Select from "../common/Select/Select.tsx";
 import { fontOptions } from "../../constants/ToolBar.ts";
+import MenuButtonPrimitives from "../common/MenuButtonPrimitives/MenuButtonPrimitives.tsx";
 
 function ToolBar() {
   return (
@@ -10,7 +11,7 @@ function ToolBar() {
       <Button icon={"undo"} />
       <Button icon={"redo"} />
       <Button text={"Тема"} />
-      <Button icon={"category"} />
+      <MenuButtonPrimitives />
       <Button icon={"insert_text"} />
       <Button icon={"image"} />
       <Select options={fontOptions} className={"font__select"} />

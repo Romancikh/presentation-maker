@@ -1,0 +1,9 @@
+.menu-primitives__body {
+  left: 11.8vh;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  background-color: #edf2fa;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
