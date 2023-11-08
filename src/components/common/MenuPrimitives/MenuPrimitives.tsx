@@ -1,9 +1,9 @@
-import "./MenuPrimitives.css";
+import classes from "./MenuPrimitives.module.css";
 import Button from "../Button/Button.tsx";
 
 function MenuPrimitives() {
   return (
-    <div className={"menu-primitives__body"}>
+    <div className={classes.menu__primitives_body}>
       <Button icon={"rectangle"} />
       <Button icon={"circle"} />
       <Button icon={"change_history"} />

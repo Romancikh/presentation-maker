@@ -1,4 +1,4 @@
-.tool-bar {
+.tool__bar {
   display: flex;
   min-height: 40px;
   padding: 0 8px;
@@ -7,7 +7,7 @@
   background-color: #edf2fa;
 }
 
-.size-shrift__input {
+.size__shrift_input {
   display: flex;
   width: 28px;
   height: 28px;

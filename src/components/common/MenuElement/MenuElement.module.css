@@ -1,4 +1,4 @@
-.menu-element_body {
+.menu__element_body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,6 +9,6 @@
     sans-serif;
 }
 
-.menu-element_body:hover {
+.menu__element_body:hover {
   background: #44474614;
 }

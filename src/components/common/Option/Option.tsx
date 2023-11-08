@@ -1,5 +1,5 @@
-import "./Option.css";
 import { Option } from "../../../types/types.ts";
+import classes from "./Option.module.css";
 
 type OptionProps = {
   option: Option;
@@ -8,7 +8,7 @@ type OptionProps = {
 
 function Option({ option }: OptionProps) {
   return (
-    <option className={"font_option"} value={option.value}>
+    <option className={classes.font_option} value={option.value}>
       {option.label}
     </option>
   );
