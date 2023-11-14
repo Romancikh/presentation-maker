@@ -1,4 +1,4 @@
-import "./Editor.css";
+import classes from "./Editor.module.css";
 import { Presentation } from "../../types/types.ts";
 import SlideBar from "../SlideBar/SlideBar.tsx";
 import Workspace from "../Workspace/Workspace.tsx";
@@ -9,7 +9,7 @@ type EditorProps = {
 
 function Editor({ presentation }: EditorProps) {
   return (
-    <div className="editor">
+    <div className={classes.editor}>
       <SlideBar
         selectSlides={presentation.selectSlides}
         slides={presentation.slides}

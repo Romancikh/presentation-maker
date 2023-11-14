@@ -1,4 +1,3 @@
-import "./Block.css";
 import {
   Image as TImage,
   Primitive as TPrimitive,
@@ -8,6 +7,7 @@ import { CSSProperties } from "react";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";
+import classes from "./Block.module.css";
 
 type BlockProps = TPrimitive | TImage | TText;
 
@@ -25,7 +25,7 @@ function Block({ position, size, rotation, type, data }: BlockProps) {
   };
 
   return (
-    <div className="block" style={style}>
+    <div className={classes.block} style={style}>
       {type === "image" && <Image data={data} />}
       {type === "primitive" && <Primitive data={data} />}
       {type === "text" && <Text data={data} />}

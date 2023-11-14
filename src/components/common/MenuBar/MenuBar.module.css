@@ -3,13 +3,13 @@
   flex-direction: row;
 }
 
-.menu__main-icon {
+.menu__main_icon {
   width: 48px;
   height: 48px;
   margin: 5px;
 }
 
-.menu__input-buttons {
+.menu__input_buttons {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
@@ -21,13 +21,13 @@
   margin-top: 5px;
 }
 
-.name-presentation__input {
+.name__presentation_input {
   border: none;
   border-radius: 5px;
   margin: 1px;
 }
 
-.name-presentation__input:hover {
+.name__presentation_input:hover {
   border: 1px solid #000000;
   margin: 0;
 }

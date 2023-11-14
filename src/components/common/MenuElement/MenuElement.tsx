@@ -1,4 +1,4 @@
-import "./MenuElement.css";
+import classes from "./MenuElement.module.css";
 
 type MenuElementProps = {
   text: string;
@@ -7,7 +7,7 @@ type MenuElementProps = {
 
 function MenuElement({ text, shortcut }: MenuElementProps) {
   return (
-    <span className={"menu-element_body"}>
+    <span className={classes.menu__element_body}>
       <span> {text} </span>
       {shortcut && <span> {shortcut} </span>}
     </span>

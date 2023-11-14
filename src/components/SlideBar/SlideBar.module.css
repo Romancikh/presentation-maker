@@ -1,4 +1,4 @@
-.slide-bar {
+.slide__bar {
   display: flex;
   flex-direction: column;
   padding: 20px 20px 20px 0;
@@ -7,24 +7,24 @@
   overflow-y: auto;
 }
 
-.slide-bar__element {
+.slide__bar_element {
   display: flex;
 }
 
-.slide-bar__index {
+.slide__bar_index {
   color: #1f1f1f;
   font:
     500 normal 28px/1 Roboto,
     sans-serif;
 }
 
-.slide-bar__wrapper {
+.slide__bar_wrapper {
   width: calc(1366px * 0.3);
   height: calc(768px * 0.3);
   margin-left: 20px;
 }
 
-.slide-bar__slide {
+.slide__bar_slide {
   overflow: hidden;
   transform: scale(0.3);
   transform-origin: 0 0;

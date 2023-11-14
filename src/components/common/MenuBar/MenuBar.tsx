@@ -1,7 +1,7 @@
-import "./MenuBar.css";
 import { correctionMenu, fileMenu } from "../../../constants/MenuBar.ts";
 import Input from "../Input/Input.tsx";
 import MenuButton from "../MenuButton/MenuButton.tsx";
+import classes from "./MenuBar.module.css";
 
 type MenuBarProps = {
   presentationName: string;
@@ -9,18 +9,18 @@ type MenuBarProps = {
 
 function MenuBar({ presentationName }: MenuBarProps) {
   return (
-    <div className="menu">
+    <div className={classes.menu}>
       <img
-        className={"menu__main-icon"}
+        className={classes.menu__main_icon}
         alt={"main-icon"}
         src={"presentation_icon.png"}
       />
-      <div className={"menu__input-buttons"}>
+      <div className={classes.menu__input_buttons}>
         <Input
-          className={"name-presentation__input"}
+          className={classes.name__presentation_input}
           defaultValue={presentationName}
         />
-        <div className={"menu__buttons"}>
+        <div className={classes.menu__buttons}>
           <MenuButton label={"Файл"} menu={fileMenu} />
           <MenuButton label={"Правка"} menu={correctionMenu} />
         </div>
