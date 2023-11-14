@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 
-.workspace__new-slide {
+.workspace_new__slide {
   position: absolute;
   display: flex;
   width: 1366px;

@@ -1,4 +1,4 @@
-import "./MenuButton.css";
+import classes from "./MenuButton.module.css";
 import Menu from "../Menu/Menu.tsx";
 import { Menu as TMenu } from "../../../types/types.ts";
 
@@ -10,7 +10,7 @@ type MenuButtonProps = {
 function MenuButton({ label, menu }: MenuButtonProps) {
   return (
     <div>
-      <div className="menu-bar__button">{label}</div>
+      <div className={classes.menu__bar_button}>{label}</div>
       {/*<Menu menuElements={menu.menuElements} />*/}
     </div>
   );

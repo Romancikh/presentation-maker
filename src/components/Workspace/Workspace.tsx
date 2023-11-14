@@ -1,6 +1,6 @@
-import "./Workspace.css";
 import Slide from "../Slide/Slide.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
+import classes from "./Workspace.module.css";
 
 type WorkspaceProps = {
   slide: TSlide | null;
@@ -8,8 +8,8 @@ type WorkspaceProps = {
 
 function Workspace({ slide }: WorkspaceProps) {
   return (
-    <div className="workspace">
-      <div className="workspace__new-slide">
+    <div className={classes.workspace}>
+      <div className={classes.workspace_new__slide}>
         Нажмите, чтобы добавить новый слайд
       </div>
       {slide && (

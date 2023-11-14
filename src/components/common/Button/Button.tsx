@@ -1,5 +1,4 @@
-import "./Button.css";
-import classNames from "classnames";
+import classes from "./Button.module.css";
 
 type ButtonProps = {
   text?: string;
@@ -9,19 +8,26 @@ type ButtonProps = {
 function Button({ text, icon }: ButtonProps) {
   const isIconButton = icon && !text;
   const isTextButton = text && !icon;
+  let classNameTypeButton = "";
+  if (isIconButton) {
+    classNameTypeButton = "button_icon";
+  } else if (isTextButton) {
+    classNameTypeButton = "button_text";
+  }
 
   return (
     <button
       type="button"
-      className={classNames("button", {
-        button_icon: isIconButton,
-        button_text: isTextButton,
-      })}
+      className={classes.button + " " + classNameTypeButton}
     >
       {isIconButton && (
-        <span className="button__icon material-symbols-outlined">{icon}</span>
+        <span
+          className={classes.button__icon + " " + "material-symbols-outlined"}
+        >
+          {icon}
+        </span>
       )}
-      {isTextButton && <span className="button__text">{text}</span>}
+      {isTextButton && <span className={classes.button__text}>{text}</span>}
     </button>
   );
 }

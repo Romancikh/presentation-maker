@@ -1,8 +1,8 @@
-import "./Slide.css";
 import Block from "../common/Block/Block.tsx";
 import { CSSProperties } from "react";
 import { Slide as TSlide } from "../../types/types.ts";
 import classNames from "classnames";
+import classes from "./Slide.module.css";
 
 type SlideProps = {
   slide: TSlide;
@@ -17,12 +17,12 @@ function Slide({ slide, isSelectedSlide, className }: SlideProps) {
 
   let classSlideSelect: string = "";
   if (isSelectedSlide) {
-    classSlideSelect = "slide__select";
+    classSlideSelect = classes.slide__select;
   }
 
   return (
     <div
-      className={classNames("slide", className, classSlideSelect)}
+      className={classNames(classes.slide, className, classSlideSelect)}
       style={style}
     >
       {slide.objects.map((object) => (

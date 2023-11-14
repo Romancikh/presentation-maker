@@ -1,6 +1,6 @@
-import "./Header.css";
 import MenuBar from "../common/MenuBar/MenuBar.tsx";
 import ToolBar from "../ToolBar/ToolBar.tsx";
+import classes from "./Header.module.css";
 
 type HeaderProps = {
   presentationName: string;
@@ -8,7 +8,7 @@ type HeaderProps = {
 
 function Header({ presentationName }: HeaderProps) {
   return (
-    <div className="header">
+    <div className={classes.header}>
       <MenuBar presentationName={presentationName} />
       <ToolBar />
     </div>
