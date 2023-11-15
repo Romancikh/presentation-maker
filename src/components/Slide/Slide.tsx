@@ -6,25 +6,16 @@ import classes from "./Slide.module.css";
 
 type SlideProps = {
   slide: TSlide;
-  isSelectedSlide: boolean;
   className?: string;
 };
 
-function Slide({ slide, isSelectedSlide, className }: SlideProps) {
+function Slide({ slide, className }: SlideProps) {
   const style: CSSProperties = {
     background: slide.background,
   };
 
-  let classSlideSelect: string = "";
-  if (isSelectedSlide) {
-    classSlideSelect = classes.select;
-  }
-
   return (
-    <div
-      className={classNames(classes.slide, className, classSlideSelect)}
-      style={style}
-    >
+    <div className={classNames(classes.slide, className)} style={style}>
       {slide.objects.map((object) => (
         <Block key={object.id} {...object} />
       ))}
