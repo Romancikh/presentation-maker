@@ -1,8 +1,8 @@
-.menu__body {
+.menu-body {
   position: absolute;
-  background-color: #edf2fa;
   z-index: 1;
   display: flex;
   flex-direction: column;
+  background-color: #edf2fa;
   box-shadow: 0 0 10px #0000000a;
 }

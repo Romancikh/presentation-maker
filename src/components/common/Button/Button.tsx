@@ -21,13 +21,11 @@ function Button({ text, icon }: ButtonProps) {
       className={classes.button + " " + classNameTypeButton}
     >
       {isIconButton && (
-        <span
-          className={classes.button__icon + " " + "material-symbols-outlined"}
-        >
+        <span className={classes.icon + " " + "material-symbols-outlined"}>
           {icon}
         </span>
       )}
-      {isTextButton && <span className={classes.button__text}>{text}</span>}
+      {isTextButton && <span className={classes.text}>{text}</span>}
     </button>
   );
 }

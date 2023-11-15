@@ -1,4 +1,4 @@
-.menu__bar_button {
+.button {
   padding: 2px 7px;
   border: none;
   border-radius: 4px;
@@ -9,6 +9,6 @@
     sans-serif;
 }
 
-.menu__bar_button:hover {
+.button:hover {
   background: #44474614;
 }
