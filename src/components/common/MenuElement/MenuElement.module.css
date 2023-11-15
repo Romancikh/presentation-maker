@@ -1,14 +1,14 @@
-.menu__element_body {
+.element {
   display: flex;
+  width: 200px;
   flex-direction: row;
   justify-content: space-between;
-  width: 200px;
   padding: 2px 6px;
   font:
     400 normal 14px/1.5 Roboto,
     sans-serif;
 }
 
-.menu__element_body:hover {
+.element:hover {
   background: #44474614;
 }

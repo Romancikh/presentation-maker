@@ -9,7 +9,7 @@ type WorkspaceProps = {
 function Workspace({ slide }: WorkspaceProps) {
   return (
     <div className={classes.workspace}>
-      <div className={classes.workspace_new__slide}>
+      <div className={classes["new-slide"]}>
         Нажмите, чтобы добавить новый слайд
       </div>
       {slide && (

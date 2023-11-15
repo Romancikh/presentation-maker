@@ -6,7 +6,7 @@ type MenuProps = TMenu;
 
 function Menu({ menuElements }: MenuProps) {
   return (
-    <div className={classes.menu__body}>
+    <div className={classes["menu-body"]}>
       {menuElements.map((menuElement) => (
         <MenuElement
           key={menuElement.id}

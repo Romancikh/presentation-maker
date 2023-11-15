@@ -17,7 +17,7 @@ function Slide({ slide, isSelectedSlide, className }: SlideProps) {
 
   let classSlideSelect: string = "";
   if (isSelectedSlide) {
-    classSlideSelect = classes.slide__select;
+    classSlideSelect = classes.select;
   }
 
   return (

@@ -7,16 +7,16 @@ import { fontOptions } from "../../constants/ToolBar.ts";
 
 function ToolBar() {
   return (
-    <div className={classes.tool__bar}>
+    <div className={classes["tool-bar"]}>
       <Button icon={"undo"} />
       <Button icon={"redo"} />
       <Button text={"Тема"} />
       <MenuButtonPrimitives />
       <Button icon={"insert_text"} />
       <Button icon={"image"} />
-      <Select options={fontOptions} className={classes.font__select} />
+      <Select options={fontOptions} className={classes["font-select"]} />
       <Button icon={"remove"} />
-      <Input defaultValue={11} className={classes.size__shrift_input} />
+      <Input defaultValue={11} className={classes["font-size-input"]} />
       <Button icon={"add"} />
       <Button icon={"format_bold"} />
       <Button icon={"format_italic"} />
