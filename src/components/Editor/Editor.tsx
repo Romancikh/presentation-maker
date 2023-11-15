@@ -10,10 +10,7 @@ type EditorProps = {
 function Editor({ presentation }: EditorProps) {
   return (
     <div className={classes.editor}>
-      <SlideBar
-        selectSlides={presentation.selectSlides}
-        slides={presentation.slides}
-      />
+      <SlideBar slides={presentation.slides} />
       <Workspace slide={presentation.currentSlide} />
     </div>
   );
