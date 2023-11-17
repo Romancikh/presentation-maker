@@ -1,6 +1,5 @@
 import { PropsWithChildren, createContext, useState } from "react";
 import { Presentation } from "../types/types";
-
 type PresentationContextType = {
   presentation: Presentation;
   setPresentation: (newPresentation: Presentation) => void;
