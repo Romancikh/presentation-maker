@@ -1,4 +1,4 @@
-.tool-bar {
+.tool__bar {
   display: flex;
   min-height: 40px;
   padding: 0 8px;
@@ -7,7 +7,7 @@
   background-color: #edf2fa;
 }
 
-.font-size-input {
+.size__shrift_input {
   display: flex;
   width: 28px;
   height: 28px;
@@ -22,7 +22,7 @@
   cursor: pointer;
 }
 
-.font-select {
+.font__select {
   display: flex;
   width: 100px;
   height: 28px;

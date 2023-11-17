@@ -3,7 +3,7 @@
   margin: 30px 200px;
 }
 
-.new-slide {
+.workspace__new_slide {
   position: absolute;
   display: flex;
   width: calc(1366px * 0.6);

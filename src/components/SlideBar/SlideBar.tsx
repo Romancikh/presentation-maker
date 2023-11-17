@@ -1,9 +1,9 @@
 import { Position, Slide as TSlide } from "../../types/types.ts";
 import React, { useEffect, useState } from "react";
 import Menu from "../common/Menu/Menu.tsx";
-import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 import classes from "./SlideBar.module.css";
 import { slideBarMenu } from "../../constants/SlideBar.ts";
+import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 
 type SlideBarProps = {
   slides: TSlide[];
@@ -67,7 +67,7 @@ function SlideBar({ slides }: SlideBarProps) {
   return (
     <div
       onContextMenu={handleRightClickSlideBar}
-      className={classes["slide-bar"]}
+      className={classes.slide__bar}
     >
       {previewSlides.length > 0 &&
         previewSlides.map((slide, index) => (
@@ -77,11 +77,14 @@ function SlideBar({ slides }: SlideBarProps) {
             onDragOver={handleDragOver}
             onDrop={(event) => handleDrop(event, index)}
             key={slide.id}
-            className={classes.element}
+            className={classes.slide__bar_element}
           >
-            <div className={classes.index}>{index + 1}</div>
-            <div className={classes.wrapper}>
-              <SlidePreview slide={slide} className={classes.slide} />
+            <div className={classes.slide__bar_index}>{index + 1}</div>
+            <div className={classes.slide__bar_wrapper}>
+              <SlidePreview
+                slide={slide}
+                className={classes.slide__bar_slide}
+              />
             </div>
           </div>
         ))}

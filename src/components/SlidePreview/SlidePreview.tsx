@@ -1,10 +1,10 @@
-import { Position, Slide as TSlide } from "../../types/types.ts";
-import React, { CSSProperties, useContext, useEffect, useState } from "react";
 import Block from "../common/Block/Block.tsx";
-import Menu from "../common/Menu/Menu.tsx";
-import { PresentationContext } from "../../contexts/presentation.tsx";
+import React, { CSSProperties, useContext, useEffect, useState } from "react";
+import { Position, Slide as TSlide } from "../../types/types.ts";
 import classNames from "classnames";
 import classes from "./SlidePreview.module.css";
+import Menu from "../common/Menu/Menu.tsx";
+import { PresentationContext } from "../../contexts/presentation.tsx";
 import { slidePreviewMenu } from "../../constants/SlidePreview.ts";
 
 type SlideProps = {
@@ -50,7 +50,7 @@ function SlidePreview({ slide, className }: SlideProps) {
 
   let classSlideSelect: string = "";
   if (isCurrent) {
-    classSlideSelect = classes.select;
+    classSlideSelect = classes.slide__select;
   }
 
   const handleClickOutside = () => {

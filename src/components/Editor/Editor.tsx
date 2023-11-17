@@ -1,7 +1,7 @@
+import classes from "./Editor.module.css";
 import { Presentation } from "../../types/types.ts";
 import SlideBar from "../SlideBar/SlideBar.tsx";
 import Workspace from "../Workspace/Workspace.tsx";
-import classes from "./Editor.module.css";
 
 type EditorProps = {
   presentation: Presentation;

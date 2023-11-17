@@ -1,7 +1,7 @@
-import { PresentationContext } from "../../../contexts/presentation.tsx";
-import { Presentation as TPresentation } from "../../../types/types.ts";
 import classes from "./Button.module.css";
+import { Presentation as TPresentation } from "../../../types/types.ts";
 import { useContext } from "react";
+import { PresentationContext } from "../../../contexts/presentation.tsx";
 
 type ButtonProps = {
   text?: string;
@@ -36,11 +36,13 @@ function Button({ text, icon, onClick }: ButtonProps) {
       }}
     >
       {isIconButton && (
-        <span className={classes.icon + " " + "material-symbols-outlined"}>
+        <span
+          className={classes.button__icon + " " + "material-symbols-outlined"}
+        >
           {icon}
         </span>
       )}
-      {isTextButton && <span className={classes.text}>{text}</span>}
+      {isTextButton && <span className={classes.button__text}>{text}</span>}
     </button>
   );
 }

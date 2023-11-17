@@ -17,11 +17,11 @@
   background: #44474614;
 }
 
-.icon {
+.button__icon {
   font-size: 20px;
 }
 
-.text {
+.button__text {
   padding: 1px 8px;
   font:
     500 normal 14px/1 Roboto,

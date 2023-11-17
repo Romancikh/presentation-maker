@@ -1,6 +1,6 @@
-.slide-bar {
-  display: flex;
+.slide__bar {
   min-width: 320px;
+  display: flex;
   flex-direction: column;
   padding: 20px 20px 20px 0;
   border-right: 1px solid #c4c7c5;
@@ -8,24 +8,24 @@
   overflow-y: auto;
 }
 
-.element {
+.slide__bar_element {
   display: flex;
 }
 
-.index {
+.slide__bar_index {
   color: #1f1f1f;
   font:
     500 normal 28px/1 Roboto,
     sans-serif;
 }
 
-.wrapper {
+.slide__bar_wrapper {
   width: calc(1366px * 0.1);
   height: calc(768px * 0.2);
   margin-left: 20px;
 }
 
-.slide {
+.slide__bar_slide {
   overflow: hidden;
   transform: scale(0.3);
   transform-origin: 0 0;

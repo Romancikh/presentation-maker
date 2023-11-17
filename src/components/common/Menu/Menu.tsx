@@ -1,8 +1,8 @@
-import { CSSProperties, useContext } from "react";
-import { Position, Menu as TMenu } from "../../../types/types.ts";
 import MenuElement from "../MenuElement/MenuElement.tsx";
-import { PresentationContext } from "../../../contexts/presentation.tsx";
+import { Menu as TMenu, Position } from "../../../types/types.ts";
 import classes from "./Menu.module.css";
+import { CSSProperties, useContext } from "react";
+import { PresentationContext } from "../../../contexts/presentation.tsx";
 
 type MenuProps = {
   position: Position;
@@ -16,7 +16,7 @@ function Menu({ menuElements, position }: MenuProps) {
   };
 
   return (
-    <div className={classes["menu-body"]} style={positionStyle}>
+    <div className={classes.menu__body} style={positionStyle}>
       {menuElements.map((menuElement) => (
         <MenuElement
           key={menuElement.id}
