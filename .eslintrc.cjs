@@ -22,7 +22,6 @@ module.exports = {
         endOfLine: "crlf",
       },
     ],
-    "sort-imports": "error",
     "sort-keys": "error",
   },
 };

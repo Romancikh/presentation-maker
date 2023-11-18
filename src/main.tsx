@@ -1,12 +1,14 @@
 import "./index.css";
 import "normalize.css";
 import App from "./App.tsx";
+import PresentationProvider from "./contexts/presentation.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import presentation from "./types/examples/maximum.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App presentation={presentation} />
+    <PresentationProvider>
+      <App />
+    </PresentationProvider>
   </React.StrictMode>,
 );
