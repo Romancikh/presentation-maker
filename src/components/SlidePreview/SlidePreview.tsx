@@ -1,11 +1,10 @@
-import Block from "../common/Block/Block.tsx";
 import React, { CSSProperties, useContext, useEffect, useState } from "react";
-import { Position, Slide as TSlide } from "../../types/types.ts";
+import Block from "../common/Block/Block.tsx";
+import { PresentationContext } from "../../contexts/presentation.tsx";
+import { Slide as TSlide } from "../../types/types.ts";
 import classNames from "classnames";
 import classes from "./SlidePreview.module.css";
-import Menu from "../common/Menu/Menu.tsx";
-import { PresentationContext } from "../../contexts/presentation.tsx";
-import { slidePreviewMenu } from "../../constants/SlidePreview.ts";
+import { createLogger } from "vite";
 
 type SlideProps = {
   slide: TSlide;
@@ -13,35 +12,39 @@ type SlideProps = {
 };
 
 function SlidePreview({ slide, className }: SlideProps) {
-  const presentationContext = useContext(PresentationContext);
-  const [isCurrent, setIsCurrent] = useState(
-    presentationContext.presentation.selectSlides.includes(slide),
-  );
-  const [positionMouse, setPositionMouse] = useState({ x: 0, y: 0 });
-  const [rightClick, setRightClick] = useState(false);
-
-  const handleRightClickSlide = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    const newPresentation = { ...presentationContext.presentation };
-    const position: Position = {
-      x: event.clientX,
-      y: event.clientY,
-    };
-    newPresentation.currentSlide = slide;
-    newPresentation.selectSlides.push(slide);
-    setIsCurrent(true);
-    setPositionMouse(position);
-    setRightClick(!rightClick);
-    presentationContext.setPresentation(newPresentation);
-  };
+  const { presentation, setPresentation } = useContext(PresentationContext);
+  const [selectedSlides, setSelectedSlides] = useState([
+    ...presentation.selectSlides,
+  ]);
+  const [isSelect, setIsSelect] = useState(selectedSlides.includes(slide));
 
   const handleLeftClickSlide = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const newPresentation = { ...presentationContext.presentation };
-    newPresentation.currentSlide = slide;
-    newPresentation.selectSlides.push(slide);
-    presentationContext.setPresentation(newPresentation);
-    setIsCurrent(!isCurrent);
+    const newPresentation = { ...presentation };
+    if (
+      newPresentation.currentSlide !== slide &&
+      !newPresentation.selectSlides.includes(slide)
+    ) {
+      newPresentation.currentSlide = slide;
+      newPresentation.selectSlides.push(slide);
+      setIsSelect(true);
+    } else if (
+      newPresentation.currentSlide !== slide &&
+      newPresentation.selectSlides.includes(slide)
+    ) {
+      newPresentation.selectSlides = newPresentation.selectSlides.filter(
+        (selectSlide) => selectSlide !== slide,
+      );
+      setIsSelect(false);
+    } else if (
+      newPresentation.currentSlide === slide &&
+      !newPresentation.selectSlides.includes(slide)
+    ) {
+      newPresentation.selectSlides.push(slide);
+      setIsSelect(true);
+    }
+
+    setPresentation(newPresentation);
   };
 
   const style: CSSProperties = {
@@ -49,36 +52,27 @@ function SlidePreview({ slide, className }: SlideProps) {
   };
 
   let classSlideSelect: string = "";
-  if (isCurrent) {
+  if (isSelect || presentation.currentSlide === slide) {
     classSlideSelect = classes.slide__select;
   }
 
   // useEffect(() => {
-  //   presentationContext.presentation.selectSlides =
-  //     presentationContext.presentation.selectSlides.filter(
-  //       (slidePreview) => slidePreview !== slide,
-  //     );
-  //   setIsCurrent(presentationContext.presentation.selectSlides.includes(slide));
-  // }, [presentationContext]);
+  //   if (selectedSlides.length != presentation.selectSlides.length) {
+  //     setSelectedSlides([...presentation.selectSlides]);
+  //   }
+  // }, [presentation]);
 
   return (
     <div>
       <div
         className={classNames(classes.slide, className, classSlideSelect)}
         style={style}
-        onContextMenu={handleRightClickSlide}
         onClick={handleLeftClickSlide}
       >
         {slide.objects.map((object) => (
           <Block key={object.id} {...object} />
         ))}
       </div>
-      {rightClick && (
-        <Menu
-          menuElements={slidePreviewMenu.menuElements}
-          position={positionMouse}
-        />
-      )}
     </div>
   );
 }

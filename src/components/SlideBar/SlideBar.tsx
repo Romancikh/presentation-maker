@@ -35,7 +35,7 @@ function SlideBar({ slides }: SlideBarProps) {
     setOpened(true);
   };
 
-  const handleClick = (onClickOut: TonClickSlideBar) => {
+  const handleClick = (onClickOut: TonClickPresentation) => {
     onClickOut(presentation, setPresentation);
     setOpened(false);
   };
@@ -106,7 +106,7 @@ function SlideBar({ slides }: SlideBarProps) {
 
 export default SlideBar;
 
-export type TonClickSlideBar = (
+export type TonClickPresentation = (
   presentation: TPresentation,
   setPresentation: (presentation: TPresentation) => void,
 ) => void;

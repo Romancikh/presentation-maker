@@ -1,5 +1,5 @@
+import { MouseEventHandler } from "react";
 import classes from "./MenuElement.module.css";
-import React, { MouseEventHandler } from "react";
 
 type MenuElementProps = {
   text: string;
