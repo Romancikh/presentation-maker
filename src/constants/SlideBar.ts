@@ -10,7 +10,10 @@ import { v4 as uuidv4 } from "uuid";
 const slideBarMenuElements: MenuElement[] = [
   {
     id: uuidv4(),
-    onClick: (presentation, setPresentation) => {
+    onClick: (
+      presentation: TPresentation,
+      setPresentation: (presentation: TPresentation) => void,
+    ): void => {
       const newPresentation: TPresentation = { ...presentation };
       const backgroundSlide: Color = "#fff";
       const newSLide: TSlide = {

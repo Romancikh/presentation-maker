@@ -53,23 +53,13 @@ function SlidePreview({ slide, className }: SlideProps) {
     classSlideSelect = classes.slide__select;
   }
 
-  const handleClickOutside = () => {
-    if (rightClick) {
-      setRightClick(!rightClick);
-    }
-  };
-
-  useEffect(() => {
-    presentationContext.presentation.selectSlides =
-      presentationContext.presentation.selectSlides.filter(
-        (slidePreview) => slidePreview !== slide,
-      );
-    setIsCurrent(presentationContext.presentation.selectSlides.includes(slide));
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [presentationContext]);
+  // useEffect(() => {
+  //   presentationContext.presentation.selectSlides =
+  //     presentationContext.presentation.selectSlides.filter(
+  //       (slidePreview) => slidePreview !== slide,
+  //     );
+  //   setIsCurrent(presentationContext.presentation.selectSlides.includes(slide));
+  // }, [presentationContext]);
 
   return (
     <div>

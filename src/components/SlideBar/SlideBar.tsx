@@ -1,18 +1,28 @@
-import { Position, Slide as TSlide } from "../../types/types.ts";
-import React, { useEffect, useState } from "react";
+import {
+  Position,
+  Presentation as TPresentation,
+  Slide as TSlide,
+} from "../../types/types.ts";
+import React, { useContext, useEffect, useState } from "react";
 import Menu from "../common/Menu/Menu.tsx";
+import { PresentationContext } from "../../contexts/presentation.tsx";
+import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 import classes from "./SlideBar.module.css";
 import { slideBarMenu } from "../../constants/SlideBar.ts";
-import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 
 type SlideBarProps = {
   slides: TSlide[];
 };
 
 function SlideBar({ slides }: SlideBarProps) {
+  const { presentation, setPresentation } = useContext(PresentationContext);
   const [previewSlides, setPreviewSlides] = useState([...slides]);
   const [positionMouse, setPositionMouse] = useState({ x: 0, y: 0 });
-  const [rightClick, setRightClick] = useState(false);
+  const [opened, setOpened] = useState(false);
+
+  const onClose = () => {
+    setOpened(false);
+  };
   const handleRightClickSlideBar = (
     event: React.MouseEvent<HTMLDivElement>,
   ) => {
@@ -22,13 +32,12 @@ function SlideBar({ slides }: SlideBarProps) {
       y: event.clientY,
     };
     setPositionMouse(position);
-    setRightClick(!rightClick);
+    setOpened(true);
   };
 
-  const handleClickOutside = () => {
-    if (rightClick) {
-      setRightClick(!rightClick);
-    }
+  const handleClick = (onClickOut: TonClickSlideBar) => {
+    onClickOut(presentation, setPresentation);
+    setOpened(false);
   };
 
   const handleDragStart = (
@@ -54,15 +63,10 @@ function SlideBar({ slides }: SlideBarProps) {
   };
 
   useEffect(() => {
-    if (previewSlides.length != slides.length) {
-      setPreviewSlides([...slides]);
+    if (previewSlides.length != presentation.slides.length) {
+      setPreviewSlides([...presentation.slides]);
     }
-
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [handleClickOutside, slides]);
+  }, [presentation, slides]);
 
   return (
     <div
@@ -88,14 +92,21 @@ function SlideBar({ slides }: SlideBarProps) {
             </div>
           </div>
         ))}
-      {rightClick && (
-        <Menu
-          menuElements={slideBarMenu.menuElements}
-          position={positionMouse}
-        />
-      )}
+
+      <Menu
+        menuElements={slideBarMenu.menuElements}
+        position={positionMouse}
+        opened={opened}
+        onClose={onClose}
+        onClick={handleClick}
+      />
     </div>
   );
 }
 
 export default SlideBar;
+
+export type TonClickSlideBar = (
+  presentation: TPresentation,
+  setPresentation: (presentation: TPresentation) => void,
+) => void;

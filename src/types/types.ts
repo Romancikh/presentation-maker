@@ -86,7 +86,7 @@ type Option = {
 
 type MenuElement = {
   id: string;
-  onClick?: (
+  onClick: (
     presentation: Presentation,
     setPresentation: (newPresentation: Presentation) => void,
   ) => void;

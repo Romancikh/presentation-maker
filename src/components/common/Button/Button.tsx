@@ -1,19 +1,13 @@
+import { MouseEventHandler } from "react";
 import classes from "./Button.module.css";
-import { Presentation as TPresentation } from "../../../types/types.ts";
-import { useContext } from "react";
-import { PresentationContext } from "../../../contexts/presentation.tsx";
 
 type ButtonProps = {
   text?: string;
   icon?: string;
-  onClick?: (
-    presentation: TPresentation,
-    setPresentation: (presentation: TPresentation) => void,
-  ) => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 function Button({ text, icon, onClick }: ButtonProps) {
-  const presentationContext = useContext(PresentationContext);
   const isIconButton = icon && !text;
   const isTextButton = text && !icon;
   let classNameTypeButton = "";
@@ -27,13 +21,7 @@ function Button({ text, icon, onClick }: ButtonProps) {
     <button
       type="button"
       className={classes.button + " " + classNameTypeButton}
-      onClick={() => {
-        onClick &&
-          onClick(
-            presentationContext.presentation,
-            presentationContext.setPresentation,
-          );
-      }}
+      onClick={onClick}
     >
       {isIconButton && (
         <span

@@ -1,9 +1,10 @@
 import classes from "./MenuElement.module.css";
+import React, { MouseEventHandler } from "react";
 
 type MenuElementProps = {
   text: string;
   shortcut?: string;
-  onClick?: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 function MenuElement({ text, shortcut, onClick }: MenuElementProps) {
