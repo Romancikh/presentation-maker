@@ -5,10 +5,10 @@ import {
   onClickRectangle,
   onClickTriangle,
 } from "../../../constants/MenuPrimirives.ts";
-import { TonClickPrimitives } from "../MenuButtonPrimitives/MenuButtonPrimitives.tsx";
+import { TonClickPresentation } from "../MenuButtonPrimitives/MenuButtonPrimitives.tsx";
 
 type MenuPrimitivesProps = {
-  onChoice: (onClickPrimitives: TonClickPrimitives) => void;
+  onChoice: (onClickPrimitives: TonClickPresentation) => void;
 };
 
 function MenuPrimitives({ onChoice }: MenuPrimitivesProps) {

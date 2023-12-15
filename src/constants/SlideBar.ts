@@ -36,7 +36,6 @@ const slideBarMenuElements: MenuElement[] = [
     onClick: (presentation, setPresentation) => {
       const newPresentation: TPresentation = { ...presentation };
 
-      console.log(presentation.selectSlides, presentation.currentSlide);
       newPresentation.slides = newPresentation.slides.filter(
         (slide) => !presentation.selectSlides.includes(slide),
       );

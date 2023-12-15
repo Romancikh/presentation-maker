@@ -3,6 +3,7 @@ import MenuPrimitives from "../MenuPrimitives/MenuPrimitives.tsx";
 import { useContext, useState } from "react";
 import { Presentation as TPresentation } from "../../../types/types.ts";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
+import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
 
 function MenuButtonPrimitives() {
   const { presentation, setPresentation } = useContext(PresentationContext);
@@ -12,7 +13,7 @@ function MenuButtonPrimitives() {
     setSwitchOpenMenuPrimitives(!switchOpenMenuPrimitives);
   };
 
-  const handleChoice = (onClickPrimitives: TonClickPrimitives) => {
+  const handleChoice = (onClickPrimitives: TonClickPresentation) => {
     onClickPrimitives(presentation, setPresentation);
     setSwitchOpenMenuPrimitives(false);
   };
@@ -26,8 +27,3 @@ function MenuButtonPrimitives() {
 }
 
 export default MenuButtonPrimitives;
-
-export type TonClickPrimitives = (
-  presentation: TPresentation,
-  setPresentation: (presentation: TPresentation) => void,
-) => void;
