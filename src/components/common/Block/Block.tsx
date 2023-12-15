@@ -12,9 +12,19 @@ import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
 import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
 
-type BlockProps = TPrimitive | TImage | TText;
+type BlockProps = (TPrimitive | TImage | TText) & {
+  isWorkSpace: boolean;
+};
 
-function Block({ id, position, size, rotation, type, data }: BlockProps) {
+function Block({
+  id,
+  position,
+  size,
+  rotation,
+  type,
+  data,
+  isWorkSpace,
+}: BlockProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const [modelPosition, setModelPosition] = useState(position);
   const [selectClass, setSelectClass] = useState("");
@@ -64,7 +74,6 @@ function Block({ id, position, size, rotation, type, data }: BlockProps) {
     const newPresentation = { ...presentation };
     newPresentation.currentSlide?.selectObjects.map((object) => {
       const enterKey = event.key;
-      console.log(enterKey);
       if (object.id === id && object.type === "text") {
         if (enterKey.length === 1) {
           object.data.text += enterKey;
@@ -79,7 +88,7 @@ function Block({ id, position, size, rotation, type, data }: BlockProps) {
   };
 
   useEffect(() => {
-    if (type === "text") {
+    if (type === "text" && isWorkSpace) {
       window.addEventListener("keydown", handleKeyPress);
     }
     return () => {

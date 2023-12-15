@@ -63,7 +63,7 @@ function SlidePreview({ slide, className }: SlideProps) {
         onClick={handleLeftClickSlide}
       >
         {slide.objects.map((object) => (
-          <Block key={object.id} {...object} />
+          <Block key={object.id} {...object} isWorkSpace={false} />
         ))}
       </div>
     </div>
