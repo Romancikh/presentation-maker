@@ -2,9 +2,8 @@ import {
   Image as TImage,
   Primitive as TPrimitive,
   Text as TText,
-  Presentation as TPresentaion,
 } from "../../../types/types";
-import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
+import React, { CSSProperties, useContext, useEffect, useState } from "react";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";
@@ -18,21 +17,32 @@ type BlockProps = TPrimitive | TImage | TText;
 function Block({ id, position, size, rotation, type, data }: BlockProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const [modelPosition, setModelPosition] = useState(position);
-  const [isSelect, setIsSelect] = useState(false);
+  const [selectClass, setSelectClass] = useState("");
 
   const handleClick = () => {
     const newPresentation = { ...presentation };
+
     newPresentation.currentSlide?.objects.map((object) => {
       if (
         object.id === id &&
         !newPresentation.currentSlide?.selectObjects.includes(object)
       ) {
         newPresentation.currentSlide?.selectObjects.push(object);
-        setIsSelect(true);
-      } else {
-        setIsSelect(false);
+        setSelectClass(classes.block__select);
+      } else if (
+        object.id === id &&
+        newPresentation.currentSlide?.selectObjects.includes(object)
+      ) {
+        if (newPresentation.currentSlide !== null) {
+          newPresentation.currentSlide.selectObjects =
+            newPresentation.currentSlide.selectObjects.filter((object) => {
+              object.id !== id;
+              setSelectClass("");
+            });
+        }
       }
     });
+
     setPresentation(newPresentation);
   };
 
@@ -50,15 +60,37 @@ function Block({ id, position, size, rotation, type, data }: BlockProps) {
     width: size.width,
   };
 
-  let classBlockSelect: string = "";
-  if (isSelect) {
-    classBlockSelect = classes.block__select;
-  }
+  const handleKeyPress = (event: KeyboardEvent) => {
+    const newPresentation = { ...presentation };
+    newPresentation.currentSlide?.selectObjects.map((object) => {
+      const enterKey = event.key;
+      console.log(enterKey);
+      if (object.id === id && object.type === "text") {
+        if (enterKey.length === 1) {
+          object.data.text += enterKey;
+        } else if (enterKey === "Enter") {
+          object.data.text += "\n";
+        } else if (enterKey === "Backspace") {
+          object.data.text = object.data.text.slice(0, -1);
+        }
+        setPresentation(newPresentation);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (type === "text") {
+      window.addEventListener("keydown", handleKeyPress);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [type]);
 
   return (
     <div
       onClick={handleClick}
-      className={classes.block + " " + classBlockSelect}
+      className={classes.block + " " + selectClass}
       style={style}
     >
       {type === "image" && <Image data={data} />}

@@ -1,4 +1,11 @@
-import { Option } from "../types/types.ts";
+import {
+  Block,
+  Option,
+  Position,
+  Presentation as TPresentation,
+  Text,
+  Size,
+} from "../types/types.ts";
 import { v4 as uuidv4 } from "uuid";
 
 export const fontOptions: Option[] = [
@@ -13,3 +20,34 @@ export const fontOptions: Option[] = [
     value: "Arial",
   },
 ];
+
+export const insertTextOnClick = (
+  presentation: TPresentation,
+  setPresentation: (presentation: TPresentation) => void,
+): void => {
+  const newPresentation: TPresentation = { ...presentation };
+
+  const defaultSize: Size = {
+    height: 20,
+    width: 20,
+  };
+
+  const defaultPosition: Position = {
+    x: 0,
+    y: 0,
+  };
+
+  const text: Text & Block = {
+    data: {
+      text: "",
+    },
+    id: uuidv4(),
+    position: defaultPosition,
+    rotation: 0,
+    size: defaultSize,
+    type: "text",
+  };
+
+  newPresentation.currentSlide?.objects.push(text);
+  setPresentation(newPresentation);
+};

@@ -3,16 +3,25 @@ import Input from "../common/Input/Input.tsx";
 import MenuButtonPrimitives from "../common/MenuButtonPrimitives/MenuButtonPrimitives.tsx";
 import Select from "../common/Select/Select.tsx";
 import classes from "./ToolBar.module.css";
-import { fontOptions } from "../../constants/ToolBar.ts";
+import { fontOptions, insertTextOnClick } from "../../constants/ToolBar.ts";
+import { useContext } from "react";
+import { PresentationContext } from "../../contexts/presentation.tsx";
 
 function ToolBar() {
+  const { presentation, setPresentation } = useContext(PresentationContext);
+
   return (
     <div className={classes.tool__bar}>
       <Button icon={"undo"} />
       <Button icon={"redo"} />
       <Button text={"Тема"} />
       <MenuButtonPrimitives />
-      <Button icon={"insert_text"} />
+      <Button
+        icon={"insert_text"}
+        onClick={() => {
+          insertTextOnClick(presentation, setPresentation);
+        }}
+      />
       <Button icon={"image"} />
       <Select options={fontOptions} className={classes.font__select} />
       <Button icon={"remove"} />

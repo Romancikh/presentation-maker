@@ -33,7 +33,8 @@ type Block = {
 type Text = Block & {
   type: "text";
   data: {
-    text: Char[];
+    // text: Char[];
+    text: string;
   };
 };
 

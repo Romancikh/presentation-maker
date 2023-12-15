@@ -1,10 +1,9 @@
-import React, { CSSProperties, useContext, useEffect, useState } from "react";
+import React, { CSSProperties, useContext, useState } from "react";
 import Block from "../common/Block/Block.tsx";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
 import classNames from "classnames";
 import classes from "./SlidePreview.module.css";
-import { createLogger } from "vite";
 
 type SlideProps = {
   slide: TSlide;
@@ -55,12 +54,6 @@ function SlidePreview({ slide, className }: SlideProps) {
   if (isSelect || presentation.currentSlide === slide) {
     classSlideSelect = classes.slide__select;
   }
-
-  // useEffect(() => {
-  //   if (selectedSlides.length != presentation.selectSlides.length) {
-  //     setSelectedSlides([...presentation.selectSlides]);
-  //   }
-  // }, [presentation]);
 
   return (
     <div>

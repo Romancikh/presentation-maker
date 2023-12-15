@@ -11,6 +11,8 @@ export const onClickTriangle = (
   presentation: TPresentation,
   setPresentation: (presentation: TPresentation) => void,
 ): void => {
+  const newPresentation: TPresentation = { ...presentation };
+
   const defaultSize: Size = {
     height: 20,
     width: 20,
@@ -32,14 +34,17 @@ export const onClickTriangle = (
     size: defaultSize,
     type: "primitive",
   };
-  presentation.currentSlide?.objects.push(triangle);
-  setPresentation(presentation);
+
+  newPresentation.currentSlide?.objects.push(triangle);
+  setPresentation(newPresentation);
 };
 
 export const onClickRectangle = (
   presentation: TPresentation,
   setPresentation: (presentation: TPresentation) => void,
 ): void => {
+  const newPresentation: TPresentation = { ...presentation };
+
   const defaultSize: Size = {
     height: 20,
     width: 20,
@@ -61,14 +66,16 @@ export const onClickRectangle = (
     size: defaultSize,
     type: "primitive",
   };
-  presentation.currentSlide?.objects.push(triangle);
-  setPresentation(presentation);
+  newPresentation.currentSlide?.objects.push(triangle);
+  setPresentation(newPresentation);
 };
 
 export const onClickEllipse = (
   presentation: TPresentation,
   setPresentation: (presentation: TPresentation) => void,
 ): void => {
+  const newPresentation: TPresentation = { ...presentation };
+
   const defaultSize: Size = {
     height: 20,
     width: 20,
@@ -90,6 +97,6 @@ export const onClickEllipse = (
     size: defaultSize,
     type: "primitive",
   };
-  presentation.currentSlide?.objects.push(triangle);
-  setPresentation(presentation);
+  newPresentation.currentSlide?.objects.push(triangle);
+  setPresentation(newPresentation);
 };

@@ -6,7 +6,6 @@ import {
   Slide as TSlide,
 } from "../types/types.ts";
 import { v4 as uuidv4 } from "uuid";
-import slide from "../components/Slide/Slide.tsx";
 
 const slideBarMenuElements: MenuElement[] = [
   {

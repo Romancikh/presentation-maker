@@ -1,7 +1,6 @@
 import Button from "../Button/Button.tsx";
 import MenuPrimitives from "../MenuPrimitives/MenuPrimitives.tsx";
 import { useContext, useState } from "react";
-import { Presentation as TPresentation } from "../../../types/types.ts";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
 import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
 
