@@ -1,6 +1,6 @@
 .slide__bar {
-  min-width: 320px;
   display: flex;
+  min-width: 320px;
   flex-direction: column;
   padding: 20px 20px 20px 0;
   border-right: 1px solid #c4c7c5;

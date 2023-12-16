@@ -3,14 +3,19 @@ import {
   Primitive as TPrimitive,
   Text as TText,
 } from "../../../types/types";
-import React, { CSSProperties, useContext, useEffect, useState } from "react";
+import React, {
+  CSSProperties,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Image from "../Image/Image";
 import Primitive from "../Primitive/Primitive";
 import Text from "../Text/Text";
 import classes from "./Block.module.css";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
-import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
 
 type BlockProps = (TPrimitive | TImage | TText) & {
   isWorkSpace: boolean;
@@ -28,6 +33,7 @@ function Block({
   const { presentation, setPresentation } = useContext(PresentationContext);
   const [modelPosition, setModelPosition] = useState(position);
   const [selectClass, setSelectClass] = useState("");
+  const blockRef = useRef<HTMLDivElement | null>(null);
 
   const handleClick = () => {
     const newPresentation = { ...presentation };
@@ -56,7 +62,9 @@ function Block({
     setPresentation(newPresentation);
   };
 
-  useDragAndDrop(modelPosition, setModelPosition);
+  if (isWorkSpace) {
+    useDragAndDrop(blockRef, id, modelPosition, setModelPosition);
+  }
 
   const centerX = size.width / 2;
   const centerY = size.height / 2;
@@ -88,7 +96,7 @@ function Block({
   };
 
   useEffect(() => {
-    if (type === "text" && isWorkSpace) {
+    if (type === "text") {
       window.addEventListener("keydown", handleKeyPress);
     }
     return () => {
@@ -98,6 +106,7 @@ function Block({
 
   return (
     <div
+      ref={blockRef}
       onClick={handleClick}
       className={classes.block + " " + selectClass}
       style={style}

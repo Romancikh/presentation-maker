@@ -2,9 +2,9 @@ import {
   Block,
   Option,
   Position,
+  Size,
   Presentation as TPresentation,
   Text,
-  Size,
 } from "../types/types.ts";
 import { v4 as uuidv4 } from "uuid";
 
