@@ -63,6 +63,7 @@ function Block({
   };
 
   if (isWorkSpace) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useDragAndDrop(blockRef, id, modelPosition, setModelPosition);
   }
 
@@ -80,8 +81,9 @@ function Block({
 
   const handleKeyPress = (event: KeyboardEvent) => {
     const newPresentation = { ...presentation };
+    const enterKey = event.key;
+
     newPresentation.currentSlide?.selectObjects.map((object) => {
-      const enterKey = event.key;
       if (object.id === id && object.type === "text") {
         if (enterKey.length === 1) {
           object.data.text += enterKey;
@@ -93,16 +95,25 @@ function Block({
         setPresentation(newPresentation);
       }
     });
+
+    if (enterKey === "Delete") {
+      if (newPresentation.currentSlide !== null) {
+        newPresentation.currentSlide.selectObjects = [];
+      }
+      setPresentation(newPresentation);
+    }
   };
 
   useEffect(() => {
-    if (type === "text") {
+    if (isWorkSpace) {
+      console.log(isWorkSpace);
       window.addEventListener("keydown", handleKeyPress);
     }
+
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [type]);
+  }, [type, isWorkSpace, presentation]);
 
   return (
     <div

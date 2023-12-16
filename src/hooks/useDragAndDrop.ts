@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Position } from "../types/types.ts";
 import { PresentationContext } from "../contexts/presentation.tsx";
-import block from "../components/common/Block/Block.tsx";
 
 const useDragAndDrop = (
   blockRef: React.MutableRefObject<HTMLDivElement | null>,
