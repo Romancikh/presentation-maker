@@ -98,6 +98,16 @@ function Block({
 
     if (enterKey === "Delete") {
       if (newPresentation.currentSlide !== null) {
+        const selectObjectIds: string[] = [];
+        newPresentation.currentSlide?.selectObjects.map((object) => {
+          selectObjectIds.push(object.id);
+        });
+
+        newPresentation.currentSlide.objects =
+          newPresentation.currentSlide.objects.filter((object) => {
+            return !selectObjectIds.includes(object.id);
+          });
+
         newPresentation.currentSlide.selectObjects = [];
       }
       setPresentation(newPresentation);
@@ -106,7 +116,6 @@ function Block({
 
   useEffect(() => {
     if (isWorkSpace) {
-      console.log(isWorkSpace);
       window.addEventListener("keydown", handleKeyPress);
     }
 
