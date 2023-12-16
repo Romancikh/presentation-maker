@@ -1,35 +1,17 @@
-import {
-  Image as TImage,
-  Primitive as TPrimitive,
-  Text as TText,
-} from "../../../types/types";
-import React, {
-  CSSProperties,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import Image from "../Image/Image";
-import Primitive from "../Primitive/Primitive";
-import Text from "../Text/Text";
-import classes from "./Block.module.css";
+import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
+import { Image as TImage, Primitive as TPrimitive, Text as TText } from "../../../types/types.ts";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
+import Image from "../Image/Image.tsx";
+import Text from "../Text/Text.tsx";
+import Primitive from "../Primitive/Primitive.tsx";
+import classes from "./Block.module.css";
 
 type BlockProps = (TPrimitive | TImage | TText) & {
   isWorkSpace: boolean;
 };
 
-function Block({
-  id,
-  position,
-  size,
-  rotation,
-  type,
-  data,
-  isWorkSpace,
-}: BlockProps) {
+function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const [modelPosition, setModelPosition] = useState(position);
   const [selectClass, setSelectClass] = useState("");
@@ -39,22 +21,15 @@ function Block({
     const newPresentation = { ...presentation };
 
     newPresentation.currentSlide?.objects.map((object) => {
-      if (
-        object.id === id &&
-        !newPresentation.currentSlide?.selectObjects.includes(object)
-      ) {
+      if (object.id === id && !newPresentation.currentSlide?.selectObjects.includes(object)) {
         newPresentation.currentSlide?.selectObjects.push(object);
-        setSelectClass(classes.block__select);
-      } else if (
-        object.id === id &&
-        newPresentation.currentSlide?.selectObjects.includes(object)
-      ) {
+        setSelectClass(classes.select);
+      } else if (object.id === id && newPresentation.currentSlide?.selectObjects.includes(object)) {
         if (newPresentation.currentSlide !== null) {
-          newPresentation.currentSlide.selectObjects =
-            newPresentation.currentSlide.selectObjects.filter((object) => {
-              object.id !== id;
-              setSelectClass("");
-            });
+          newPresentation.currentSlide.selectObjects = newPresentation.currentSlide.selectObjects.filter((object) => {
+            setSelectClass("");
+            return object.id !== id;
+          });
         }
       }
     });
@@ -79,42 +54,41 @@ function Block({
     width: size.width,
   };
 
-  const handleKeyPress = (event: KeyboardEvent) => {
-    const newPresentation = { ...presentation };
-    const enterKey = event.key;
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      const newPresentation = { ...presentation };
+      const enterKey = event.key;
 
-    newPresentation.currentSlide?.selectObjects.map((object) => {
-      if (object.id === id && object.type === "text") {
-        if (enterKey.length === 1) {
-          object.data.text += enterKey;
-        } else if (enterKey === "Enter") {
-          object.data.text += "\n";
-        } else if (enterKey === "Backspace") {
-          object.data.text = object.data.text.slice(0, -1);
+      newPresentation.currentSlide?.selectObjects.map((object) => {
+        if (object.id === id && object.type === "text") {
+          if (enterKey.length === 1) {
+            object.data.text += enterKey;
+          } else if (enterKey === "Enter") {
+            object.data.text += "\n";
+          } else if (enterKey === "Backspace") {
+            object.data.text = object.data.text.slice(0, -1);
+          }
+          setPresentation(newPresentation);
         }
-        setPresentation(newPresentation);
-      }
-    });
+      });
 
-    if (enterKey === "Delete") {
-      if (newPresentation.currentSlide !== null) {
-        const selectObjectIds: string[] = [];
-        newPresentation.currentSlide?.selectObjects.map((object) => {
-          selectObjectIds.push(object.id);
-        });
+      if (enterKey === "Delete") {
+        if (newPresentation.currentSlide !== null) {
+          const selectObjectIds: string[] = [];
+          newPresentation.currentSlide?.selectObjects.map((object) => {
+            selectObjectIds.push(object.id);
+          });
 
-        newPresentation.currentSlide.objects =
-          newPresentation.currentSlide.objects.filter((object) => {
+          newPresentation.currentSlide.objects = newPresentation.currentSlide.objects.filter((object) => {
             return !selectObjectIds.includes(object.id);
           });
 
-        newPresentation.currentSlide.selectObjects = [];
+          newPresentation.currentSlide.selectObjects = [];
+        }
+        setPresentation(newPresentation);
       }
-      setPresentation(newPresentation);
-    }
-  };
+    };
 
-  useEffect(() => {
     if (isWorkSpace) {
       window.addEventListener("keydown", handleKeyPress);
     }
@@ -122,15 +96,10 @@ function Block({
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [type, isWorkSpace, presentation]);
+  }, [type, isWorkSpace, presentation, id, setPresentation]);
 
   return (
-    <div
-      ref={blockRef}
-      onClick={handleClick}
-      className={classes.block + " " + selectClass}
-      style={style}
-    >
+    <div ref={blockRef} onClick={handleClick} className={classes.block + " " + selectClass} style={style}>
       {type === "image" && <Image data={data} />}
       {type === "primitive" && <Primitive data={data} />}
       {type === "text" && <Text data={data} />}

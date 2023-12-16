@@ -1,8 +1,8 @@
+import { useContext } from "react";
 import Editor from "./components/Editor/Editor.tsx";
 import Header from "./components/Header/Header.tsx";
 import { PresentationContext } from "./contexts/presentation.tsx";
 import classes from "./App.module.css";
-import { useContext } from "react";
 
 function App() {
   const { presentation } = useContext(PresentationContext);

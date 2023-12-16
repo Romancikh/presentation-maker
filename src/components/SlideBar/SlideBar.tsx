@@ -1,14 +1,10 @@
-import {
-  Position,
-  Presentation as TPresentation,
-  Slide as TSlide,
-} from "../../types/types.ts";
 import React, { useContext, useEffect, useState } from "react";
+import { Position, Presentation as TPresentation, Slide as TSlide } from "../../types/types.ts";
 import Menu from "../common/Menu/Menu.tsx";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import SlidePreview from "../SlidePreview/SlidePreview.tsx";
-import classes from "./SlideBar.module.css";
 import { slideBarMenu } from "../../constants/SlideBar.ts";
+import classes from "./SlideBar.module.css";
 
 type SlideBarProps = {
   slides: TSlide[];
@@ -23,9 +19,7 @@ function SlideBar({ slides }: SlideBarProps) {
   const onClose = () => {
     setOpened(false);
   };
-  const handleRightClickSlideBar = (
-    event: React.MouseEvent<HTMLDivElement>,
-  ) => {
+  const handleRightClickSlideBar = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     const position: Position = {
       x: event.clientX,
@@ -40,10 +34,7 @@ function SlideBar({ slides }: SlideBarProps) {
     setOpened(false);
   };
 
-  const handleDragStart = (
-    event: React.DragEvent<HTMLDivElement>,
-    index: number,
-  ) => {
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, index: number) => {
     event.dataTransfer.setData("index", index.toString());
   };
 
@@ -51,10 +42,7 @@ function SlideBar({ slides }: SlideBarProps) {
     event.preventDefault();
   };
 
-  const handleDrop = (
-    event: React.DragEvent<HTMLDivElement>,
-    index: number,
-  ) => {
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>, index: number) => {
     const sourceIndex = Number(event.dataTransfer.getData("index"));
     const newItems = [...previewSlides];
     const [removedItem] = newItems.splice(sourceIndex, 1);
@@ -66,13 +54,10 @@ function SlideBar({ slides }: SlideBarProps) {
     if (previewSlides.length != presentation.slides.length) {
       setPreviewSlides([...presentation.slides]);
     }
-  }, [presentation, slides]);
+  }, [presentation, previewSlides.length, slides]);
 
   return (
-    <div
-      onContextMenu={handleRightClickSlideBar}
-      className={classes.slide__bar}
-    >
+    <div onContextMenu={handleRightClickSlideBar} className={classes["slide-bar"]}>
       {previewSlides.length > 0 &&
         previewSlides.map((slide, index) => (
           <div
@@ -81,14 +66,11 @@ function SlideBar({ slides }: SlideBarProps) {
             onDragOver={handleDragOver}
             onDrop={(event) => handleDrop(event, index)}
             key={slide.id}
-            className={classes.slide__bar_element}
+            className={classes.element}
           >
-            <div className={classes.slide__bar_index}>{index + 1}</div>
-            <div className={classes.slide__bar_wrapper}>
-              <SlidePreview
-                slide={slide}
-                className={classes.slide__bar_slide}
-              />
+            <div className={classes.index}>{index + 1}</div>
+            <div className={classes.wrapper}>
+              <SlidePreview slide={slide} className={classes.slide} />
             </div>
           </div>
         ))}
@@ -108,5 +90,5 @@ export default SlideBar;
 
 export type TonClickPresentation = (
   presentation: TPresentation,
-  setPresentation: (presentation: TPresentation) => void,
+  setPresentation: (presentation: TPresentation) => void
 ) => void;

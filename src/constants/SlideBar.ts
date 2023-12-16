@@ -1,19 +1,10 @@
-import {
-  Color,
-  Menu,
-  MenuElement,
-  Presentation as TPresentation,
-  Slide as TSlide,
-} from "../types/types.ts";
 import { v4 as uuidv4 } from "uuid";
+import { Color, Menu, MenuElement, Presentation as TPresentation, Slide as TSlide } from "../types/types.ts";
 
 const slideBarMenuElements: MenuElement[] = [
   {
     id: uuidv4(),
-    onClick: (
-      presentation: TPresentation,
-      setPresentation: (presentation: TPresentation) => void,
-    ): void => {
+    onClick: (presentation: TPresentation, setPresentation: (presentation: TPresentation) => void): void => {
       const newPresentation: TPresentation = { ...presentation };
       const backgroundSlide: Color = "#fff";
       const newSLide: TSlide = {
@@ -35,9 +26,7 @@ const slideBarMenuElements: MenuElement[] = [
     onClick: (presentation, setPresentation) => {
       const newPresentation: TPresentation = { ...presentation };
 
-      newPresentation.slides = newPresentation.slides.filter(
-        (slide) => !presentation.selectSlides.includes(slide),
-      );
+      newPresentation.slides = newPresentation.slides.filter((slide) => !presentation.selectSlides.includes(slide));
 
       newPresentation.selectSlides = [];
       if (newPresentation.slides.length > 0) {

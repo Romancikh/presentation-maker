@@ -1,5 +1,5 @@
-import { PropsWithChildren, createContext, useState } from "react";
-import { Presentation } from "../types/types";
+import { createContext, PropsWithChildren, useState } from "react";
+import { Presentation } from "../types/types.ts";
 
 type PresentationContextType = {
   presentation: Presentation;

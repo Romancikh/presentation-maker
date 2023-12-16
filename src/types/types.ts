@@ -87,10 +87,7 @@ type Option = {
 
 type MenuElement = {
   id: string;
-  onClick: (
-    presentation: Presentation,
-    setPresentation: (newPresentation: Presentation) => void,
-  ) => void;
+  onClick: (presentation: Presentation, setPresentation: (newPresentation: Presentation) => void) => void;
   text: string;
   shortcut?: string;
 };

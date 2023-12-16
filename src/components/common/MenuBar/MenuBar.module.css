@@ -3,31 +3,31 @@
   flex-direction: row;
 }
 
-.menu__main_icon {
+.main-icon {
   width: 48px;
   height: 48px;
   margin: 5px;
 }
 
-.menu__input_buttons {
+.input-buttons {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
 }
 
-.menu__buttons {
+.buttons {
   display: flex;
   flex-direction: row;
   margin-top: 5px;
 }
 
-.name__presentation_input {
+.presentation-input {
   border: none;
   border-radius: 5px;
   margin: 1px;
 }
 
-.name__presentation_input:hover {
-  border: 1px solid #000000;
+.presentation-input:hover {
+  border: 1px solid #000;
   margin: 0;
 }

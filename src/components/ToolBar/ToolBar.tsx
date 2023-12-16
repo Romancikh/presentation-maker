@@ -1,18 +1,17 @@
+import { useContext } from "react";
 import Button from "../common/Button/Button.tsx";
 import Input from "../common/Input/Input.tsx";
 import MenuButtonPrimitives from "../common/MenuButtonPrimitives/MenuButtonPrimitives.tsx";
 import Select from "../common/Select/Select.tsx";
-import classes from "./ToolBar.module.css";
 import { fontOptions, insertTextOnClick } from "../../constants/ToolBar.ts";
-import { useContext } from "react";
 import { PresentationContext } from "../../contexts/presentation.tsx";
-import InputImage from "../common/InputImage/InputImage.tsx";
+import classes from "./ToolBar.module.css";
 
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
 
   return (
-    <div className={classes.tool__bar}>
+    <div className={classes["tool-bar"]}>
       <Button icon={"undo"} />
       <Button icon={"redo"} />
       <Button text={"Тема"} />
@@ -25,9 +24,9 @@ function ToolBar() {
       />
       <Button icon={"image"} />
       {/*<InputImage icon={"image"} />*/}
-      <Select options={fontOptions} className={classes.font__select} />
+      <Select options={fontOptions} className={classes["font-select"]} />
       <Button icon={"remove"} />
-      <Input defaultValue={11} className={classes.size__shrift_input} />
+      <Input defaultValue={11} className={classes["size-shrift-input"]} />
       <Button icon={"add"} />
       <Button icon={"format_bold"} />
       <Button icon={"format_italic"} />

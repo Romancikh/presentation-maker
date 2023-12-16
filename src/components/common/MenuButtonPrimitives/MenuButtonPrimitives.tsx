@@ -1,13 +1,12 @@
+import { useContext, useState } from "react";
 import Button from "../Button/Button.tsx";
 import MenuPrimitives from "../MenuPrimitives/MenuPrimitives.tsx";
-import { useContext, useState } from "react";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
 import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
 
 function MenuButtonPrimitives() {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const [switchOpenMenuPrimitives, setSwitchOpenMenuPrimitives] =
-    useState(false);
+  const [switchOpenMenuPrimitives, setSwitchOpenMenuPrimitives] = useState(false);
   const openMenuPrimitives = () => {
     setSwitchOpenMenuPrimitives(!switchOpenMenuPrimitives);
   };

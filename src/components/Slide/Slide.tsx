@@ -1,10 +1,8 @@
-import Block from "../common/Block/Block.tsx";
-import { CSSProperties, useContext, useState } from "react";
-import { Slide as TSlide } from "../../types/types.ts";
+import { CSSProperties } from "react";
 import classNames from "classnames";
+import Block from "../common/Block/Block.tsx";
+import { Slide as TSlide } from "../../types/types.ts";
 import classes from "./Slide.module.css";
-import { TonClickPresentation } from "../SlideBar/SlideBar.tsx";
-import { PresentationContext } from "../../contexts/presentation.tsx";
 
 type SlideProps = {
   slide: TSlide;
@@ -12,8 +10,6 @@ type SlideProps = {
 };
 
 function Slide({ slide, className }: SlideProps) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-
   const style: CSSProperties = {
     background: slide.background,
   };

@@ -1,4 +1,4 @@
-.menu__element_body {
+.body {
   display: flex;
   width: 200px;
   flex-direction: row;
@@ -9,6 +9,6 @@
     sans-serif;
 }
 
-.menu__element_body:hover {
+.body:hover {
   background: #44474614;
 }

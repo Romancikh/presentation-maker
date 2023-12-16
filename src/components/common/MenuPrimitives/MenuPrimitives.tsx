@@ -1,11 +1,7 @@
 import Button from "../Button/Button.tsx";
+import { onClickEllipse, onClickRectangle, onClickTriangle } from "../../../constants/MenuPrimirives.ts";
+import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
 import classes from "./MenuPrimitives.module.css";
-import {
-  onClickEllipse,
-  onClickRectangle,
-  onClickTriangle,
-} from "../../../constants/MenuPrimirives.ts";
-import { TonClickPresentation } from "../MenuButtonPrimitives/MenuButtonPrimitives.tsx";
 
 type MenuPrimitivesProps = {
   onChoice: (onClickPrimitives: TonClickPresentation) => void;
@@ -13,13 +9,10 @@ type MenuPrimitivesProps = {
 
 function MenuPrimitives({ onChoice }: MenuPrimitivesProps) {
   return (
-    <div className={classes.menu__primitives_body}>
+    <div className={classes.body}>
       <Button icon={"rectangle"} onClick={() => onChoice(onClickRectangle)} />
       <Button icon={"circle"} onClick={() => onChoice(onClickEllipse)} />
-      <Button
-        icon={"change_history"}
-        onClick={() => onChoice(onClickTriangle)}
-      />
+      <Button icon={"change_history"} onClick={() => onChoice(onClickTriangle)} />
     </div>
   );
 }

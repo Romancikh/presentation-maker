@@ -1,8 +1,8 @@
 import React, { CSSProperties, useContext, useState } from "react";
+import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
-import classNames from "classnames";
 import classes from "./SlidePreview.module.css";
 
 type SlideProps = {
@@ -12,33 +12,20 @@ type SlideProps = {
 
 function SlidePreview({ slide, className }: SlideProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const [selectedSlides, setSelectedSlides] = useState([
-    ...presentation.selectSlides,
-  ]);
+  const [selectedSlides] = useState([...presentation.selectSlides]);
   const [isSelect, setIsSelect] = useState(selectedSlides.includes(slide));
 
   const handleLeftClickSlide = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     const newPresentation = { ...presentation };
-    if (
-      newPresentation.currentSlide !== slide &&
-      !newPresentation.selectSlides.includes(slide)
-    ) {
+    if (newPresentation.currentSlide !== slide && !newPresentation.selectSlides.includes(slide)) {
       newPresentation.currentSlide = slide;
       newPresentation.selectSlides.push(slide);
       setIsSelect(true);
-    } else if (
-      newPresentation.currentSlide !== slide &&
-      newPresentation.selectSlides.includes(slide)
-    ) {
-      newPresentation.selectSlides = newPresentation.selectSlides.filter(
-        (selectSlide) => selectSlide !== slide,
-      );
+    } else if (newPresentation.currentSlide !== slide && newPresentation.selectSlides.includes(slide)) {
+      newPresentation.selectSlides = newPresentation.selectSlides.filter((selectSlide) => selectSlide !== slide);
       setIsSelect(false);
-    } else if (
-      newPresentation.currentSlide === slide &&
-      !newPresentation.selectSlides.includes(slide)
-    ) {
+    } else if (newPresentation.currentSlide === slide && !newPresentation.selectSlides.includes(slide)) {
       newPresentation.selectSlides.push(slide);
       setIsSelect(true);
     }
@@ -52,7 +39,7 @@ function SlidePreview({ slide, className }: SlideProps) {
 
   let classSlideSelect: string = "";
   if (isSelect || presentation.currentSlide === slide) {
-    classSlideSelect = classes.slide__select;
+    classSlideSelect = classes.select;
   }
 
   return (

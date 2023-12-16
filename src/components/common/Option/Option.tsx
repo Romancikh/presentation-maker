@@ -8,7 +8,7 @@ type OptionProps = {
 
 function Option({ option }: OptionProps) {
   return (
-    <option className={classes.font_option} value={option.value}>
+    <option className={classes.option} value={option.value}>
       {option.label}
     </option>
   );

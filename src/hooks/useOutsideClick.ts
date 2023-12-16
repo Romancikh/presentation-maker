@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 export function useOutsideClick(
   elementRef: React.MutableRefObject<null | HTMLDivElement>,
   handler: () => void,
-  attached = true,
+  attached = true
 ) {
   const latestHandler = useLatest(handler);
 

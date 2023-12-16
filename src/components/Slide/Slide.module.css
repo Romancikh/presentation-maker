@@ -7,8 +7,3 @@
   border: 1px solid #dbdedc;
   gap: 20px;
 }
-
-.slide__select {
-  box-shadow: 0 0 20px #000000;
-  outline: 10px solid #0000ff;
-}

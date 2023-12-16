@@ -1,12 +1,5 @@
-import {
-  Block,
-  Option,
-  Position,
-  Size,
-  Presentation as TPresentation,
-  Text,
-} from "../types/types.ts";
 import { v4 as uuidv4 } from "uuid";
+import { Block, Option, Position, Size, Presentation as TPresentation, Text } from "../types/types.ts";
 
 export const fontOptions: Option[] = [
   {
@@ -23,7 +16,7 @@ export const fontOptions: Option[] = [
 
 export const insertTextOnClick = (
   presentation: TPresentation,
-  setPresentation: (presentation: TPresentation) => void,
+  setPresentation: (presentation: TPresentation) => void
 ): void => {
   const newPresentation: TPresentation = { ...presentation };
 

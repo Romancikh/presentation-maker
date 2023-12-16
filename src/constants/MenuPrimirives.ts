@@ -1,15 +1,9 @@
-import {
-  Block,
-  Position,
-  Primitive,
-  Size,
-  Presentation as TPresentation,
-} from "../types/types.ts";
 import { v4 as uuidv4 } from "uuid";
+import { Block, Position, Primitive, Size, Presentation as TPresentation } from "../types/types.ts";
 
 export const onClickTriangle = (
   presentation: TPresentation,
-  setPresentation: (presentation: TPresentation) => void,
+  setPresentation: (presentation: TPresentation) => void
 ): void => {
   const newPresentation: TPresentation = { ...presentation };
 
@@ -41,7 +35,7 @@ export const onClickTriangle = (
 
 export const onClickRectangle = (
   presentation: TPresentation,
-  setPresentation: (presentation: TPresentation) => void,
+  setPresentation: (presentation: TPresentation) => void
 ): void => {
   const newPresentation: TPresentation = { ...presentation };
 
@@ -72,7 +66,7 @@ export const onClickRectangle = (
 
 export const onClickEllipse = (
   presentation: TPresentation,
-  setPresentation: (presentation: TPresentation) => void,
+  setPresentation: (presentation: TPresentation) => void
 ): void => {
   const newPresentation: TPresentation = { ...presentation };
 

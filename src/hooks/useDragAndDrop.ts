@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useState } from "react";
 import { Position } from "../types/types.ts";
 import { PresentationContext } from "../contexts/presentation.tsx";
 
 const useDragAndDrop = (
-  blockRef: React.MutableRefObject<HTMLDivElement | null>,
+  blockRef: MutableRefObject<HTMLDivElement | null>,
   objectId: string,
   modelPosition: Position,
-  setModelPos: React.Dispatch<React.SetStateAction<Position>>,
+  setModelPos: Dispatch<SetStateAction<Position>>
 ) => {
-  const { presentation, setPresentation } = useContext(PresentationContext);
+  const { presentation } = useContext(PresentationContext);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -37,7 +37,7 @@ const useDragAndDrop = (
       return;
     }
 
-    // TODO: Сделаь провекру что это текущий объект
+    // TODO: Сделать проверку, что это текущий объект
     // const isObjectSelected = () => {
     //   if (presentation.currentSlide !== null) {
     //     for (const object of presentation.currentSlide.selectObjects) {

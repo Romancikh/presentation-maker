@@ -1,9 +1,9 @@
-import { Position, Menu as TMenu } from "../../../types/types.ts";
 import { CSSProperties, useRef } from "react";
+import { Menu as TMenu, Position } from "../../../types/types.ts";
 import MenuElement from "../MenuElement/MenuElement.tsx";
 import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
-import classes from "./Menu.module.css";
 import { useOutsideClick } from "../../../hooks/useOutsideClick.ts";
+import classes from "./Menu.module.css";
 
 type MenuProps = {
   position: Position;
@@ -24,7 +24,7 @@ function Menu({ menuElements, position, opened, onClose, onClick }: MenuProps) {
   };
 
   return (
-    <div ref={ref} className={classes.menu__body} style={positionStyle}>
+    <div ref={ref} className={classes.body} style={positionStyle}>
       {menuElements.map((menuElement) => (
         <MenuElement
           key={menuElement.id}

@@ -4,7 +4,7 @@ import classes from "./Button.module.css";
 type ButtonProps = {
   text?: string;
   icon?: string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 function Button({ text, icon, onClick }: ButtonProps) {
@@ -18,19 +18,9 @@ function Button({ text, icon, onClick }: ButtonProps) {
   }
 
   return (
-    <button
-      type="button"
-      className={classes.button + " " + classNameTypeButton}
-      onClick={onClick}
-    >
-      {isIconButton && (
-        <span
-          className={classes.button__icon + " " + "material-symbols-outlined"}
-        >
-          {icon}
-        </span>
-      )}
-      {isTextButton && <span className={classes.button__text}>{text}</span>}
+    <button type="button" className={classes.button + " " + classNameTypeButton} onClick={onClick}>
+      {isIconButton && <span className={classes.icon + " " + "material-symbols-outlined"}>{icon}</span>}
+      {isTextButton && <span className={classes.text}>{text}</span>}
     </button>
   );
 }
