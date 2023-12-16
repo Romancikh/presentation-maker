@@ -6,6 +6,7 @@ import classes from "./ToolBar.module.css";
 import { fontOptions, insertTextOnClick } from "../../constants/ToolBar.ts";
 import { useContext } from "react";
 import { PresentationContext } from "../../contexts/presentation.tsx";
+import InputImage from "../common/InputImage/InputImage.tsx";
 
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
@@ -23,6 +24,7 @@ function ToolBar() {
         }}
       />
       <Button icon={"image"} />
+      {/*<InputImage icon={"image"} />*/}
       <Select options={fontOptions} className={classes.font__select} />
       <Button icon={"remove"} />
       <Input defaultValue={11} className={classes.size__shrift_input} />
