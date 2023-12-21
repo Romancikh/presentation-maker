@@ -6,6 +6,7 @@ import Select from "../common/Select/Select.tsx";
 import { fontOptions, insertTextOnClick } from "../../constants/ToolBar.ts";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import classes from "./ToolBar.module.css";
+import InputImage from "../common/InputImage/InputImage.tsx";
 
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
@@ -22,8 +23,8 @@ function ToolBar() {
           insertTextOnClick(presentation, setPresentation);
         }}
       />
-      <Button icon={"image"} />
-      {/*<InputImage icon={"image"} />*/}
+      {/*<Button icon={"image"} />*/}
+      <InputImage icon={"image"} />
       <Select options={fontOptions} className={classes["font-select"]} />
       <Button icon={"remove"} />
       <Input defaultValue={11} className={classes["size-shrift-input"]} />

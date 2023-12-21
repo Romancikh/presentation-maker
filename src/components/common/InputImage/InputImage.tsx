@@ -13,17 +13,19 @@ function InputImage({ icon }: InputImageProps) {
     const file = event.target.files?.[0];
 
     if (file) {
+      const newPresentation = { ...presentation };
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        const newPresentation = { ...presentation };
-
         const imageDataUrl = reader.result as string;
+
         if (newPresentation.currentSlide) {
           newPresentation.currentSlide.background = imageDataUrl;
         }
-        setPresentation(newPresentation);
       };
       reader.readAsDataURL(file);
+
+      setPresentation(newPresentation);
     }
   };
 
@@ -31,8 +33,8 @@ function InputImage({ icon }: InputImageProps) {
     <div>
       <label id="imageInput">
         <span className={"material-symbols-outlined"}>{icon}</span>
+        <input className={classes.hidden} id="imageInput" type="file" accept="image/*" onChange={handleImageChange} />
       </label>
-      <input className={classes.hidden} id="imageInput" type="file" accept="image/*" onChange={handleImageChange} />
     </div>
   );
 }
