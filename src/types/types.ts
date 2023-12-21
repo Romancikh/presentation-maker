@@ -33,8 +33,13 @@ type Block = {
 type Text = Block & {
   type: "text";
   data: {
-    // text: Char[];
     text: string;
+    fontSize: number;
+    fontFamily: FontFamily;
+    color: Color;
+    bold: boolean;
+    italic: boolean;
+    underlined: boolean;
   };
 };
 
@@ -81,7 +86,7 @@ type Presentation = {
 
 type Option = {
   id: string;
-  value: number | string;
+  value: string;
   label: string;
 };
 

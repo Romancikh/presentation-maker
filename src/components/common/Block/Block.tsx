@@ -54,6 +54,30 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
     width: size.width,
   };
 
+  const setSizeObjectText = (objectText: TText, type: "enter" | "newLine" | "del"): TText => {
+    const newObjectText = { ...objectText };
+    let text: string = "";
+
+    for (const char of objectText.data.text) {
+      if (char === "\n") {
+        text += "\n";
+      } else {
+        text += char;
+      }
+    }
+
+    if (type === "enter") {
+      newObjectText.size.width += newObjectText.data.fontSize;
+    } else if (type === "newLine") {
+      newObjectText.size.height += newObjectText.data.fontSize;
+    } else if (type === "del") {
+      newObjectText.size.width -= newObjectText.data.fontSize;
+    }
+
+    newObjectText.data.text = text;
+    return newObjectText;
+  };
+
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       const newPresentation = { ...presentation };
@@ -63,10 +87,13 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
         if (object.id === id && object.type === "text") {
           if (enterKey.length === 1) {
             object.data.text += enterKey;
+            object = setSizeObjectText(object, "enter");
           } else if (enterKey === "Enter") {
             object.data.text += "\n";
+            object = setSizeObjectText(object, "newLine");
           } else if (enterKey === "Backspace") {
             object.data.text = object.data.text.slice(0, -1);
+            object = setSizeObjectText(object, "del");
           }
           setPresentation(newPresentation);
         }

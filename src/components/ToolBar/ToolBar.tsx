@@ -3,10 +3,16 @@ import Button from "../common/Button/Button.tsx";
 import Input from "../common/Input/Input.tsx";
 import MenuButtonPrimitives from "../common/MenuButtonPrimitives/MenuButtonPrimitives.tsx";
 import Select from "../common/Select/Select.tsx";
-import { fontOptions, insertTextOnClick } from "../../constants/ToolBar.ts";
+import {
+  fontOptions,
+  insertTextOnClick,
+  italicOnClick,
+  boldOnClick,
+  underlineOnClick,
+} from "../../constants/ToolBar.ts";
 import { PresentationContext } from "../../contexts/presentation.tsx";
-import classes from "./ToolBar.module.css";
 import InputImage from "../common/InputImage/InputImage.tsx";
+import classes from "./ToolBar.module.css";
 
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
@@ -26,12 +32,25 @@ function ToolBar() {
       {/*<Button icon={"image"} />*/}
       <InputImage icon={"image"} />
       <Select options={fontOptions} className={classes["font-select"]} />
-      <Button icon={"remove"} />
       <Input defaultValue={11} className={classes["size-shrift-input"]} />
-      <Button icon={"add"} />
-      <Button icon={"format_bold"} />
-      <Button icon={"format_italic"} />
-      <Button icon={"format_underlined"} />
+      <Button
+        onClick={() => {
+          boldOnClick(presentation, setPresentation);
+        }}
+        icon={"format_bold"}
+      />
+      <Button
+        onClick={() => {
+          italicOnClick(presentation, setPresentation);
+        }}
+        icon={"format_italic"}
+      />
+      <Button
+        onClick={() => {
+          underlineOnClick(presentation, setPresentation);
+        }}
+        icon={"format_underlined"}
+      />
     </div>
   );
 }

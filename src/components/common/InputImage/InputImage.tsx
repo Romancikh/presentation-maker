@@ -31,7 +31,7 @@ function InputImage({ icon }: InputImageProps) {
 
   return (
     <div>
-      <label id="imageInput">
+      <label className={classes.button} id="imageInput">
         <span className={"material-symbols-outlined"}>{icon}</span>
         <input className={classes.hidden} id="imageInput" type="file" accept="image/*" onChange={handleImageChange} />
       </label>
