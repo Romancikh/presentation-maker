@@ -26,7 +26,7 @@ const slideBarMenuElements: MenuElement[] = [
     onClick: (presentation, setPresentation) => {
       const newPresentation: TPresentation = { ...presentation };
 
-      newPresentation.slides = newPresentation.slides.filter((slide) => !presentation.selectSlides.includes(slide));
+      newPresentation.slides = newPresentation.slides.filter(slide => !presentation.selectSlides.includes(slide));
 
       newPresentation.selectSlides = [];
       if (newPresentation.slides.length > 0) {

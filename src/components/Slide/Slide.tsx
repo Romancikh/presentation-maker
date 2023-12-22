@@ -16,7 +16,7 @@ function Slide({ slide, className }: SlideProps) {
 
   return (
     <div className={classNames(classes.slide, className)} style={style}>
-      {slide.objects.map((object) => (
+      {slide.objects.map(object => (
         <Block key={object.id} {...object} isWorkSpace={true}></Block>
       ))}
     </div>

@@ -20,13 +20,13 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
   const handleClick = () => {
     const newPresentation = { ...presentation };
 
-    newPresentation.currentSlide?.objects.map((object) => {
+    newPresentation.currentSlide?.objects.map(object => {
       if (object.id === id && !newPresentation.currentSlide?.selectObjects.includes(object)) {
         newPresentation.currentSlide?.selectObjects.push(object);
         setSelectClass(classes.select);
       } else if (object.id === id && newPresentation.currentSlide?.selectObjects.includes(object)) {
         if (newPresentation.currentSlide !== null) {
-          newPresentation.currentSlide.selectObjects = newPresentation.currentSlide.selectObjects.filter((object) => {
+          newPresentation.currentSlide.selectObjects = newPresentation.currentSlide.selectObjects.filter(object => {
             setSelectClass("");
             return object.id !== id;
           });
@@ -83,7 +83,7 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
       const newPresentation = { ...presentation };
       const enterKey = event.key;
 
-      newPresentation.currentSlide?.selectObjects.map((object) => {
+      newPresentation.currentSlide?.selectObjects.map(object => {
         if (object.id === id && object.type === "text") {
           if (enterKey.length === 1) {
             object.data.text += enterKey;
@@ -102,11 +102,11 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
       if (enterKey === "Delete") {
         if (newPresentation.currentSlide !== null) {
           const selectObjectIds: string[] = [];
-          newPresentation.currentSlide?.selectObjects.map((object) => {
+          newPresentation.currentSlide?.selectObjects.map(object => {
             selectObjectIds.push(object.id);
           });
 
-          newPresentation.currentSlide.objects = newPresentation.currentSlide.objects.filter((object) => {
+          newPresentation.currentSlide.objects = newPresentation.currentSlide.objects.filter(object => {
             return !selectObjectIds.includes(object.id);
           });
 

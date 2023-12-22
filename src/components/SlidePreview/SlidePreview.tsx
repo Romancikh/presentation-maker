@@ -23,7 +23,7 @@ function SlidePreview({ slide, className }: SlideProps) {
       newPresentation.selectSlides.push(slide);
       setIsSelect(true);
     } else if (newPresentation.currentSlide !== slide && newPresentation.selectSlides.includes(slide)) {
-      newPresentation.selectSlides = newPresentation.selectSlides.filter((selectSlide) => selectSlide !== slide);
+      newPresentation.selectSlides = newPresentation.selectSlides.filter(selectSlide => selectSlide !== slide);
       setIsSelect(false);
     } else if (newPresentation.currentSlide === slide && !newPresentation.selectSlides.includes(slide)) {
       newPresentation.selectSlides.push(slide);
@@ -49,7 +49,7 @@ function SlidePreview({ slide, className }: SlideProps) {
         style={style}
         onClick={handleLeftClickSlide}
       >
-        {slide.objects.map((object) => (
+        {slide.objects.map(object => (
           <Block key={object.id} {...object} isWorkSpace={false} />
         ))}
       </div>

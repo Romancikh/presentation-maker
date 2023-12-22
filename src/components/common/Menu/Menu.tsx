@@ -25,7 +25,7 @@ function Menu({ menuElements, position, opened, onClose, onClick }: MenuProps) {
 
   return (
     <div ref={ref} className={classes.body} style={positionStyle}>
-      {menuElements.map((menuElement) => (
+      {menuElements.map(menuElement => (
         <MenuElement
           key={menuElement.id}
           text={menuElement.text}

@@ -62,9 +62,9 @@ function SlideBar({ slides }: SlideBarProps) {
         previewSlides.map((slide, index) => (
           <div
             draggable
-            onDragStart={(event) => handleDragStart(event, index)}
+            onDragStart={event => handleDragStart(event, index)}
             onDragOver={handleDragOver}
-            onDrop={(event) => handleDrop(event, index)}
+            onDrop={event => handleDrop(event, index)}
             key={slide.id}
             className={classes.element}
           >

@@ -35,7 +35,7 @@ function Input({ defaultValue, placeholder, className }: InputProps) {
     const newPresentation = { ...presentation };
     const currentSlide = newPresentation.currentSlide;
     if (currentSlide) {
-      currentSlide.selectObjects.map((object) => {
+      currentSlide.selectObjects.map(object => {
         if (object.type === "text") {
           const oldFontSize: number = object.data.fontSize;
 

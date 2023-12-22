@@ -1,6 +1,6 @@
+import { CSSProperties } from "react";
 import { Option } from "../../../types/types.ts";
 import classes from "./Option.module.css";
-import { CSSProperties } from "react";
 
 type OptionProps = {
   option: Option;
