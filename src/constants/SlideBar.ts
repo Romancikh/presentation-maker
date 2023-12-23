@@ -1,29 +1,20 @@
 import { v4 as uuidv4 } from "uuid";
-import { Color, Menu, MenuElement, Presentation as TPresentation, Slide as TSlide } from "../types/types.ts";
+import { Menu, MenuElement, Presentation as TPresentation } from "../types/types.ts";
+import { useAppActions } from "../store/hooks.ts";
 
 const slideBarMenuElements: MenuElement[] = [
   {
     id: uuidv4(),
-    onClick: (presentation: TPresentation, setPresentation: (presentation: TPresentation) => void): void => {
-      const newPresentation: TPresentation = { ...presentation };
-      const backgroundSlide: Color = "#fff";
-      const newSLide: TSlide = {
-        background: backgroundSlide,
-        id: uuidv4(),
-        objects: [],
-        selectObjects: [],
-      };
+    onClick: (): void => {
+      const { createCreateSlideAction } = useAppActions();
 
-      newPresentation.slides.push(newSLide);
-      newPresentation.currentSlide = newSLide;
-      newPresentation.selectSlides = [newSLide];
-      setPresentation(newPresentation);
+      createCreateSlideAction();
     },
     text: "Новый слайд",
   },
   {
     id: uuidv4(),
-    onClick: (presentation, setPresentation) => {
+    onClick: () => {
       const newPresentation: TPresentation = { ...presentation };
 
       newPresentation.slides = newPresentation.slides.filter(slide => !presentation.selectSlides.includes(slide));

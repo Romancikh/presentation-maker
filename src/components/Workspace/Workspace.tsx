@@ -1,10 +1,9 @@
 import Slide from "../Slide/Slide.tsx";
-import classes from "./Workspace.module.css";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
+import classes from "./Workspace.module.css";
 
 function Workspace() {
   const currentSlide = useAppSelector(state => state.presentation.currentSlide);
-
   const { createCreateSlideAction } = useAppActions();
 
   const handleNewSlide = () => {

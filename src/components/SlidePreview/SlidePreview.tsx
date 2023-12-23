@@ -1,9 +1,10 @@
-import React, { CSSProperties, useContext, useState } from "react";
+import React, { CSSProperties, useContext, useEffect, useState } from "react";
 import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
 import classes from "./SlidePreview.module.css";
+import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 
 type SlideProps = {
   slide: TSlide;
@@ -11,41 +12,35 @@ type SlideProps = {
 };
 
 function SlidePreview({ slide, className }: SlideProps) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
+  const presentation = useAppSelector(state => state.presentation);
+
   const [selectedSlides] = useState([...presentation.selectSlides]);
   const [isSelect, setIsSelect] = useState(selectedSlides.includes(slide));
+  const { createSelectSlideAction } = useAppActions();
 
   const handleLeftClickSlide = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const newPresentation = { ...presentation };
-    if (newPresentation.currentSlide !== slide && !newPresentation.selectSlides.includes(slide)) {
-      newPresentation.currentSlide = slide;
-      newPresentation.selectSlides.push(slide);
-      setIsSelect(true);
-    } else if (newPresentation.currentSlide !== slide && newPresentation.selectSlides.includes(slide)) {
-      newPresentation.selectSlides = newPresentation.selectSlides.filter(selectSlide => selectSlide !== slide);
-      setIsSelect(false);
-    } else if (newPresentation.currentSlide === slide && !newPresentation.selectSlides.includes(slide)) {
-      newPresentation.selectSlides.push(slide);
-      setIsSelect(true);
-    }
-
-    setPresentation(newPresentation);
+    createSelectSlideAction(slide);
   };
 
   const style: CSSProperties = {
     background: slide.background,
   };
 
-  let classSlideSelect: string = "";
-  if (isSelect || presentation.currentSlide === slide) {
-    classSlideSelect = classes.select;
-  }
+  useEffect(() => {
+    if (presentation.selectSlides.includes(slide)) {
+      return setIsSelect(true);
+    } else {
+      setIsSelect(false);
+    }
+
+    return;
+  }, [presentation]);
 
   return (
     <div>
       <div
-        className={classNames(classes.slide, className, classSlideSelect)}
+        className={classNames(classes.slide, className, isSelect ? classes.select : "")}
         style={style}
         onClick={handleLeftClickSlide}
       >

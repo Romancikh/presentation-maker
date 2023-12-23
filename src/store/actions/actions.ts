@@ -1,6 +1,9 @@
+import { Slide as TSlide } from "../../types/types.ts";
+
 export enum Actions {
   CHANGE_NAME = "CHANGE_NAME",
   CREATE_SLIDE = "CREATE_SLIDE",
+  SELECT_SLIDE = "SELECT_SLIDE",
   DELETE_SLIDES = "DELETE_SLIDES",
   MOVE_SLIDES = "MOVE_SLIDES",
 }
@@ -13,9 +16,13 @@ export type CreateSlideAction = {
 
 export type DeleteSlideAction = {
   type: Actions.DELETE_SLIDES;
+};
+
+export type SelectSlideAction = {
+  type: Actions.SELECT_SLIDE;
   payload: {
-    slideId: string;
+    slide: TSlide;
   };
 };
 
-export type Action = ChangeTitleAction | CreateSlideAction | DeleteSlideAction;
+export type Action = ChangeTitleAction | CreateSlideAction | DeleteSlideAction | SelectSlideAction;

@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Position, Presentation as TPresentation } from "../../types/types.ts";
+import { MenuElement, Position, Presentation as TPresentation } from "../../types/types.ts";
 import Menu from "../common/Menu/Menu.tsx";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 import { slideBarMenu } from "../../constants/SlideBar.ts";
-import classes from "./SlideBar.module.css";
 import store from "../../store/store.ts";
-import { useAppSelector } from "../../store/hooks.ts";
+import { useAppActions, useAppSelector } from "../../store/hooks.ts";
+import classes from "./SlideBar.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 function SlideBar() {
-  const { presentation, setPresentation } = useContext(PresentationContext);
   const [positionMouse, setPositionMouse] = useState({ x: 0, y: 0 });
   const [opened, setOpened] = useState(false);
 
-  const slides = useAppSelector(state => state.presentation.slides);
-  const [previewSlides, setPreviewSlides] = useState(slides);
+  const presentation = useAppSelector(state => state.presentation);
+  const [previewSlides, setPreviewSlides] = useState(presentation.slides);
+  const { createCreateSlideAction, createDeleteSlideAction } = useAppActions();
 
   const onClose = () => {
     setOpened(false);
@@ -29,16 +30,30 @@ function SlideBar() {
     setOpened(true);
   };
 
-  const handleClick = (onClickOut: TonClickPresentation) => {
-    onClickOut(presentation, setPresentation);
-    setOpened(false);
-  };
+  const slideBarMenuElements: MenuElement[] = [
+    {
+      id: uuidv4(),
+      onClick: (): void => {
+        createCreateSlideAction();
+        setOpened(false);
+      },
+      text: "Новый слайд",
+    },
+    {
+      id: uuidv4(),
+      onClick: () => {
+        createDeleteSlideAction();
+        setOpened(false);
+      },
+      text: "Удалить слайд",
+    },
+  ];
 
   useEffect(() => {
-    if (previewSlides.length != slides.length) {
-      setPreviewSlides([...slides]);
+    if (previewSlides.length != presentation.slides.length) {
+      setPreviewSlides([...presentation.slides]);
     }
-  }, [slides]);
+  }, [presentation]);
 
   return (
     <div onContextMenu={handleRightClickSlideBar} className={classes["slide-bar"]}>
@@ -52,20 +67,9 @@ function SlideBar() {
           </div>
         ))}
 
-      <Menu
-        menuElements={slideBarMenu.menuElements}
-        position={positionMouse}
-        opened={opened}
-        onClose={onClose}
-        onClick={handleClick}
-      />
+      <Menu menuElements={slideBarMenuElements} position={positionMouse} opened={opened} onClose={onClose} />
     </div>
   );
 }
 
 export default SlideBar;
-
-export type TonClickPresentation = (
-  presentation: TPresentation,
-  setPresentation: (presentation: TPresentation) => void
-) => void;

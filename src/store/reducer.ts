@@ -1,7 +1,7 @@
 import { Reducer } from "redux";
+import { v4 as uuidv4 } from "uuid";
 import { Color, Presentation, Slide as TSlide } from "../types/types.ts";
 import { Action, Actions } from "./actions/actions.ts";
-import { v4 as uuidv4 } from "uuid";
 
 const initialPresentation: Presentation = {
   name: "Презентация без названия",
@@ -32,7 +32,37 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
       state.currentSlide = newSLide;
       state.selectSlides = [];
       state.selectSlides.push(newSLide);
-      console.log(state.slides);
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.DELETE_SLIDES: {
+      state.slides = state.slides.filter(slide => !state.selectSlides.includes(slide));
+      state.selectSlides = [];
+      if (state.slides.length > 0) {
+        state.currentSlide = state.slides[0];
+        state.selectSlides.push(state.currentSlide);
+      } else {
+        state.currentSlide = null;
+      }
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.SELECT_SLIDE: {
+      if (
+        state.currentSlide &&
+        state.currentSlide !== action.payload.slide &&
+        !state.selectSlides.includes(action.payload.slide)
+      ) {
+        state.currentSlide = action.payload.slide;
+        state.selectSlides.push(action.payload.slide);
+      } else if (state.currentSlide !== action.payload.slide && state.selectSlides.includes(action.payload.slide)) {
+        state.selectSlides = state.selectSlides.filter(selectSlide => selectSlide !== action.payload.slide);
+      }
+
       return {
         ...state,
       };

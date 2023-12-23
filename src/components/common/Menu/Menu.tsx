@@ -1,7 +1,6 @@
 import { CSSProperties, useRef } from "react";
 import { Menu as TMenu, Position } from "../../../types/types.ts";
 import MenuElement from "../MenuElement/MenuElement.tsx";
-import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
 import { useOutsideClick } from "../../../hooks/useOutsideClick.ts";
 import classes from "./Menu.module.css";
 
@@ -9,10 +8,9 @@ type MenuProps = {
   position: Position;
   opened: boolean;
   onClose: () => void;
-  onClick: (onClickSlideBar: TonClickPresentation) => void;
 } & TMenu;
 
-function Menu({ menuElements, position, opened, onClose, onClick }: MenuProps) {
+function Menu({ menuElements, position, opened, onClose }: MenuProps) {
   const ref = useRef(null);
 
   useOutsideClick(ref, onClose, opened);
@@ -30,7 +28,7 @@ function Menu({ menuElements, position, opened, onClose, onClick }: MenuProps) {
           key={menuElement.id}
           text={menuElement.text}
           shortcut={menuElement.shortcut}
-          onClick={() => onClick(menuElement.onClick)}
+          onClick={menuElement.onClick}
         />
       ))}
     </div>

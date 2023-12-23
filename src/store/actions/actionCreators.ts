@@ -1,4 +1,5 @@
-import { ChangeTitleAction, CreateSlideAction, DeleteSlideAction, Actions } from "./actions.ts";
+import { Actions, ChangeTitleAction, CreateSlideAction, DeleteSlideAction, SelectSlideAction } from "./actions.ts";
+import { Slide as TSlide } from "../../types/types.ts";
 
 export function createChangeTitleAction(newName: string): ChangeTitleAction {
   return {
@@ -15,11 +16,17 @@ export function createCreateSlideAction(): CreateSlideAction {
   };
 }
 
-export function createDeleteSlideAction(slideId: string): DeleteSlideAction {
+export function createDeleteSlideAction(): DeleteSlideAction {
   return {
     type: Actions.DELETE_SLIDES,
+  };
+}
+
+export function createSelectSlideAction(slide: TSlide): SelectSlideAction {
+  return {
+    type: Actions.SELECT_SLIDE,
     payload: {
-      slideId,
+      slide,
     },
   };
 }
