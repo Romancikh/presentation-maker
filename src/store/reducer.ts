@@ -1,6 +1,15 @@
 import { Reducer } from "redux";
 import { v4 as uuidv4 } from "uuid";
-import { Block, Color, Position, Presentation, Primitive, Size, Slide as TSlide } from "../types/types.ts";
+import {
+  Block,
+  Color,
+  Position,
+  Presentation,
+  Primitive,
+  Size,
+  Slide as TSlide,
+  Text as TText,
+} from "../types/types.ts";
 import { Action, Actions } from "./actions/actions.ts";
 
 const initialPresentation: Presentation = {
@@ -142,6 +151,63 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
           }
         }
       });
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.CHANGE_TEXT: {
+      const state = (objectText: TText, type: "enter" | "newLine" | "del"): TText => {
+        const newObjectText = { ...objectText };
+        let text: string = "";
+
+        for (const char of objectText.data.text) {
+          if (char === "\n") {
+            text += "\n";
+          } else {
+            text += char;
+          }
+        }
+
+        if (type === "enter") {
+          newObjectText.size.width += newObjectText.data.fontSize;
+        } else if (type === "newLine") {
+          newObjectText.size.height += newObjectText.data.fontSize;
+        } else if (type === "del") {
+          newObjectText.size.width -= newObjectText.data.fontSize;
+        }
+
+        newObjectText.data.text = text;
+        return newObjectText;
+      };
+
+      state.currentSlide?.selectObjects.map(object => {
+        if (object === action.payload.object && object.type === "text") {
+          if (action.payload.keyEnter.length === 1) {
+            object.data.text += action.payload.keyEnter;
+            object = state(object, "enter");
+          } else if (action.payload.keyEnter === "Enter") {
+            object.data.text += "\n";
+            object = state(object, "newLine");
+          } else if (action.payload.keyEnter === "Backspace") {
+            object.data.text = object.data.text.slice(0, -1);
+            object = state(object, "del");
+          }
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.DELETE_PRIMITIVE: {
+      if (state.currentSlide !== null) {
+        state.currentSlide.objects = state.currentSlide.objects.filter(object => {
+          return !state.currentSlide?.selectObjects.includes(object);
+        });
+
+        state.currentSlide.selectObjects = [];
+      }
 
       return {
         ...state,

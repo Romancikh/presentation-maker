@@ -62,4 +62,5 @@ export type Action =
   | SelectSlideAction
   | CreatePrimitiveAction
   | SelectPrimitiveAction
-  | ChangeTextAction;
+  | ChangeTextAction
+  | DeletePrimitiveAction;

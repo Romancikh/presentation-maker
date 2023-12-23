@@ -21,7 +21,7 @@ function Block({ object, isWorkSpace }: BlockProps) {
   const [isSelect, setIsSelect] = useState(false);
   const blockRef = useRef<HTMLDivElement | null>(null);
 
-  const { createSelectPrimitiveAction } = useAppActions();
+  const { createSelectPrimitiveAction, changeTextAction, createDeletePrimitiveAction } = useAppActions();
 
   const handleClick = () => {
     createSelectPrimitiveAction(object);
@@ -44,71 +44,22 @@ function Block({ object, isWorkSpace }: BlockProps) {
     width: object.size.width,
   };
 
-  const setSizeObjectText = (objectText: TText, type: "enter" | "newLine" | "del"): TText => {
-    const newObjectText = { ...objectText };
-    let text: string = "";
-
-    for (const char of objectText.data.text) {
-      if (char === "\n") {
-        text += "\n";
-      } else {
-        text += char;
-      }
-    }
-
-    if (type === "enter") {
-      newObjectText.size.width += newObjectText.data.fontSize;
-    } else if (type === "newLine") {
-      newObjectText.size.height += newObjectText.data.fontSize;
-    } else if (type === "del") {
-      newObjectText.size.width -= newObjectText.data.fontSize;
-    }
-
-    newObjectText.data.text = text;
-    return newObjectText;
-  };
-
   useEffect(() => {
-    // const handleKeyPress = (event: KeyboardEvent) => {
-    //   const newPresentation = { ...presentation };
-    //   const enterKey = event.key;
-    //
-    //   newPresentation.currentSlide?.selectObjects.map(object => {
-    //     if (object.id === id && object.type === "text") {
-    //       if (enterKey.length === 1) {
-    //         object.data.text += enterKey;
-    //         object = setSizeObjectText(object, "enter");
-    //       } else if (enterKey === "Enter") {
-    //         object.data.text += "\n";
-    //         object = setSizeObjectText(object, "newLine");
-    //       } else if (enterKey === "Backspace") {
-    //         object.data.text = object.data.text.slice(0, -1);
-    //         object = setSizeObjectText(object, "del");
-    //       }
-    //       setPresentation(newPresentation);
-    //     }
-    //   });
-    //
-    //   if (enterKey === "Delete") {
-    //     if (newPresentation.currentSlide !== null) {
-    //       const selectObjectIds: string[] = [];
-    //       newPresentation.currentSlide?.selectObjects.map(object => {
-    //         selectObjectIds.push(object.id);
-    //       });
-    //
-    //       newPresentation.currentSlide.objects = newPresentation.currentSlide.objects.filter(object => {
-    //         return !selectObjectIds.includes(object.id);
-    //       });
-    //
-    //       newPresentation.currentSlide.selectObjects = [];
-    //     }
-    //     setPresentation(newPresentation);
-    //   }
-    // };
-    //
-    // if (isWorkSpace) {
-    //   window.addEventListener("keydown", handleKeyPress);
-    // }
+    const handleKeyPress = (event: KeyboardEvent) => {
+      const enterKey = event.key;
+
+      if (object.type === "text") {
+        changeTextAction(object, enterKey);
+      }
+
+      if (enterKey === "Delete" && presentation.currentSlide?.selectObjects.length !== 0) {
+        createDeletePrimitiveAction();
+      }
+    };
+
+    if (isWorkSpace) {
+      window.addEventListener("keydown", handleKeyPress);
+    }
 
     if (presentation.currentSlide?.selectObjects.includes(object)) {
       setIsSelect(true);

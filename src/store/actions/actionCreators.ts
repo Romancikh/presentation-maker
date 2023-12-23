@@ -1,5 +1,6 @@
 import {
   Actions,
+  ChangeTextAction,
   ChangeTitleAction,
   CreatePrimitiveAction,
   CreateSlideAction,
@@ -8,7 +9,7 @@ import {
   SelectPrimitiveAction,
   SelectSlideAction,
 } from "./actions.ts";
-import { Slide as TSlide, Text, Image, Primitive } from "../../types/types.ts";
+import { Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
 
 export function createChangeTitleAction(newName: string): ChangeTitleAction {
   return {
@@ -60,6 +61,16 @@ export function createSelectPrimitiveAction(object: Text | Image | Primitive): S
     type: Actions.SELECT_PRIMITIVE,
     payload: {
       object,
+    },
+  };
+}
+
+export function changeTextAction(object: Text, keyEnter: string): ChangeTextAction {
+  return {
+    type: Actions.CHANGE_TEXT,
+    payload: {
+      object,
+      keyEnter,
     },
   };
 }
