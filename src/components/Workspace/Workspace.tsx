@@ -1,41 +1,22 @@
-import { useContext } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { Color, Presentation as TPresentation, Slide as TSlide } from "../../types/types.ts";
 import Slide from "../Slide/Slide.tsx";
-import { PresentationContext } from "../../contexts/presentation.tsx";
 import classes from "./Workspace.module.css";
+import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 
-type WorkspaceProps = {
-  slide: TSlide | null;
-};
+function Workspace() {
+  const currentSlide = useAppSelector(state => state.presentation.currentSlide);
 
-function Workspace({ slide }: WorkspaceProps) {
-  const presentationContext = useContext(PresentationContext);
-  const newPresentation: TPresentation = {
-    ...presentationContext.presentation,
-  };
-  const addNewSlide = () => {
-    const backgroundSlide: Color = "#fff";
+  const { createCreateSlideAction } = useAppActions();
 
-    const newSLide: TSlide = {
-      background: backgroundSlide,
-      id: uuidv4(),
-      objects: [],
-      selectObjects: [],
-    };
-
-    newPresentation.slides.push(newSLide);
-    newPresentation.currentSlide = newSLide;
-    newPresentation.selectSlides.push(newSLide);
-    presentationContext.setPresentation(newPresentation);
+  const handleNewSlide = () => {
+    createCreateSlideAction();
   };
 
   return (
     <div className={classes.workspace}>
-      {slide ? (
-        <Slide slide={slide} />
+      {currentSlide ? (
+        <Slide slide={currentSlide} />
       ) : (
-        <div className={classes["new-slide"]} onClick={addNewSlide}>
+        <div className={classes["new-slide"]} onClick={handleNewSlide}>
           Нажмите, чтобы добавить новый слайд
         </div>
       )}
