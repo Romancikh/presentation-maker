@@ -1,4 +1,4 @@
-import { Slide as TSlide } from "../../types/types.ts";
+import { Slide as TSlide, Text, Image, Primitive } from "../../types/types.ts";
 
 export enum Actions {
   CHANGE_NAME = "CHANGE_NAME",
@@ -7,6 +7,9 @@ export enum Actions {
   DELETE_SLIDES = "DELETE_SLIDES",
   MOVE_SLIDES = "MOVE_SLIDES",
   CREATE_PRIMITIVE = "CREATE_PRIMITIVE",
+  SELECT_PRIMITIVE = "SELECT_PRIMITIVE",
+  DELETE_PRIMITIVE = "DELETE_PRIMITIVE",
+  CHANGE_TEXT = "CHANGE_TEXT",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -33,9 +36,30 @@ export type CreatePrimitiveAction = {
   };
 };
 
+export type SelectPrimitiveAction = {
+  type: Actions.SELECT_PRIMITIVE;
+  payload: {
+    object: Text | Image | Primitive;
+  };
+};
+
+export type DeletePrimitiveAction = {
+  type: Actions.DELETE_PRIMITIVE;
+};
+
+export type ChangeTextAction = {
+  type: Actions.CHANGE_TEXT;
+  payload: {
+    object: Text;
+    keyEnter: string;
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
   | DeleteSlideAction
   | SelectSlideAction
-  | CreatePrimitiveAction;
+  | CreatePrimitiveAction
+  | SelectPrimitiveAction
+  | ChangeTextAction;

@@ -6,52 +6,42 @@ import Image from "../Image/Image.tsx";
 import Text from "../Text/Text.tsx";
 import Primitive from "../Primitive/Primitive.tsx";
 import classes from "./Block.module.css";
+import classNames from "classnames";
+import { useAppActions, useAppSelector } from "../../../store/hooks.ts";
 
-type BlockProps = (TPrimitive | TImage | TText) & {
+type BlockProps = {
+  object: TPrimitive | TImage | TText;
   isWorkSpace: boolean;
 };
 
-function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockProps) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-  const [modelPosition, setModelPosition] = useState(position);
-  const [selectClass, setSelectClass] = useState("");
+function Block({ object, isWorkSpace }: BlockProps) {
+  const presentation = useAppSelector(state => state.presentation);
+
+  const [modelPosition, setModelPosition] = useState(object.position);
+  const [isSelect, setIsSelect] = useState(false);
   const blockRef = useRef<HTMLDivElement | null>(null);
 
+  const { createSelectPrimitiveAction } = useAppActions();
+
   const handleClick = () => {
-    const newPresentation = { ...presentation };
-
-    newPresentation.currentSlide?.objects.map(object => {
-      if (object.id === id && !newPresentation.currentSlide?.selectObjects.includes(object)) {
-        newPresentation.currentSlide?.selectObjects.push(object);
-        setSelectClass(classes.select);
-      } else if (object.id === id && newPresentation.currentSlide?.selectObjects.includes(object)) {
-        if (newPresentation.currentSlide !== null) {
-          newPresentation.currentSlide.selectObjects = newPresentation.currentSlide.selectObjects.filter(object => {
-            setSelectClass("");
-            return object.id !== id;
-          });
-        }
-      }
-    });
-
-    setPresentation(newPresentation);
+    createSelectPrimitiveAction(object);
   };
 
   if (isWorkSpace) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    useDragAndDrop(blockRef, id, modelPosition, setModelPosition);
+    useDragAndDrop(blockRef, object.id, modelPosition, setModelPosition);
   }
 
-  const centerX = size.width / 2;
-  const centerY = size.height / 2;
+  const centerX = object.size.width / 2;
+  const centerY = object.size.height / 2;
 
   const style: CSSProperties = {
-    height: size.height,
+    height: object.size.height,
     left: modelPosition.x,
     top: modelPosition.y,
-    transform: `rotate(${rotation}deg)`,
+    transform: `rotate(${object.rotation}deg)`,
     transformOrigin: `${centerX}px ${centerY}px`,
-    width: size.width,
+    width: object.size.width,
   };
 
   const setSizeObjectText = (objectText: TText, type: "enter" | "newLine" | "del"): TText => {
@@ -79,57 +69,68 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
   };
 
   useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
-      const newPresentation = { ...presentation };
-      const enterKey = event.key;
+    // const handleKeyPress = (event: KeyboardEvent) => {
+    //   const newPresentation = { ...presentation };
+    //   const enterKey = event.key;
+    //
+    //   newPresentation.currentSlide?.selectObjects.map(object => {
+    //     if (object.id === id && object.type === "text") {
+    //       if (enterKey.length === 1) {
+    //         object.data.text += enterKey;
+    //         object = setSizeObjectText(object, "enter");
+    //       } else if (enterKey === "Enter") {
+    //         object.data.text += "\n";
+    //         object = setSizeObjectText(object, "newLine");
+    //       } else if (enterKey === "Backspace") {
+    //         object.data.text = object.data.text.slice(0, -1);
+    //         object = setSizeObjectText(object, "del");
+    //       }
+    //       setPresentation(newPresentation);
+    //     }
+    //   });
+    //
+    //   if (enterKey === "Delete") {
+    //     if (newPresentation.currentSlide !== null) {
+    //       const selectObjectIds: string[] = [];
+    //       newPresentation.currentSlide?.selectObjects.map(object => {
+    //         selectObjectIds.push(object.id);
+    //       });
+    //
+    //       newPresentation.currentSlide.objects = newPresentation.currentSlide.objects.filter(object => {
+    //         return !selectObjectIds.includes(object.id);
+    //       });
+    //
+    //       newPresentation.currentSlide.selectObjects = [];
+    //     }
+    //     setPresentation(newPresentation);
+    //   }
+    // };
+    //
+    // if (isWorkSpace) {
+    //   window.addEventListener("keydown", handleKeyPress);
+    // }
 
-      newPresentation.currentSlide?.selectObjects.map(object => {
-        if (object.id === id && object.type === "text") {
-          if (enterKey.length === 1) {
-            object.data.text += enterKey;
-            object = setSizeObjectText(object, "enter");
-          } else if (enterKey === "Enter") {
-            object.data.text += "\n";
-            object = setSizeObjectText(object, "newLine");
-          } else if (enterKey === "Backspace") {
-            object.data.text = object.data.text.slice(0, -1);
-            object = setSizeObjectText(object, "del");
-          }
-          setPresentation(newPresentation);
-        }
-      });
-
-      if (enterKey === "Delete") {
-        if (newPresentation.currentSlide !== null) {
-          const selectObjectIds: string[] = [];
-          newPresentation.currentSlide?.selectObjects.map(object => {
-            selectObjectIds.push(object.id);
-          });
-
-          newPresentation.currentSlide.objects = newPresentation.currentSlide.objects.filter(object => {
-            return !selectObjectIds.includes(object.id);
-          });
-
-          newPresentation.currentSlide.selectObjects = [];
-        }
-        setPresentation(newPresentation);
-      }
-    };
-
-    if (isWorkSpace) {
-      window.addEventListener("keydown", handleKeyPress);
+    if (presentation.currentSlide?.selectObjects.includes(object)) {
+      setIsSelect(true);
+    } else {
+      setIsSelect(false);
     }
 
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
+      // window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [type, isWorkSpace, presentation, id, setPresentation]);
+  }, [object, isWorkSpace, presentation]);
 
   return (
-    <div ref={blockRef} onClick={handleClick} className={classes.block + " " + selectClass} style={style}>
-      {type === "image" && <Image data={data} />}
-      {type === "primitive" && <Primitive data={data} />}
-      {type === "text" && <Text data={data} />}
+    <div
+      ref={blockRef}
+      onClick={handleClick}
+      className={classNames(classes.block, isSelect ? classes.select : "")}
+      style={style}
+    >
+      {object.type === "image" && <Image data={object.data} />}
+      {object.type === "primitive" && <Primitive data={object.data} />}
+      {object.type === "text" && <Text data={object.data} />}
     </div>
   );
 }

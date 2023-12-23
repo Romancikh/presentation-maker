@@ -28,13 +28,11 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         selectObjects: [],
       };
 
-      state.slides.push(newSLide);
-      state.currentSlide = newSLide;
-      state.selectSlides = [];
-      state.selectSlides.push(newSLide);
-
       return {
         ...state,
+        slides: [...state.slides, newSLide],
+        currentSlide: newSLide,
+        selectSlides: [newSLide],
       };
     }
     case Actions.DELETE_SLIDES: {
@@ -127,6 +125,23 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
           break;
         }
       }
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.SELECT_PRIMITIVE: {
+      state.currentSlide?.objects.map(object => {
+        if (object === action.payload.object && !state.currentSlide?.selectObjects.includes(object)) {
+          state.currentSlide?.selectObjects.push(object);
+        } else if (object === action.payload.object && state.currentSlide?.selectObjects.includes(object)) {
+          if (state.currentSlide !== null) {
+            state.currentSlide.selectObjects = state.currentSlide.selectObjects.filter(object => {
+              return object !== action.payload.object;
+            });
+          }
+        }
+      });
 
       return {
         ...state,

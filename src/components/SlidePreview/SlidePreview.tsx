@@ -32,7 +32,6 @@ function SlidePreview({ slide, className }: SlideProps) {
     } else {
       setIsSelect(false);
     }
-
     return;
   }, [presentation]);
 
@@ -44,7 +43,7 @@ function SlidePreview({ slide, className }: SlideProps) {
         onClick={handleLeftClickSlide}
       >
         {slide.objects.map(object => (
-          <Block key={object.id} {...object} isWorkSpace={false} />
+          <Block key={object.id} object={object} isWorkSpace={false} />
         ))}
       </div>
     </div>
