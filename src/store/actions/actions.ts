@@ -6,6 +6,7 @@ export enum Actions {
   SELECT_SLIDE = "SELECT_SLIDE",
   DELETE_SLIDES = "DELETE_SLIDES",
   MOVE_SLIDES = "MOVE_SLIDES",
+  CREATE_PRIMITIVE = "CREATE_PRIMITIVE",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -25,4 +26,16 @@ export type SelectSlideAction = {
   };
 };
 
-export type Action = ChangeTitleAction | CreateSlideAction | DeleteSlideAction | SelectSlideAction;
+export type CreatePrimitiveAction = {
+  type: Actions.CREATE_PRIMITIVE;
+  payload: {
+    type: "triangle" | "ellipse" | "rectangle";
+  };
+};
+
+export type Action =
+  | ChangeTitleAction
+  | CreateSlideAction
+  | DeleteSlideAction
+  | SelectSlideAction
+  | CreatePrimitiveAction;

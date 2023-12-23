@@ -3,16 +3,17 @@ import Button from "../Button/Button.tsx";
 import MenuPrimitives from "../MenuPrimitives/MenuPrimitives.tsx";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
 import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
+import { useAppSelector } from "../../../store/hooks.ts";
 
 function MenuButtonPrimitives() {
-  const { presentation, setPresentation } = useContext(PresentationContext);
+  const presentation = useAppSelector(state => state.presentation);
+
   const [switchOpenMenuPrimitives, setSwitchOpenMenuPrimitives] = useState(false);
   const openMenuPrimitives = () => {
     setSwitchOpenMenuPrimitives(!switchOpenMenuPrimitives);
   };
 
-  const handleChoice = (onClickPrimitives: TonClickPresentation) => {
-    onClickPrimitives(presentation, setPresentation);
+  const handleChoice = () => {
     setSwitchOpenMenuPrimitives(false);
   };
 

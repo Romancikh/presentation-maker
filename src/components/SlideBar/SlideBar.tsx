@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { MenuElement, Position, Presentation as TPresentation } from "../../types/types.ts";
+import React, { useEffect, useState } from "react";
+import { MenuElement, Position } from "../../types/types.ts";
 import Menu from "../common/Menu/Menu.tsx";
-import { PresentationContext } from "../../contexts/presentation.tsx";
 import SlidePreview from "../SlidePreview/SlidePreview.tsx";
-import { slideBarMenu } from "../../constants/SlideBar.ts";
-import store from "../../store/store.ts";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 import classes from "./SlideBar.module.css";
 import { v4 as uuidv4 } from "uuid";

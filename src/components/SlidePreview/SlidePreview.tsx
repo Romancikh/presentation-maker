@@ -1,7 +1,6 @@
-import React, { CSSProperties, useContext, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
-import { PresentationContext } from "../../contexts/presentation.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
 import classes from "./SlidePreview.module.css";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";

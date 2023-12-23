@@ -1,4 +1,11 @@
-import { Actions, ChangeTitleAction, CreateSlideAction, DeleteSlideAction, SelectSlideAction } from "./actions.ts";
+import {
+  Actions,
+  ChangeTitleAction,
+  CreatePrimitiveAction,
+  CreateSlideAction,
+  DeleteSlideAction,
+  SelectSlideAction,
+} from "./actions.ts";
 import { Slide as TSlide } from "../../types/types.ts";
 
 export function createChangeTitleAction(newName: string): ChangeTitleAction {
@@ -27,6 +34,15 @@ export function createSelectSlideAction(slide: TSlide): SelectSlideAction {
     type: Actions.SELECT_SLIDE,
     payload: {
       slide,
+    },
+  };
+}
+
+export function createPrimitiveAction(type: "triangle" | "ellipse" | "rectangle"): CreatePrimitiveAction {
+  return {
+    type: Actions.CREATE_PRIMITIVE,
+    payload: {
+      type,
     },
   };
 }

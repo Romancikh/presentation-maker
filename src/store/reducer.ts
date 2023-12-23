@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { v4 as uuidv4 } from "uuid";
-import { Color, Presentation, Slide as TSlide } from "../types/types.ts";
+import { Block, Color, Position, Presentation, Primitive, Size, Slide as TSlide } from "../types/types.ts";
 import { Action, Actions } from "./actions/actions.ts";
 
 const initialPresentation: Presentation = {
@@ -61,6 +61,71 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         state.selectSlides.push(action.payload.slide);
       } else if (state.currentSlide !== action.payload.slide && state.selectSlides.includes(action.payload.slide)) {
         state.selectSlides = state.selectSlides.filter(selectSlide => selectSlide !== action.payload.slide);
+      }
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.CREATE_PRIMITIVE: {
+      const defaultSize: Size = {
+        height: 20,
+        width: 20,
+      };
+
+      const defaultPosition: Position = {
+        x: 0,
+        y: 0,
+      };
+
+      switch (action.payload.type) {
+        case "triangle": {
+          const primitive: Primitive & Block = {
+            data: {
+              form: "rectangle",
+              size: defaultSize,
+            },
+            id: uuidv4(),
+            position: defaultPosition,
+            rotation: 0,
+            size: defaultSize,
+            type: "primitive",
+          };
+
+          state.currentSlide?.objects.push(primitive);
+          break;
+        }
+        case "ellipse": {
+          const primitive: Primitive & Block = {
+            data: {
+              form: "ellipse",
+              size: defaultSize,
+            },
+            id: uuidv4(),
+            position: defaultPosition,
+            rotation: 0,
+            size: defaultSize,
+            type: "primitive",
+          };
+
+          state.currentSlide?.objects.push(primitive);
+          break;
+        }
+        case "rectangle": {
+          const primitive: Primitive & Block = {
+            data: {
+              form: "rectangle",
+              size: defaultSize,
+            },
+            id: uuidv4(),
+            position: defaultPosition,
+            rotation: 0,
+            size: defaultSize,
+            type: "primitive",
+          };
+          state.currentSlide?.objects.push(primitive);
+          break;
+        }
       }
 
       return {
