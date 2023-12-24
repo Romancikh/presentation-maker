@@ -2,8 +2,8 @@ import React, { CSSProperties, useEffect, useState } from "react";
 import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
-import classes from "./SlidePreview.module.css";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
+import classes from "./SlidePreview.module.css";
 
 type SlideProps = {
   slide: TSlide;
@@ -12,7 +12,6 @@ type SlideProps = {
 
 function SlidePreview({ slide, className }: SlideProps) {
   const presentation = useAppSelector(state => state.presentation);
-
   const [selectedSlides] = useState([...presentation.selectSlides]);
   const [isSelect, setIsSelect] = useState(selectedSlides.includes(slide));
   const { createSelectSlideAction } = useAppActions();

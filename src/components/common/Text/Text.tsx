@@ -22,6 +22,7 @@ function Text({ data }: TextProps) {
   const style: CSSProperties = {
     font: font,
     textDecoration: textDecoration,
+    whiteSpace: "pre-wrap",
   };
 
   return <span style={style}>{data.text}</span>;

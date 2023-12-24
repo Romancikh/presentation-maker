@@ -12,10 +12,17 @@ import {
 } from "../../constants/ToolBar.ts";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import InputImage from "../common/InputImage/InputImage.tsx";
+import { useAppActions } from "../../store/hooks.ts";
 import classes from "./ToolBar.module.css";
 
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
+
+  const { createPrimitiveAction } = useAppActions();
+
+  const handleOnClickText = () => {
+    createPrimitiveAction("text");
+  };
 
   return (
     <div className={classes["tool-bar"]}>
@@ -26,7 +33,7 @@ function ToolBar() {
       <Button
         icon={"insert_text"}
         onClick={() => {
-          insertTextOnClick(presentation, setPresentation);
+          handleOnClickText();
         }}
       />
       {/*<Button icon={"image"} />*/}

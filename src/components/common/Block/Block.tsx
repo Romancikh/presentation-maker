@@ -1,13 +1,13 @@
 import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
+import classNames from "classnames";
 import { Image as TImage, Primitive as TPrimitive, Text as TText } from "../../../types/types.ts";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
 import Image from "../Image/Image.tsx";
 import Text from "../Text/Text.tsx";
 import Primitive from "../Primitive/Primitive.tsx";
-import classes from "./Block.module.css";
-import classNames from "classnames";
 import { useAppActions, useAppSelector } from "../../../store/hooks.ts";
+import classes from "./Block.module.css";
 
 type BlockProps = {
   object: TPrimitive | TImage | TText;
@@ -44,19 +44,19 @@ function Block({ object, isWorkSpace }: BlockProps) {
     width: object.size.width,
   };
 
+  const handleKeyPress = (event: KeyboardEvent) => {
+    const enterKey = event.key;
+
+    if (object.type === "text") {
+      changeTextAction(object, enterKey);
+    }
+
+    if (enterKey === "Delete" && presentation.currentSlide?.selectObjects.length !== 0) {
+      createDeletePrimitiveAction();
+    }
+  };
+
   useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
-      const enterKey = event.key;
-
-      if (object.type === "text") {
-        changeTextAction(object, enterKey);
-      }
-
-      if (enterKey === "Delete" && presentation.currentSlide?.selectObjects.length !== 0) {
-        createDeletePrimitiveAction();
-      }
-    };
-
     if (isWorkSpace) {
       window.addEventListener("keydown", handleKeyPress);
     }
@@ -68,7 +68,7 @@ function Block({ object, isWorkSpace }: BlockProps) {
     }
 
     return () => {
-      // window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("keydown", handleKeyPress);
     };
   }, [object, isWorkSpace, presentation]);
 

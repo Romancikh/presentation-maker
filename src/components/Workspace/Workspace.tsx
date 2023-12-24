@@ -1,7 +1,7 @@
+import { useEffect } from "react";
 import Slide from "../Slide/Slide.tsx";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 import classes from "./Workspace.module.css";
-import { useEffect } from "react";
 
 function Workspace() {
   const presentation = useAppSelector(state => state.presentation);

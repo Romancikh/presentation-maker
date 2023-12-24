@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { MenuElement, Position } from "../../types/types.ts";
 import Menu from "../common/Menu/Menu.tsx";
 import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 import classes from "./SlideBar.module.css";
-import { v4 as uuidv4 } from "uuid";
 
 function SlideBar() {
   const [positionMouse, setPositionMouse] = useState({ x: 0, y: 0 });
