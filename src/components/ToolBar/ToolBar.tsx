@@ -18,7 +18,12 @@ import classes from "./ToolBar.module.css";
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
 
-  const { createPrimitiveAction } = useAppActions();
+  const {
+    createPrimitiveAction,
+    createChangeBoldTextAction,
+    createChangeItalicTextAction,
+    createChangeUnderlineTextAction,
+  } = useAppActions();
 
   const handleOnClickText = () => {
     createPrimitiveAction("text");
@@ -42,19 +47,19 @@ function ToolBar() {
       <Input defaultValue={11} className={classes["size-shrift-input"]} />
       <Button
         onClick={() => {
-          boldOnClick(presentation, setPresentation);
+          createChangeBoldTextAction();
         }}
         icon={"format_bold"}
       />
       <Button
         onClick={() => {
-          italicOnClick(presentation, setPresentation);
+          createChangeItalicTextAction();
         }}
         icon={"format_italic"}
       />
       <Button
         onClick={() => {
-          underlineOnClick(presentation, setPresentation);
+          createChangeUnderlineTextAction();
         }}
         icon={"format_underlined"}
       />

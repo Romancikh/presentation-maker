@@ -21,7 +21,7 @@ function Block({ object, isWorkSpace }: BlockProps) {
   const [isSelect, setIsSelect] = useState(false);
   const blockRef = useRef<HTMLDivElement | null>(null);
 
-  const { createSelectPrimitiveAction, changeTextAction, createDeletePrimitiveAction } = useAppActions();
+  const { createSelectPrimitiveAction, createChangeTextAction, createDeletePrimitiveAction } = useAppActions();
 
   const handleClick = () => {
     createSelectPrimitiveAction(object);
@@ -48,7 +48,7 @@ function Block({ object, isWorkSpace }: BlockProps) {
     const enterKey = event.key;
 
     if (object.type === "text") {
-      changeTextAction(object, enterKey);
+      createChangeTextAction(object, enterKey);
     }
 
     if (enterKey === "Delete" && presentation.currentSlide?.selectObjects.length !== 0) {

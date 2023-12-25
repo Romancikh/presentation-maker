@@ -224,6 +224,39 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         ...state,
       };
     }
+    case Actions.CHANGE_ITALIC_TEXT: {
+      state.currentSlide?.selectObjects.map(object => {
+        if (object.type === "text") {
+          object.data.italic = !object.data.italic;
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.CHANGE_BOLD_TEXT: {
+      state.currentSlide?.selectObjects.map(object => {
+        if (object.type === "text") {
+          object.data.bold = !object.data.bold;
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.CHANGE_UNDERLINE_TEXT: {
+      state.currentSlide?.selectObjects.map(object => {
+        if (object.type === "text") {
+          object.data.underlined = !object.data.underlined;
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
     default: {
       return state;
     }

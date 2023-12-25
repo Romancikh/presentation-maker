@@ -10,6 +10,9 @@ export enum Actions {
   SELECT_PRIMITIVE = "SELECT_PRIMITIVE",
   DELETE_PRIMITIVE = "DELETE_PRIMITIVE",
   CHANGE_TEXT = "CHANGE_TEXT",
+  CHANGE_ITALIC_TEXT = "CHANGE_ITALIC_TEXT",
+  CHANGE_BOLD_TEXT = "CHANGE_BOLD_TEXT",
+  CHANGE_UNDERLINE_TEXT = "CHANGE_UNDERLINE_TEXT",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -55,6 +58,18 @@ export type ChangeTextAction = {
   };
 };
 
+export type ChangeItalicAction = {
+  type: Actions.CHANGE_ITALIC_TEXT;
+};
+
+export type ChangeBoldAction = {
+  type: Actions.CHANGE_BOLD_TEXT;
+};
+
+export type ChangeUnderlineAction = {
+  type: Actions.CHANGE_UNDERLINE_TEXT;
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
@@ -63,4 +78,7 @@ export type Action =
   | CreatePrimitiveAction
   | SelectPrimitiveAction
   | ChangeTextAction
-  | DeletePrimitiveAction;
+  | DeletePrimitiveAction
+  | ChangeBoldAction
+  | ChangeUnderlineAction
+  | ChangeItalicAction;

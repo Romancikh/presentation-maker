@@ -1,8 +1,11 @@
 import { Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
 import {
   Actions,
+  ChangeBoldAction,
+  ChangeItalicAction,
   ChangeTextAction,
   ChangeTitleAction,
+  ChangeUnderlineAction,
   CreatePrimitiveAction,
   CreateSlideAction,
   DeletePrimitiveAction,
@@ -65,12 +68,30 @@ export function createSelectPrimitiveAction(object: Text | Image | Primitive): S
   };
 }
 
-export function changeTextAction(object: Text, keyEnter: string): ChangeTextAction {
+export function createChangeTextAction(object: Text, keyEnter: string): ChangeTextAction {
   return {
     type: Actions.CHANGE_TEXT,
     payload: {
       object,
       keyEnter,
     },
+  };
+}
+
+export function createChangeItalicTextAction(): ChangeItalicAction {
+  return {
+    type: Actions.CHANGE_ITALIC_TEXT,
+  };
+}
+
+export function createChangeBoldTextAction(): ChangeBoldAction {
+  return {
+    type: Actions.CHANGE_BOLD_TEXT,
+  };
+}
+
+export function createChangeUnderlineTextAction(): ChangeUnderlineAction {
+  return {
+    type: Actions.CHANGE_UNDERLINE_TEXT,
   };
 }
