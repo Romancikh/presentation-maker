@@ -11,7 +11,7 @@ type SelectProps = {
 function Select({ className, options }: SelectProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
 
-  const handleChooseFontFamily = (event: ChangeEvent): void => {
+  const handleChooseFontFamily = (event: ChangeEvent<HTMLSelectElement>): void => {
     const newPresentation = { ...presentation };
     const currentSlide = newPresentation.currentSlide;
     if (currentSlide) {

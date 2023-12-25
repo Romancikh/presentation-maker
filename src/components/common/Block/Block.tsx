@@ -1,4 +1,4 @@
-import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
+import { CSSProperties, useContext, useEffect, useState } from "react";
 import { Image as TImage, Primitive as TPrimitive, Text as TText } from "../../../types/types.ts";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
@@ -11,11 +11,9 @@ type BlockProps = (TPrimitive | TImage | TText) & {
   isWorkSpace: boolean;
 };
 
-function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockProps) {
+function Block({ id, size, rotation, type, data, isWorkSpace }: BlockProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
-  const [modelPosition, setModelPosition] = useState(position);
   const [selectClass, setSelectClass] = useState("");
-  const blockRef = useRef<HTMLDivElement | null>(null);
 
   const handleClick = () => {
     const newPresentation = { ...presentation };
@@ -37,18 +35,13 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
     setPresentation(newPresentation);
   };
 
-  if (isWorkSpace) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useDragAndDrop(blockRef, id, modelPosition, setModelPosition);
-  }
+  useDragAndDrop(`${id}-workspace`);
 
   const centerX = size.width / 2;
   const centerY = size.height / 2;
 
   const style: CSSProperties = {
     height: size.height,
-    left: modelPosition.x,
-    top: modelPosition.y,
     transform: `rotate(${rotation}deg)`,
     transformOrigin: `${centerX}px ${centerY}px`,
     width: size.width,
@@ -126,7 +119,12 @@ function Block({ id, position, size, rotation, type, data, isWorkSpace }: BlockP
   }, [type, isWorkSpace, presentation, id, setPresentation]);
 
   return (
-    <div ref={blockRef} onClick={handleClick} className={classes.block + " " + selectClass} style={style}>
+    <div
+      id={`${id}${isWorkSpace ? `-workspace` : ``}`}
+      onClick={handleClick}
+      className={classes.block + " " + selectClass}
+      style={style}
+    >
       {type === "image" && <Image data={data} />}
       {type === "primitive" && <Primitive data={data} />}
       {type === "text" && <Text data={data} />}

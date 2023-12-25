@@ -1,64 +1,51 @@
-import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect, useState } from "react";
-import { Position } from "../types/types.ts";
-import { PresentationContext } from "../contexts/presentation.tsx";
+import { useEffect, useRef } from "react";
 
-const useDragAndDrop = (
-  blockRef: MutableRefObject<HTMLDivElement | null>,
-  objectId: string,
-  modelPosition: Position,
-  setModelPos: Dispatch<SetStateAction<Position>>
-) => {
-  const { presentation } = useContext(PresentationContext);
-  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+type Coords = { startX: number; startY: number; lastX: number; lastY: number };
 
-  const handleMouseMove = (e: MouseEvent) => {
-    const delta = { x: e.pageX - startPos.x, y: e.pageY - startPos.y };
-    const newPos = {
-      x: modelPosition.x + delta.x,
-      y: modelPosition.y + delta.y,
-    };
-    setModelPos(newPos);
-  };
-
-  const handleMouseUp = () => {
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseMove);
-  };
-
-  const handleMouseDown = (e: MouseEvent) => {
-    setStartPos({ x: e.pageX, y: e.pageY });
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-  };
-
+function useDragAndDrop(id: string) {
+  const isClicked = useRef<boolean>(false);
+  const coords = useRef<Coords>({ startX: 0, startY: 0, lastX: 0, lastY: 0 });
   useEffect(() => {
-    const area = blockRef.current;
-    if (area === null) {
-      return;
-    }
+    const target = document.getElementById(id);
+    if (target === null) throw new Error("Element with given id doesn't exist");
 
-    // TODO: Сделать проверку, что это текущий объект
-    // const isObjectSelected = () => {
-    //   if (presentation.currentSlide !== null) {
-    //     for (const object of presentation.currentSlide.selectObjects) {
-    //       if (object.id === objectId) {
-    //         return true;
-    //       }
-    //     }
-    //   }
-    //   return false;
-    // };
-    //
-    // if (isObjectSelected()) {
-    //   area.addEventListener("mousedown", handleMouseDown);
-    // }
+    const container = target.parentElement;
+    if (container === null) throw new Error("target element must have a parent");
 
-    area.addEventListener("mousedown", handleMouseDown);
+    const onMouseDown = (event: MouseEvent) => {
+      isClicked.current = true;
+      coords.current.startX = event.clientX;
+      coords.current.startY = event.clientY;
+    };
+
+    const onMouseUp = () => {
+      isClicked.current = false;
+      coords.current.lastX = target.offsetLeft;
+      coords.current.lastY = target.offsetTop;
+    };
+
+    const onMouseMove = (event: MouseEvent) => {
+      if (!isClicked.current) return;
+
+      const nextX = event.clientX - coords.current.startX + coords.current.lastX;
+      const nextY = event.clientY - coords.current.startY + coords.current.lastY;
+
+      target.style.left = `${nextX}px`;
+      target.style.top = `${nextY}px`;
+    };
+
+    target.addEventListener("mousedown", onMouseDown);
+    target.addEventListener("mouseup", onMouseUp);
+    container.addEventListener("mousemove", onMouseMove);
+    container.addEventListener("mouseleave", onMouseUp);
 
     return () => {
-      area.removeEventListener("mousedown", handleMouseDown);
+      target.removeEventListener("mousedown", onMouseDown);
+      target.removeEventListener("mouseup", onMouseUp);
+      container.removeEventListener("mousemove", onMouseMove);
+      container.removeEventListener("mouseleave", onMouseUp);
     };
-  }, [handleMouseDown, handleMouseMove, presentation, blockRef, objectId]);
-};
+  }, [id]);
+}
 
 export default useDragAndDrop;
