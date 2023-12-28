@@ -285,6 +285,16 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         ...state,
       };
     }
+    case Actions.CHANGE_BACKGROUND_PICTURE: {
+      if (state.currentSlide) {
+        console.log(action.payload.src);
+        state.currentSlide.background = action.payload.src;
+      }
+
+      return {
+        ...state,
+      };
+    }
     default: {
       return state;
     }

@@ -1,6 +1,7 @@
 import { Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
 import {
   Actions,
+  ChangeBackgroundPictureAction,
   ChangeBoldAction,
   ChangeItalicAction,
   ChangeSizeTextAction,
@@ -102,6 +103,15 @@ export function createChangeSizeTextAction(size: number): ChangeSizeTextAction {
     type: Actions.CHANGE_SIZE_TEXT,
     payload: {
       size,
+    },
+  };
+}
+
+export function createChangeBackgroundPictureAction(src: string): ChangeBackgroundPictureAction {
+  return {
+    type: Actions.CHANGE_BACKGROUND_PICTURE,
+    payload: {
+      src,
     },
   };
 }

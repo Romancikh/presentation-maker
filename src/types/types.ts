@@ -72,7 +72,7 @@ type History = {
 
 type Slide = {
   id: string;
-  background: Color;
+  background: Color | string;
   selectObjects: Array<Text | Image | Primitive>;
   objects: Array<Text | Image | Primitive>;
 };

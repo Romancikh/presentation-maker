@@ -13,6 +13,7 @@ export enum Actions {
   CHANGE_BOLD_TEXT = "CHANGE_BOLD_TEXT",
   CHANGE_UNDERLINE_TEXT = "CHANGE_UNDERLINE_TEXT",
   CHANGE_SIZE_TEXT = "CHANGE_SIZE_TEXT",
+  CHANGE_BACKGROUND_PICTURE = "CHANGE_BACKGROUND_PICTURE",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -77,6 +78,13 @@ export type ChangeSizeTextAction = {
   };
 };
 
+export type ChangeBackgroundPictureAction = {
+  type: Actions.CHANGE_BACKGROUND_PICTURE;
+  payload: {
+    src: string;
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
@@ -89,4 +97,5 @@ export type Action =
   | ChangeBoldAction
   | ChangeUnderlineAction
   | ChangeItalicAction
-  | ChangeSizeTextAction;
+  | ChangeSizeTextAction
+  | ChangeBackgroundPictureAction;

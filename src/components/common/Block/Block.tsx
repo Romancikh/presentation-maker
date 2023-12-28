@@ -16,7 +16,6 @@ type BlockProps = {
 
 function Block({ object, isWorkSpace }: BlockProps) {
   const presentation = useAppSelector(state => state.presentation);
-  const [key, setKey] = useState("");
   const [modelPosition, setModelPosition] = useState(object.position);
   const [isSelect, setIsSelect] = useState(false);
   const blockRef = useRef<HTMLDivElement | null>(null);

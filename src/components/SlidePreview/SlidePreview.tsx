@@ -11,6 +11,7 @@ type SlideProps = {
 };
 
 function SlidePreview({ slide, className }: SlideProps) {
+  const [background, setBackground] = useState(slide.background);
   const presentation = useAppSelector(state => state.presentation);
   const [selectedSlides] = useState([...presentation.selectSlides]);
   const [isSelect, setIsSelect] = useState(selectedSlides.includes(slide));
@@ -22,15 +23,21 @@ function SlidePreview({ slide, className }: SlideProps) {
   };
 
   const style: CSSProperties = {
-    background: slide.background,
+    background: background,
   };
 
   useEffect(() => {
+    if (presentation.currentSlide) {
+      const backgroundImage = `url(${presentation.currentSlide.background})`;
+      setBackground(backgroundImage);
+    }
+
     if (presentation.selectSlides.includes(slide)) {
       return setIsSelect(true);
     } else {
       setIsSelect(false);
     }
+
     return;
   }, [presentation]);
 

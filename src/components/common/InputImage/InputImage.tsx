@@ -1,31 +1,25 @@
-import { ChangeEvent, useContext } from "react";
-import { PresentationContext } from "../../../contexts/presentation.tsx";
+import { ChangeEvent } from "react";
 import classes from "./InputImage.module.css";
+import { useAppActions } from "../../../store/hooks.ts";
 
 type InputImageProps = {
   icon: string;
 };
 
 function InputImage({ icon }: InputImageProps) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
+  const { createChangeBackgroundPictureAction } = useAppActions();
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
     if (file) {
-      const newPresentation = { ...presentation };
-
       const reader = new FileReader();
       reader.onloadend = () => {
         const imageDataUrl = reader.result as string;
 
-        if (newPresentation.currentSlide) {
-          newPresentation.currentSlide.background = imageDataUrl;
-        }
+        createChangeBackgroundPictureAction(imageDataUrl);
       };
       reader.readAsDataURL(file);
-
-      setPresentation(newPresentation);
     }
   };
 
