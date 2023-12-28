@@ -1,6 +1,5 @@
-import { useContext } from "react";
-import { PresentationContext } from "../../../contexts/presentation.tsx";
-import { Text as TText } from "../../../types/types.ts";
+import { useAppActions } from "../../../store/hooks.ts";
+import { useState } from "react";
 
 type InputProps = {
   defaultValue?: string | number;
@@ -9,21 +8,8 @@ type InputProps = {
 };
 
 function Input({ defaultValue, placeholder, className }: InputProps) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-
-  const setSizeObjectText = (objectText: TText, oldFontSize: number): TText => {
-    const newObjectText = { ...objectText };
-
-    if (oldFontSize > newObjectText.data.fontSize) {
-      newObjectText.size.width /= oldFontSize;
-      newObjectText.size.height /= oldFontSize;
-    } else if (oldFontSize < newObjectText.data.fontSize) {
-      newObjectText.size.width *= newObjectText.data.fontSize;
-      newObjectText.size.height *= newObjectText.data.fontSize;
-    }
-
-    return newObjectText;
-  };
+  const [value, setValue] = useState(defaultValue);
+  const { createChangeSizeTextAction } = useAppActions();
 
   const handleOnInput = (event: React.FormEvent<HTMLInputElement>) => {
     const target = event.currentTarget;
@@ -31,26 +17,13 @@ function Input({ defaultValue, placeholder, className }: InputProps) {
     if (isNaN(value)) {
       value = 11;
     }
-
-    const newPresentation = { ...presentation };
-    const currentSlide = newPresentation.currentSlide;
-    if (currentSlide) {
-      currentSlide.selectObjects.map(object => {
-        if (object.type === "text") {
-          const oldFontSize: number = object.data.fontSize;
-
-          object.data.fontSize = value;
-          object = setSizeObjectText(object, oldFontSize);
-        }
-      });
-    }
-
-    setPresentation(newPresentation);
+    setValue(value);
+    createChangeSizeTextAction(value);
   };
 
   return (
     <div>
-      <input onInput={handleOnInput} className={className} defaultValue={defaultValue} placeholder={placeholder} />
+      <input onInput={handleOnInput} className={className} defaultValue={value} placeholder={placeholder} />
     </div>
   );
 }

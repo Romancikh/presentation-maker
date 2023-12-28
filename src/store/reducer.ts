@@ -257,6 +257,34 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         ...state,
       };
     }
+    case Actions.CHANGE_SIZE_TEXT: {
+      const setSizeObjectText = (objectText: TText, oldFontSize: number): TText => {
+        const newObjectText = { ...objectText };
+
+        if (oldFontSize > newObjectText.data.fontSize) {
+          newObjectText.size.width /= oldFontSize;
+          newObjectText.size.height /= oldFontSize;
+        } else if (oldFontSize < newObjectText.data.fontSize) {
+          newObjectText.size.width *= newObjectText.data.fontSize;
+          newObjectText.size.height *= newObjectText.data.fontSize;
+        }
+
+        return newObjectText;
+      };
+
+      state.currentSlide?.selectObjects.map(object => {
+        if (object.type === "text") {
+          const oldFontSize: number = object.data.fontSize;
+
+          object.data.fontSize = action.payload.size;
+          object = setSizeObjectText(object, oldFontSize);
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
     default: {
       return state;
     }

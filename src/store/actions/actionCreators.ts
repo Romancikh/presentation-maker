@@ -3,6 +3,7 @@ import {
   Actions,
   ChangeBoldAction,
   ChangeItalicAction,
+  ChangeSizeTextAction,
   ChangeTextAction,
   ChangeTitleAction,
   ChangeUnderlineAction,
@@ -93,5 +94,14 @@ export function createChangeBoldTextAction(): ChangeBoldAction {
 export function createChangeUnderlineTextAction(): ChangeUnderlineAction {
   return {
     type: Actions.CHANGE_UNDERLINE_TEXT,
+  };
+}
+
+export function createChangeSizeTextAction(size: number): ChangeSizeTextAction {
+  return {
+    type: Actions.CHANGE_SIZE_TEXT,
+    payload: {
+      size,
+    },
   };
 }

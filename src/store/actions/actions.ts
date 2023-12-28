@@ -5,7 +5,6 @@ export enum Actions {
   CREATE_SLIDE = "CREATE_SLIDE",
   SELECT_SLIDE = "SELECT_SLIDE",
   DELETE_SLIDES = "DELETE_SLIDES",
-  MOVE_SLIDES = "MOVE_SLIDES",
   CREATE_PRIMITIVE = "CREATE_PRIMITIVE",
   SELECT_PRIMITIVE = "SELECT_PRIMITIVE",
   DELETE_PRIMITIVE = "DELETE_PRIMITIVE",
@@ -13,6 +12,7 @@ export enum Actions {
   CHANGE_ITALIC_TEXT = "CHANGE_ITALIC_TEXT",
   CHANGE_BOLD_TEXT = "CHANGE_BOLD_TEXT",
   CHANGE_UNDERLINE_TEXT = "CHANGE_UNDERLINE_TEXT",
+  CHANGE_SIZE_TEXT = "CHANGE_SIZE_TEXT",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -70,6 +70,13 @@ export type ChangeUnderlineAction = {
   type: Actions.CHANGE_UNDERLINE_TEXT;
 };
 
+export type ChangeSizeTextAction = {
+  type: Actions.CHANGE_SIZE_TEXT;
+  payload: {
+    size: number;
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
@@ -81,4 +88,5 @@ export type Action =
   | DeletePrimitiveAction
   | ChangeBoldAction
   | ChangeUnderlineAction
-  | ChangeItalicAction;
+  | ChangeItalicAction
+  | ChangeSizeTextAction;
