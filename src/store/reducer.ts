@@ -11,6 +11,7 @@ import {
   Slide as TSlide,
   Text,
   Text as TText,
+  Image,
 } from "../types/types.ts";
 import { Action, Actions } from "./actions/actions.ts";
 
@@ -91,7 +92,7 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         case "triangle": {
           const primitive: Primitive & Block = {
             data: {
-              form: "rectangle",
+              form: "triangle",
               size: defaultSize,
             },
             id: uuidv4(),
@@ -156,6 +157,23 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
             type: "text",
           };
           state.currentSlide?.objects.push(text);
+          break;
+        }
+        case "image": {
+          const image: Image & Block = {
+            data: {
+              alt: "",
+              src: "",
+              size: defaultSize,
+            },
+            id: uuidv4(),
+            position: defaultPosition,
+            rotation: 0,
+            size: defaultSize,
+            type: "image",
+          };
+
+          state.currentSlide?.objects.push(image);
           break;
         }
       }

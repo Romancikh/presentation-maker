@@ -13,7 +13,7 @@ type MenuPrimitivesProps = {
 function MenuPrimitives({ onChoice }: MenuPrimitivesProps) {
   const { createPrimitiveAction } = useAppActions();
 
-  const handleOnClickPrimitives = (type: "triangle" | "ellipse" | "rectangle") => {
+  const handleOnClickPrimitives = (type: "triangle" | "ellipse" | "rectangle" | "image") => {
     createPrimitiveAction(type);
   };
 
@@ -35,6 +35,12 @@ function MenuPrimitives({ onChoice }: MenuPrimitivesProps) {
         icon={"change_history"}
         onClick={() => {
           handleOnClickPrimitives("triangle");
+        }}
+      />
+      <Button
+        icon={"add_photo_alternate"}
+        onClick={() => {
+          handleOnClickPrimitives("image");
         }}
       />
     </div>

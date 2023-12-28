@@ -46,7 +46,9 @@ export function createSelectSlideAction(slide: TSlide): SelectSlideAction {
   };
 }
 
-export function createPrimitiveAction(type: "triangle" | "ellipse" | "rectangle" | "text"): CreatePrimitiveAction {
+export function createPrimitiveAction(
+  type: "triangle" | "ellipse" | "rectangle" | "text" | "image"
+): CreatePrimitiveAction {
   return {
     type: Actions.CREATE_PRIMITIVE,
     payload: {
