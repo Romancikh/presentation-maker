@@ -37,6 +37,7 @@ export type CreatePrimitiveAction = {
   type: Actions.CREATE_PRIMITIVE;
   payload: {
     type: "triangle" | "ellipse" | "rectangle" | "text" | "image";
+    image?: string;
   };
 };
 

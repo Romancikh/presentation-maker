@@ -8,14 +8,10 @@ function MenuButtonPrimitives() {
     setSwitchOpenMenuPrimitives(!switchOpenMenuPrimitives);
   };
 
-  const handleChoice = () => {
-    setSwitchOpenMenuPrimitives(false);
-  };
-
   return (
     <div>
       <Button icon={"category"} onClick={openMenuPrimitives} />
-      {switchOpenMenuPrimitives && <MenuPrimitives onChoice={handleChoice} />}
+      {switchOpenMenuPrimitives && <MenuPrimitives />}
     </div>
   );
 }

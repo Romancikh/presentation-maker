@@ -163,7 +163,7 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
           const image: Image & Block = {
             data: {
               alt: "",
-              src: "",
+              src: action.payload.image ? action.payload.image : "",
               size: defaultSize,
             },
             id: uuidv4(),

@@ -1,20 +1,33 @@
-import { v4 as uuidv4 } from "uuid";
 import Button from "../Button/Button.tsx";
-import { onClickEllipse, onClickRectangle, onClickTriangle } from "../../../constants/MenuPrimirives.ts";
-import { TonClickPresentation } from "../../SlideBar/SlideBar.tsx";
-import { Block, Position, Presentation as TPresentation, Primitive, Size } from "../../../types/types.ts";
-import { useAppActions, useAppSelector } from "../../../store/hooks.ts";
+import { useAppActions } from "../../../store/hooks.ts";
 import classes from "./MenuPrimitives.module.css";
+import { useRef } from "react";
 
-type MenuPrimitivesProps = {
-  onChoice: (func: () => void) => void;
-};
-
-function MenuPrimitives({ onChoice }: MenuPrimitivesProps) {
+function MenuPrimitives() {
+  const fileInput = useRef<HTMLInputElement>(null);
   const { createPrimitiveAction } = useAppActions();
 
-  const handleOnClickPrimitives = (type: "triangle" | "ellipse" | "rectangle" | "image") => {
+  const handleOnClickPrimitives = (type: "triangle" | "ellipse" | "rectangle") => {
     createPrimitiveAction(type);
+  };
+
+  const handleOnClickImage = () => {
+    if (fileInput.current) {
+      fileInput.current.click();
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageDataUrl = reader.result as string;
+        createPrimitiveAction("image", imageDataUrl);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -40,8 +53,12 @@ function MenuPrimitives({ onChoice }: MenuPrimitivesProps) {
       <Button
         icon={"add_photo_alternate"}
         onClick={() => {
-          handleOnClickPrimitives("image");
+          handleOnClickImage();
         }}
+        onChange={event => {
+          handleFileChange(event);
+        }}
+        fileInput={fileInput}
       />
     </div>
   );

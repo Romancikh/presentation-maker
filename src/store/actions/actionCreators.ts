@@ -47,12 +47,14 @@ export function createSelectSlideAction(slide: TSlide): SelectSlideAction {
 }
 
 export function createPrimitiveAction(
-  type: "triangle" | "ellipse" | "rectangle" | "text" | "image"
+  type: "triangle" | "ellipse" | "rectangle" | "text" | "image",
+  image?: string
 ): CreatePrimitiveAction {
   return {
     type: Actions.CREATE_PRIMITIVE,
     payload: {
       type,
+      image,
     },
   };
 }
