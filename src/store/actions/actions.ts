@@ -56,7 +56,6 @@ export type DeletePrimitiveAction = {
 export type ChangeTextAction = {
   type: Actions.CHANGE_TEXT;
   payload: {
-    object: Text;
     keyEnter: string;
   };
 };

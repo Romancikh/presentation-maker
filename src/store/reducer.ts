@@ -215,7 +215,7 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
       };
 
       state.currentSlide?.selectObjects.map(object => {
-        if (object === action.payload.object && object.type === "text") {
+        if (object.type === "text") {
           if (action.payload.keyEnter.length === 1) {
             object.data.text += action.payload.keyEnter;
             setSizeTextBlock(object, "enter");

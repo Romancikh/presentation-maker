@@ -75,11 +75,10 @@ export function createSelectPrimitiveAction(object: Text | Image | Primitive): S
   };
 }
 
-export function createChangeTextAction(object: Text, keyEnter: string): ChangeTextAction {
+export function createChangeTextAction(keyEnter: string): ChangeTextAction {
   return {
     type: Actions.CHANGE_TEXT,
     payload: {
-      object,
       keyEnter,
     },
   };

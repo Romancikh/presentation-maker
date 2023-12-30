@@ -48,8 +48,9 @@ function Block({ object, isWorkSpace }: BlockProps) {
       return;
     }
 
+    console.log(presentation.currentSlide?.objects);
     if (object.type === "text") {
-      createChangeTextAction(object, enterKey);
+      createChangeTextAction(enterKey);
     }
 
     if (enterKey === "Delete" && presentation.currentSlide?.selectObjects.length !== 0) {
