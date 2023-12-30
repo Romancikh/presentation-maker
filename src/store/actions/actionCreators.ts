@@ -6,6 +6,7 @@ import {
   ChangeColorAction,
   ChangeFontFamilyAction,
   ChangeItalicAction,
+  ChangeRotationAction,
   ChangeSizeTextAction,
   ChangeTextAction,
   ChangeTitleAction,
@@ -135,6 +136,15 @@ export function createChangeFontFamilyAction(fontFamily: string): ChangeFontFami
     type: Actions.CHAN0E_FONT_FAMILY,
     payload: {
       fontFamily,
+    },
+  };
+}
+
+export function createChangeRotationAction(rotation: "right" | "left"): ChangeRotationAction {
+  return {
+    type: Actions.CHANGE_ROTATION,
+    payload: {
+      rotation,
     },
   };
 }

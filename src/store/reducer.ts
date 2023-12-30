@@ -342,6 +342,19 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         ...state,
       };
     }
+    case Actions.CHANGE_ROTATION: {
+      state.currentSlide?.selectObjects.map(object => {
+        if (action.payload.rotation === "right") {
+          object.rotation += 5;
+        } else if (action.payload.rotation === "left") {
+          object.rotation -= 5;
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
     default: {
       return state;
     }

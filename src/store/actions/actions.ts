@@ -16,6 +16,7 @@ export enum Actions {
   CHANGE_BACKGROUND_PICTURE = "CHANGE_BACKGROUND_PICTURE",
   CHANGE_COLOR = "CHANGE_COLOR",
   CHAN0E_FONT_FAMILY = "CHAN0E_FONT_FAMILY",
+  CHANGE_ROTATION = "CHANGE_ROTATION",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -101,6 +102,13 @@ export type ChangeFontFamilyAction = {
   };
 };
 
+export type ChangeRotationAction = {
+  type: Actions.CHANGE_ROTATION;
+  payload: {
+    rotation: "right" | "left";
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
@@ -116,4 +124,5 @@ export type Action =
   | ChangeSizeTextAction
   | ChangeBackgroundPictureAction
   | ChangeColorAction
-  | ChangeFontFamilyAction;
+  | ChangeFontFamilyAction
+  | ChangeRotationAction;

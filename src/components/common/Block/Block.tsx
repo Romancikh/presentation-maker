@@ -19,7 +19,12 @@ function Block({ object, isWorkSpace }: BlockProps) {
   const [isSelect, setIsSelect] = useState(false);
   const blockRef = useRef<HTMLDivElement | null>(null);
 
-  const { createSelectPrimitiveAction, createChangeTextAction, createDeletePrimitiveAction } = useAppActions();
+  const {
+    createSelectPrimitiveAction,
+    createChangeTextAction,
+    createDeletePrimitiveAction,
+    createChangeRotationAction,
+  } = useAppActions();
 
   const handleClick = () => {
     createSelectPrimitiveAction(object);
@@ -48,9 +53,15 @@ function Block({ object, isWorkSpace }: BlockProps) {
       return;
     }
 
-    console.log(presentation.currentSlide?.objects);
+    console.log(enterKey);
     if (object.type === "text") {
       createChangeTextAction(enterKey);
+    }
+
+    if (enterKey === "ArrowLeft") {
+      createChangeRotationAction("left");
+    } else if (enterKey === "ArrowRight") {
+      createChangeRotationAction("right");
     }
 
     if (enterKey === "Delete" && presentation.currentSlide?.selectObjects.length !== 0) {
