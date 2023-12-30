@@ -15,6 +15,7 @@ export enum Actions {
   CHANGE_SIZE_TEXT = "CHANGE_SIZE_TEXT",
   CHANGE_BACKGROUND_PICTURE = "CHANGE_BACKGROUND_PICTURE",
   CHANGE_COLOR = "CHANGE_COLOR",
+  CHAN0E_FONT_FAMILY = "CHAN0E_FONT_FAMILY",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -93,6 +94,13 @@ export type ChangeColorAction = {
   };
 };
 
+export type ChangeFontFamilyAction = {
+  type: Actions.CHAN0E_FONT_FAMILY;
+  payload: {
+    fontFamily: string;
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
@@ -107,4 +115,5 @@ export type Action =
   | ChangeItalicAction
   | ChangeSizeTextAction
   | ChangeBackgroundPictureAction
-  | ChangeColorAction;
+  | ChangeColorAction
+  | ChangeFontFamilyAction;

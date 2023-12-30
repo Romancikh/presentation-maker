@@ -4,6 +4,7 @@ import {
   ChangeBackgroundPictureAction,
   ChangeBoldAction,
   ChangeColorAction,
+  ChangeFontFamilyAction,
   ChangeItalicAction,
   ChangeSizeTextAction,
   ChangeTextAction,
@@ -125,6 +126,15 @@ export function createChangeColorAction(color: Color): ChangeColorAction {
     type: Actions.CHANGE_COLOR,
     payload: {
       color,
+    },
+  };
+}
+
+export function createChangeFontFamilyAction(fontFamily: string): ChangeFontFamilyAction {
+  return {
+    type: Actions.CHAN0E_FONT_FAMILY,
+    payload: {
+      fontFamily,
     },
   };
 }

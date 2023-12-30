@@ -1,7 +1,7 @@
-import { ChangeEvent, useContext } from "react";
+import { ChangeEvent } from "react";
 import Option from "../Option/Option.tsx";
 import { Option as TOption } from "../../../types/types.ts";
-import { PresentationContext } from "../../../contexts/presentation.tsx";
+import { useAppActions } from "../../../store/hooks.ts";
 
 type SelectProps = {
   options: TOption[];
@@ -9,19 +9,10 @@ type SelectProps = {
 };
 
 function Select({ className, options }: SelectProps) {
-  const { presentation, setPresentation } = useContext(PresentationContext);
+  const { createChangeFontFamilyAction } = useAppActions();
 
   const handleChooseFontFamily = (event: ChangeEvent): void => {
-    const newPresentation = { ...presentation };
-    const currentSlide = newPresentation.currentSlide;
-    if (currentSlide) {
-      currentSlide.selectObjects.map(object => {
-        if (object.type === "text") {
-          object.data.fontFamily = event.target.value;
-        }
-      });
-    }
-    setPresentation(newPresentation);
+    createChangeFontFamilyAction(event.target.value);
   };
 
   return (

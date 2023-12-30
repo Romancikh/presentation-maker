@@ -4,6 +4,7 @@ import {
   Block,
   Color,
   FontFamily,
+  Image,
   Position,
   Presentation,
   Primitive,
@@ -11,7 +12,6 @@ import {
   Slide as TSlide,
   Text,
   Text as TText,
-  Image,
 } from "../types/types.ts";
 import { Action, Actions } from "./actions/actions.ts";
 
@@ -326,6 +326,17 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
           }
         });
       }
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.CHAN0E_FONT_FAMILY: {
+      state.currentSlide?.selectObjects.map(object => {
+        if (object.type === "text") {
+          object.data.fontFamily = action.payload.fontFamily;
+        }
+      });
 
       return {
         ...state,
