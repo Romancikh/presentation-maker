@@ -7,12 +7,18 @@ type InputProps = {
   className?: string;
 };
 
-function Input({ defaultValue, placeholder, className }: InputProps) {
+function InputFontSize({ defaultValue, placeholder, className }: InputProps) {
   const [value, setValue] = useState(defaultValue);
-  const { createChangeTitleAction } = useAppActions();
+  const { createChangeSizeTextAction } = useAppActions();
 
   const handleOnInput = (event: React.FormEvent<HTMLInputElement>) => {
-    createChangeTitleAction(event.target.value);
+    const target = event.currentTarget;
+    let value: number = parseInt(target.value);
+    if (isNaN(value)) {
+      value = 11;
+    }
+    setValue(value);
+    createChangeSizeTextAction(value);
   };
 
   return (
@@ -22,4 +28,4 @@ function Input({ defaultValue, placeholder, className }: InputProps) {
   );
 }
 
-export default Input;
+export default InputFontSize;

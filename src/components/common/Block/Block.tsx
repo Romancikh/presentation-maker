@@ -53,7 +53,6 @@ function Block({ object, isWorkSpace }: BlockProps) {
       return;
     }
 
-    console.log(enterKey);
     if (object.type === "text") {
       createChangeTextAction(enterKey);
     }

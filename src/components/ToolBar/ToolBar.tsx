@@ -1,24 +1,14 @@
-import { useContext } from "react";
 import Button from "../common/Button/Button.tsx";
-import Input from "../common/Input/Input.tsx";
 import MenuButtonPrimitives from "../common/MenuButtonPrimitives/MenuButtonPrimitives.tsx";
 import Select from "../common/Select/Select.tsx";
-import {
-  fontOptions,
-  insertTextOnClick,
-  italicOnClick,
-  boldOnClick,
-  underlineOnClick,
-} from "../../constants/ToolBar.ts";
-import { PresentationContext } from "../../contexts/presentation.tsx";
+import { fontOptions } from "../../constants/ToolBar.ts";
 import InputImage from "../common/InputImage/InputImage.tsx";
 import { useAppActions } from "../../store/hooks.ts";
 import classes from "./ToolBar.module.css";
 import InputColor from "../common/InputColor/InputColor.tsx";
+import InputFontSize from "../common/InputFontSize/InputFontSize.tsx";
 
 function ToolBar() {
-  const { presentation, setPresentation } = useContext(PresentationContext);
-
   const {
     createPrimitiveAction,
     createChangeBoldTextAction,
@@ -46,7 +36,7 @@ function ToolBar() {
       <InputImage icon={"image"} />
       <InputColor icon={"palette"} />
       <Select options={fontOptions} className={classes["font-select"]} />
-      <Input defaultValue={11} className={classes["size-shrift-input"]} />
+      <InputFontSize defaultValue={11} className={classes["size-shrift-input"]} />
       <Button
         onClick={() => {
           createChangeBoldTextAction();
