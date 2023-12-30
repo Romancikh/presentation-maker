@@ -2,8 +2,8 @@ import { CSSProperties, useEffect, useState } from "react";
 import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
-import classes from "./Slide.module.css";
 import { useAppSelector } from "../../store/hooks.ts";
+import classes from "./Slide.module.css";
 
 type SlideProps = {
   slide: TSlide;
@@ -15,13 +15,17 @@ function Slide({ slide, className }: SlideProps) {
   const [background, setBackground] = useState(slide.background);
 
   const style: CSSProperties = {
-    backgroundImage: background,
+    background: background,
   };
 
   useEffect(() => {
     if (presentation.currentSlide) {
-      const backgroundImage = `url(${presentation.currentSlide.background})`;
-      setBackground(backgroundImage);
+      if (presentation.currentSlide.background[0] === "#") {
+        setBackground(presentation.currentSlide.background);
+      } else {
+        const image = `url(${presentation.currentSlide.background})`;
+        setBackground(image);
+      }
     }
   }, [presentation]);
 

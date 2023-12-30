@@ -1,7 +1,7 @@
+import { useRef } from "react";
 import Button from "../Button/Button.tsx";
 import { useAppActions } from "../../../store/hooks.ts";
 import classes from "./MenuPrimitives.module.css";
-import { useRef } from "react";
 
 function MenuPrimitives() {
   const fileInput = useRef<HTMLInputElement>(null);

@@ -1,5 +1,5 @@
-import { useAppActions } from "../../../store/hooks.ts";
 import { useState } from "react";
+import { useAppActions } from "../../../store/hooks.ts";
 
 type InputProps = {
   defaultValue?: string | number;

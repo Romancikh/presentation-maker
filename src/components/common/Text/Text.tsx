@@ -23,6 +23,7 @@ function Text({ data }: TextProps) {
     font: font,
     textDecoration: textDecoration,
     whiteSpace: "pre-wrap",
+    color: data.color,
   };
 
   return <span style={style}>{data.text}</span>;

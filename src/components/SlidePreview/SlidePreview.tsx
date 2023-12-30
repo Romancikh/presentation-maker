@@ -27,10 +27,16 @@ function SlidePreview({ slide, className }: SlideProps) {
   };
 
   useEffect(() => {
-    if (presentation.currentSlide) {
-      const backgroundImage = `url(${presentation.currentSlide.background})`;
-      setBackground(backgroundImage);
-    }
+    presentation.selectSlides.map(selectSlide => {
+      if (selectSlide === slide) {
+        if (selectSlide.background[0] === "#") {
+          setBackground(selectSlide.background);
+        } else {
+          const image = `url(${selectSlide.background})`;
+          setBackground(image);
+        }
+      }
+    });
 
     if (presentation.selectSlides.includes(slide)) {
       return setIsSelect(true);

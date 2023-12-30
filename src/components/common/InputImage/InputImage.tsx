@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
-import classes from "./InputImage.module.css";
 import { useAppActions } from "../../../store/hooks.ts";
+import classes from "./InputImage.module.css";
 
 type InputImageProps = {
   icon: string;

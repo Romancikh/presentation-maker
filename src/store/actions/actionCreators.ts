@@ -1,8 +1,9 @@
-import { Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
+import { Color, Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
 import {
   Actions,
   ChangeBackgroundPictureAction,
   ChangeBoldAction,
+  ChangeColorAction,
   ChangeItalicAction,
   ChangeSizeTextAction,
   ChangeTextAction,
@@ -116,6 +117,15 @@ export function createChangeBackgroundPictureAction(src: string): ChangeBackgrou
     type: Actions.CHANGE_BACKGROUND_PICTURE,
     payload: {
       src,
+    },
+  };
+}
+
+export function createChangeColorAction(color: Color): ChangeColorAction {
+  return {
+    type: Actions.CHANGE_COLOR,
+    payload: {
+      color,
     },
   };
 }

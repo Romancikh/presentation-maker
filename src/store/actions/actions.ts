@@ -1,4 +1,4 @@
-import { Slide as TSlide, Text, Image, Primitive } from "../../types/types.ts";
+import { Slide as TSlide, Text, Image, Primitive, Color } from "../../types/types.ts";
 
 export enum Actions {
   CHANGE_NAME = "CHANGE_NAME",
@@ -14,6 +14,7 @@ export enum Actions {
   CHANGE_UNDERLINE_TEXT = "CHANGE_UNDERLINE_TEXT",
   CHANGE_SIZE_TEXT = "CHANGE_SIZE_TEXT",
   CHANGE_BACKGROUND_PICTURE = "CHANGE_BACKGROUND_PICTURE",
+  CHANGE_COLOR = "CHANGE_COLOR",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -86,6 +87,13 @@ export type ChangeBackgroundPictureAction = {
   };
 };
 
+export type ChangeColorAction = {
+  type: Actions.CHANGE_COLOR;
+  payload: {
+    color: Color;
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
@@ -99,4 +107,5 @@ export type Action =
   | ChangeUnderlineAction
   | ChangeItalicAction
   | ChangeSizeTextAction
-  | ChangeBackgroundPictureAction;
+  | ChangeBackgroundPictureAction
+  | ChangeColorAction;

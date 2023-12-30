@@ -1,8 +1,7 @@
-import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { Image as TImage, Primitive as TPrimitive, Text as TText } from "../../../types/types.ts";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
-import { PresentationContext } from "../../../contexts/presentation.tsx";
 import Image from "../Image/Image.tsx";
 import Text from "../Text/Text.tsx";
 import Primitive from "../Primitive/Primitive.tsx";

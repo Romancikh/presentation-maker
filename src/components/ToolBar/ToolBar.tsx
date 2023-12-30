@@ -14,6 +14,7 @@ import { PresentationContext } from "../../contexts/presentation.tsx";
 import InputImage from "../common/InputImage/InputImage.tsx";
 import { useAppActions } from "../../store/hooks.ts";
 import classes from "./ToolBar.module.css";
+import InputColor from "../common/InputColor/InputColor.tsx";
 
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);
@@ -43,6 +44,7 @@ function ToolBar() {
       />
       {/*<Button icon={"image"} />*/}
       <InputImage icon={"image"} />
+      <InputColor icon={"palette"} />
       <Select options={fontOptions} className={classes["font-select"]} />
       <Input defaultValue={11} className={classes["size-shrift-input"]} />
       <Button

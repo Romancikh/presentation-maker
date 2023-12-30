@@ -88,12 +88,15 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         y: 0,
       };
 
+      const color: Color = "#000";
+
       switch (action.payload.type) {
         case "triangle": {
           const primitive: Primitive & Block = {
             data: {
               form: "triangle",
               size: defaultSize,
+              color,
             },
             id: uuidv4(),
             position: defaultPosition,
@@ -110,6 +113,7 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
             data: {
               form: "ellipse",
               size: defaultSize,
+              color,
             },
             id: uuidv4(),
             position: defaultPosition,
@@ -126,6 +130,7 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
             data: {
               form: "rectangle",
               size: defaultSize,
+              color,
             },
             id: uuidv4(),
             position: defaultPosition,
@@ -138,7 +143,6 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
         case "text": {
           const fontFamily: FontFamily = "Arial";
-          const color: Color = "#000";
 
           const text: Text & Block = {
             data: {
@@ -305,8 +309,22 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
     }
     case Actions.CHANGE_BACKGROUND_PICTURE: {
       if (state.currentSlide) {
-        console.log(action.payload.src);
         state.currentSlide.background = action.payload.src;
+      }
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.CHANGE_COLOR: {
+      if (state.currentSlide?.selectObjects.length === 0) {
+        state.currentSlide.background = action.payload.color;
+      } else {
+        state.currentSlide?.selectObjects.map(object => {
+          if (object.type === "text" || object.type === "primitive") {
+            object.data.color = action.payload.color;
+          }
+        });
       }
 
       return {
