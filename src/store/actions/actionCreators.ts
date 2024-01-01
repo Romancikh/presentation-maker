@@ -15,8 +15,10 @@ import {
   CreateSlideAction,
   DeletePrimitiveAction,
   DeleteSlideAction,
+  SelectOneSlideAction,
   SelectPrimitiveAction,
   SelectSlideAction,
+  UpdateSlidesAction,
 } from "./actions.ts";
 
 export function createChangeTitleAction(newName: string): ChangeTitleAction {
@@ -147,4 +149,12 @@ export function createChangeRotationAction(rotation: "right" | "left"): ChangeRo
       rotation,
     },
   };
+}
+
+export function createUpdateSlidesAction(slides: TSlide[]): UpdateSlidesAction {
+  return { type: Actions.UPDATE_SLIDE, payload: { slides } };
+}
+
+export function createSelectOneSlideAction(slide: TSlide): SelectOneSlideAction {
+  return { type: Actions.SELECT_ONE_SLIDE, payload: { slide } };
 }

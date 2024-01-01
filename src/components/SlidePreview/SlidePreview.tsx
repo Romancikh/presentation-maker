@@ -15,11 +15,15 @@ function SlidePreview({ slide, className }: SlideProps) {
   const presentation = useAppSelector(state => state.presentation);
   const [selectedSlides] = useState([...presentation.selectSlides]);
   const [isSelect, setIsSelect] = useState(selectedSlides.includes(slide));
-  const { createSelectSlideAction } = useAppActions();
+  const { createSelectSlideAction, createSelectOneSlideAction } = useAppActions();
 
   const handleLeftClickSlide = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
-    createSelectSlideAction(slide);
+    if (event.ctrlKey) {
+      createSelectSlideAction(slide);
+    } else {
+      createSelectOneSlideAction(slide);
+    }
   };
 
   const style: CSSProperties = {

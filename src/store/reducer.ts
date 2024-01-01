@@ -61,6 +61,9 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         ...state,
       };
     }
+    case Actions.UPDATE_SLIDE: {
+      return { ...state, slides: action.payload.slides };
+    }
     case Actions.SELECT_SLIDE: {
       if (
         state.currentSlide &&
@@ -76,6 +79,9 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
       return {
         ...state,
       };
+    }
+    case Actions.SELECT_ONE_SLIDE: {
+      return { ...state, currentSlide: action.payload.slide, selectSlides: [action.payload.slide] };
     }
     case Actions.CREATE_PRIMITIVE: {
       const defaultSize: Size = {

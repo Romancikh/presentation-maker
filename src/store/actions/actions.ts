@@ -1,8 +1,10 @@
-import { Slide as TSlide, Text, Image, Primitive, Color } from "../../types/types.ts";
+import { Color, Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
 
 export enum Actions {
+  SELECT_ONE_SLIDE = "SELECT_ONE_SLIDE",
   CHANGE_NAME = "CHANGE_NAME",
   CREATE_SLIDE = "CREATE_SLIDE",
+  UPDATE_SLIDE = "UPDATE_SLIDE",
   SELECT_SLIDE = "SELECT_SLIDE",
   DELETE_SLIDES = "DELETE_SLIDES",
   CREATE_PRIMITIVE = "CREATE_PRIMITIVE",
@@ -109,6 +111,20 @@ export type ChangeRotationAction = {
   };
 };
 
+export type UpdateSlidesAction = {
+  type: Actions.UPDATE_SLIDE;
+  payload: {
+    slides: TSlide[];
+  };
+};
+
+export type SelectOneSlideAction = {
+  type: Actions.SELECT_ONE_SLIDE;
+  payload: {
+    slide: TSlide;
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | CreateSlideAction
@@ -125,4 +141,6 @@ export type Action =
   | ChangeBackgroundPictureAction
   | ChangeColorAction
   | ChangeFontFamilyAction
-  | ChangeRotationAction;
+  | ChangeRotationAction
+  | UpdateSlidesAction
+  | SelectOneSlideAction;
