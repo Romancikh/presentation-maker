@@ -22,6 +22,7 @@ function Text({ data }: TextProps) {
   const style: CSSProperties = {
     font: font,
     textDecoration: textDecoration,
+    color: data.color,
   };
 
   return <span style={style}>{data.text}</span>;

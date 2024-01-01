@@ -47,28 +47,14 @@ function Block({ id, size, rotation, type, data, isWorkSpace }: BlockProps) {
     width: size.width,
   };
 
-  const setSizeObjectText = (objectText: TText, type: "enter" | "newLine" | "del"): TText => {
-    const newObjectText = { ...objectText };
-    let text: string = "";
-
-    for (const char of objectText.data.text) {
-      if (char === "\n") {
-        text += "\n";
-      } else {
-        text += char;
-      }
-    }
-
+  const setSizeTextBlock = (objectText: TText, type: "enter" | "newLine" | "del"): void => {
     if (type === "enter") {
-      newObjectText.size.width += newObjectText.data.fontSize;
+      objectText.size.width = (objectText.data.text.length * objectText.data.fontSize) / 1.5;
     } else if (type === "newLine") {
-      newObjectText.size.height += newObjectText.data.fontSize;
+      objectText.size.height += objectText.data.fontSize * 2;
     } else if (type === "del") {
-      newObjectText.size.width -= newObjectText.data.fontSize;
+      objectText.size.width = (objectText.data.text.length * objectText.data.fontSize) / 1.5;
     }
-
-    newObjectText.data.text = text;
-    return newObjectText;
   };
 
   useEffect(() => {
@@ -76,21 +62,34 @@ function Block({ id, size, rotation, type, data, isWorkSpace }: BlockProps) {
       const newPresentation = { ...presentation };
       const enterKey = event.key;
 
+      if (event.target.value) {
+        return;
+      }
+
       newPresentation.currentSlide?.selectObjects.map(object => {
         if (object.id === id && object.type === "text") {
           if (enterKey.length === 1) {
+            setSizeTextBlock(object, "enter");
             object.data.text += enterKey;
-            object = setSizeObjectText(object, "enter");
           } else if (enterKey === "Enter") {
-            object.data.text += "\n";
-            object = setSizeObjectText(object, "newLine");
+            setSizeTextBlock(object, "newLine");
+            object.data.text += "\n\n";
           } else if (enterKey === "Backspace") {
+            setSizeTextBlock(object, "del");
             object.data.text = object.data.text.slice(0, -1);
-            object = setSizeObjectText(object, "del");
           }
-          setPresentation(newPresentation);
         }
       });
+
+      if (enterKey === "ArrowLeft") {
+        newPresentation.currentSlide?.selectObjects.map(selectObject => {
+          selectObject.rotation -= 5;
+        });
+      } else if (enterKey === "ArrowRight") {
+        newPresentation.currentSlide?.selectObjects.map(selectObject => {
+          selectObject.rotation += 5;
+        });
+      }
 
       if (enterKey === "Delete") {
         if (newPresentation.currentSlide !== null) {
@@ -105,8 +104,9 @@ function Block({ id, size, rotation, type, data, isWorkSpace }: BlockProps) {
 
           newPresentation.currentSlide.selectObjects = [];
         }
-        setPresentation(newPresentation);
       }
+
+      setPresentation(newPresentation);
     };
 
     if (isWorkSpace) {
