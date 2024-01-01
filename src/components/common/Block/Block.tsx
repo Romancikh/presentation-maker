@@ -6,7 +6,6 @@ import Image from "../Image/Image.tsx";
 import Text from "../Text/Text.tsx";
 import Primitive from "../Primitive/Primitive.tsx";
 import classes from "./Block.module.css";
-
 type BlockProps = (TPrimitive | TImage | TText) & {
   isWorkSpace: boolean;
 };
@@ -66,6 +65,8 @@ function Block({ id, size, rotation, type, data, isWorkSpace }: BlockProps) {
         return;
       }
 
+      console.log(enterKey);
+
       newPresentation.currentSlide?.selectObjects.map(object => {
         if (object.id === id && object.type === "text") {
           if (enterKey.length === 1) {
@@ -88,6 +89,16 @@ function Block({ id, size, rotation, type, data, isWorkSpace }: BlockProps) {
       } else if (enterKey === "ArrowRight") {
         newPresentation.currentSlide?.selectObjects.map(selectObject => {
           selectObject.rotation += 5;
+        });
+      } else if (enterKey === "ArrowUp") {
+        newPresentation.currentSlide?.selectObjects.map(selectObject => {
+          selectObject.size.width += 5;
+          selectObject.size.height += 5;
+        });
+      } else if (enterKey === "ArrowDown") {
+        newPresentation.currentSlide?.selectObjects.map(selectObject => {
+          selectObject.size.width -= 5;
+          selectObject.size.height -= 5;
         });
       }
 

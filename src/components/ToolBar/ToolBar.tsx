@@ -11,9 +11,9 @@ import {
 } from "../../constants/ToolBar.ts";
 import { PresentationContext } from "../../contexts/presentation.tsx";
 import InputImage from "../common/InputImage/InputImage.tsx";
-import classes from "./ToolBar.module.css";
 import InputFontSize from "../common/InputFontSize/InputFontSize.tsx";
 import InputColor from "../common/InputColor/InputColor.tsx";
+import classes from "./ToolBar.module.css";
 
 function ToolBar() {
   const { presentation, setPresentation } = useContext(PresentationContext);

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
 import { Text as TText } from "../../../types/types.ts";
+
 type InputProps = { defaultValue?: string | number; placeholder?: string; className?: string };
 function InputFontSize({ defaultValue, placeholder, className }: InputProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);

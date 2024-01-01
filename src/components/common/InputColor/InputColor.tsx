@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext } from "react";
-import classes from "./InputColor.module.css";
 import { PresentationContext } from "../../../contexts/presentation.tsx";
+import classes from "./InputColor.module.css";
 
 type InputImageProps = {
   icon: string;
