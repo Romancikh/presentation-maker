@@ -1,4 +1,4 @@
-import React, { CSSProperties, useContext, useState } from "react";
+import React, { CSSProperties, useContext, useEffect, useState } from "react";
 import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { PresentationContext } from "../../contexts/presentation.tsx";
@@ -14,6 +14,7 @@ function SlidePreview({ slide, className }: SlideProps) {
   const { presentation, setPresentation } = useContext(PresentationContext);
   const [selectedSlides] = useState([...presentation.selectSlides]);
   const [isSelect, setIsSelect] = useState(selectedSlides.includes(slide));
+  const [background, setBackground] = useState(slide.background);
 
   const handleLeftClickSlide = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -34,13 +35,34 @@ function SlidePreview({ slide, className }: SlideProps) {
   };
 
   const style: CSSProperties = {
-    background: slide.background,
+    background: background,
   };
 
   let classSlideSelect: string = "";
   if (isSelect || presentation.currentSlide === slide) {
     classSlideSelect = classes.select;
   }
+
+  useEffect(() => {
+    presentation.selectSlides.map(selectSlide => {
+      if (selectSlide === slide) {
+        if (selectSlide.background[0] === "#") {
+          setBackground(selectSlide.background);
+        } else {
+          const image = `url(${selectSlide.background})`;
+          setBackground(image);
+        }
+      }
+    });
+
+    if (presentation.selectSlides.includes(slide)) {
+      return setIsSelect(true);
+    } else {
+      setIsSelect(false);
+    }
+
+    return;
+  }, [presentation]);
 
   return (
     <div>
