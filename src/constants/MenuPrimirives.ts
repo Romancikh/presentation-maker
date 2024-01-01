@@ -21,6 +21,7 @@ export const onClickTriangle = (
     data: {
       form: "triangle",
       size: defaultSize,
+      color: "#000",
     },
     id: uuidv4(),
     position: defaultPosition,
@@ -53,6 +54,7 @@ export const onClickRectangle = (
     data: {
       form: "rectangle",
       size: defaultSize,
+      color: "#000",
     },
     id: uuidv4(),
     position: defaultPosition,
@@ -84,6 +86,7 @@ export const onClickEllipse = (
     data: {
       form: "ellipse",
       size: defaultSize,
+      color: "#000",
     },
     id: uuidv4(),
     position: defaultPosition,
