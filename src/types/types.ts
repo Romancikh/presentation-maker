@@ -57,6 +57,7 @@ type Primitive = Block & {
   data: {
     size: Size;
     form: "triangle" | "ellipse" | "rectangle";
+    color: Color;
   };
 };
 

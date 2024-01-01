@@ -2,8 +2,8 @@ import { CSSProperties, useContext, useEffect, useState } from "react";
 import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
-import classes from "./Slide.module.css";
 import { PresentationContext } from "../../contexts/presentation.tsx";
+import classes from "./Slide.module.css";
 
 type SlideProps = {
   slide: TSlide;

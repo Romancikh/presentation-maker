@@ -1,9 +1,10 @@
-import { Size } from "../../../types/types.ts";
+import { Color, Size } from "../../../types/types.ts";
 
 type PrimitiveProps = {
   data: {
     size: Size;
     form: "triangle" | "ellipse" | "rectangle";
+    color: Color;
   };
 };
 
@@ -17,7 +18,7 @@ function Primitive({ data }: PrimitiveProps) {
   const centerY = size.height / 2;
 
   return (
-    <svg width={size.width} height={size.height}>
+    <svg width={size.width} height={size.height} fill={data.color}>
       <g>
         {form === "ellipse" && <ellipse cx={centerX} cy={centerY} rx={size.width / 2} ry={size.height / 2} />}
         {form === "rectangle" && <rect x={0} y={0} width={size.width} height={size.height} />}
