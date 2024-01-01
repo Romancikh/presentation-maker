@@ -62,7 +62,9 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
       };
     }
     case Actions.UPDATE_SLIDE: {
-      return { ...state, slides: action.payload.slides };
+      console.log(state.slides);
+      console.log(action.payload.slides);
+      return { ...state, slides: [...action.payload.slides] };
     }
     case Actions.SELECT_SLIDE: {
       if (
@@ -190,6 +192,62 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
 
       return {
         ...state,
+      };
+    }
+    case Actions.FOCUS_PRIMITIVE: {
+      return {
+        ...state,
+        currentSlide:
+          state.currentSlide === null ? null : { ...state.currentSlide, selectObjects: [action.payload.object] },
+      };
+    }
+    case Actions.MOVE_PRIMITIVES: {
+      return {
+        ...state,
+        currentSlide:
+          state.currentSlide === null
+            ? null
+            : {
+                ...state.currentSlide,
+                objects: [
+                  ...state.currentSlide.objects.filter(
+                    object => !state.currentSlide?.selectObjects.some(ob => ob.id === object.id)
+                  ),
+                  ...state.currentSlide.selectObjects.map(object => ({
+                    ...object,
+                    position: {
+                      x: object.position.x + action.payload.delta.x,
+                      y: object.position.y + action.payload.delta.y,
+                    },
+                  })),
+                ],
+              },
+        slides:
+          state.currentSlide === null
+            ? [...state.slides]
+            : [
+                ...state.slides.map(slide => {
+                  if (slide.id === state.currentSlide?.id) {
+                    return {
+                      ...state.currentSlide,
+                      objects: [
+                        ...state.currentSlide.objects.filter(
+                          object => !state.currentSlide?.selectObjects.some(ob => ob.id === object.id)
+                        ),
+                        ...state.currentSlide.selectObjects.map(object => ({
+                          ...object,
+                          position: {
+                            x: object.position.x + action.payload.delta.x,
+                            y: object.position.y + action.payload.delta.y,
+                          },
+                        })),
+                      ],
+                    };
+                  } else {
+                    return slide;
+                  }
+                }),
+              ],
       };
     }
     case Actions.SELECT_PRIMITIVE: {

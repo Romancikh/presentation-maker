@@ -1,4 +1,4 @@
-import { Color, Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
+import { Color, Image, Position, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
 import {
   Actions,
   ChangeBackgroundPictureAction,
@@ -15,6 +15,8 @@ import {
   CreateSlideAction,
   DeletePrimitiveAction,
   DeleteSlideAction,
+  FocusPrimitiveAction,
+  MovePrimitivesAction,
   SelectOneSlideAction,
   SelectPrimitiveAction,
   SelectSlideAction,
@@ -75,6 +77,24 @@ export function createSelectPrimitiveAction(object: Text | Image | Primitive): S
     type: Actions.SELECT_PRIMITIVE,
     payload: {
       object,
+    },
+  };
+}
+
+export function createFocusPrimitiveAction(object: Text | Image | Primitive): FocusPrimitiveAction {
+  return {
+    type: Actions.FOCUS_PRIMITIVE,
+    payload: {
+      object,
+    },
+  };
+}
+
+export function createMovePrimitivesAction(delta: Position): MovePrimitivesAction {
+  return {
+    type: Actions.MOVE_PRIMITIVES,
+    payload: {
+      delta,
     },
   };
 }

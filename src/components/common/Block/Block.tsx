@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties, MouseEvent, useEffect, useState } from "react";
 import classNames from "classnames";
 import { Image as TImage, Primitive as TPrimitive, Text as TText } from "../../../types/types.ts";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
@@ -15,33 +15,33 @@ type BlockProps = {
 
 function Block({ object, isWorkSpace }: BlockProps) {
   const presentation = useAppSelector(state => state.presentation);
-  const [modelPosition, setModelPosition] = useState(object.position);
   const [isSelect, setIsSelect] = useState(false);
-  const blockRef = useRef<HTMLDivElement | null>(null);
 
   const {
     createSelectPrimitiveAction,
     createChangeTextAction,
     createDeletePrimitiveAction,
     createChangeRotationAction,
+    createFocusPrimitiveAction,
   } = useAppActions();
 
-  const handleClick = () => {
-    createSelectPrimitiveAction(object);
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.ctrlKey) {
+      createSelectPrimitiveAction(object);
+    } else {
+      createFocusPrimitiveAction(object);
+    }
   };
 
-  if (isWorkSpace) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useDragAndDrop(blockRef, object.id, modelPosition, setModelPosition);
-  }
+  useDragAndDrop(`${object.id}-workspace`);
 
   const centerX = object.size.width / 2;
   const centerY = object.size.height / 2;
 
   const style: CSSProperties = {
     height: object.size.height,
-    left: modelPosition.x,
-    top: modelPosition.y,
+    left: object.position.x,
+    top: object.position.y,
     transform: `rotate(${object.rotation}deg)`,
     transformOrigin: `${centerX}px ${centerY}px`,
     width: object.size.width,
@@ -86,8 +86,8 @@ function Block({ object, isWorkSpace }: BlockProps) {
 
   return (
     <div
-      ref={blockRef}
-      onClick={handleClick}
+      id={`${object.id}${isWorkSpace ? `-workspace` : ``}`}
+      onMouseDown={handleClick}
       className={classNames(classes.block, isSelect ? classes.select : "")}
       style={style}
     >

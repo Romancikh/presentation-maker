@@ -1,4 +1,4 @@
-import { Color, Image, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
+import { Color, Image, Position, Primitive, Slide as TSlide, Text } from "../../types/types.ts";
 
 export enum Actions {
   SELECT_ONE_SLIDE = "SELECT_ONE_SLIDE",
@@ -10,6 +10,7 @@ export enum Actions {
   CREATE_PRIMITIVE = "CREATE_PRIMITIVE",
   SELECT_PRIMITIVE = "SELECT_PRIMITIVE",
   DELETE_PRIMITIVE = "DELETE_PRIMITIVE",
+  MOVE_PRIMITIVES = "MOVE_PRIMITIVES",
   CHANGE_TEXT = "CHANGE_TEXT",
   CHANGE_ITALIC_TEXT = "CHANGE_ITALIC_TEXT",
   CHANGE_BOLD_TEXT = "CHANGE_BOLD_TEXT",
@@ -19,12 +20,20 @@ export enum Actions {
   CHANGE_COLOR = "CHANGE_COLOR",
   CHAN0E_FONT_FAMILY = "CHAN0E_FONT_FAMILY",
   CHANGE_ROTATION = "CHANGE_ROTATION",
+  FOCUS_PRIMITIVE = "FOCUS_PRIMITIVE",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
 
 export type CreateSlideAction = {
   type: Actions.CREATE_SLIDE;
+};
+
+export type MovePrimitivesAction = {
+  type: Actions.MOVE_PRIMITIVES;
+  payload: {
+    delta: Position;
+  };
 };
 
 export type DeleteSlideAction = {
@@ -52,7 +61,12 @@ export type SelectPrimitiveAction = {
     object: Text | Image | Primitive;
   };
 };
-
+export type FocusPrimitiveAction = {
+  type: Actions.FOCUS_PRIMITIVE;
+  payload: {
+    object: Text | Image | Primitive;
+  };
+};
 export type DeletePrimitiveAction = {
   type: Actions.DELETE_PRIMITIVE;
 };
@@ -127,6 +141,7 @@ export type SelectOneSlideAction = {
 
 export type Action =
   | ChangeTitleAction
+  | FocusPrimitiveAction
   | CreateSlideAction
   | DeleteSlideAction
   | SelectSlideAction
@@ -142,5 +157,6 @@ export type Action =
   | ChangeColorAction
   | ChangeFontFamilyAction
   | ChangeRotationAction
+  | MovePrimitivesAction
   | UpdateSlidesAction
   | SelectOneSlideAction;
