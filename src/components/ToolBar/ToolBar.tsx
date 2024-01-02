@@ -4,9 +4,9 @@ import Select from "../common/Select/Select.tsx";
 import { fontOptions } from "../../constants/ToolBar.ts";
 import InputImage from "../common/InputImage/InputImage.tsx";
 import { useAppActions } from "../../store/hooks.ts";
-import classes from "./ToolBar.module.css";
 import InputColor from "../common/InputColor/InputColor.tsx";
 import InputFontSize from "../common/InputFontSize/InputFontSize.tsx";
+import classes from "./ToolBar.module.css";
 
 function ToolBar() {
   const {

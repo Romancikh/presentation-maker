@@ -23,6 +23,7 @@ function Block({ object, isWorkSpace }: BlockProps) {
     createDeletePrimitiveAction,
     createChangeRotationAction,
     createFocusPrimitiveAction,
+    createChangeSizeAction,
   } = useAppActions();
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -61,6 +62,10 @@ function Block({ object, isWorkSpace }: BlockProps) {
       createChangeRotationAction("left");
     } else if (enterKey === "ArrowRight") {
       createChangeRotationAction("right");
+    } else if (enterKey === "ArrowUp") {
+      createChangeSizeAction("up");
+    } else if (enterKey === "ArrowDown") {
+      createChangeSizeAction("down");
     }
 
     if (enterKey === "Delete" && presentation.currentSlide?.selectObjects.length !== 0) {

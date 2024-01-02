@@ -21,7 +21,7 @@ function Button({ text, icon, onClick, onChange, fileInput }: ButtonProps) {
 
   return (
     <div>
-      <input type="file" ref={fileInput} style={{ display: "none" }} onChange={onChange} />
+      <input type="file" accept="image/*" ref={fileInput} style={{ display: "none" }} onChange={onChange} />
       <button type="button" className={classes.button + " " + classNameTypeButton} onClick={onClick}>
         {isIconButton && <span className={classes.icon + " " + "material-symbols-outlined"}>{icon}</span>}
         {isTextButton && <span className={classes.text}>{text}</span>}

@@ -419,6 +419,21 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         ...state,
       };
     }
+    case Actions.CHANGE_SIZE: {
+      state.currentSlide?.selectObjects.map(object => {
+        if (action.payload.size === "up") {
+          object.size.width += 5;
+          object.size.height += 5;
+        } else if (action.payload.size === "down") {
+          object.size.width -= 5;
+          object.size.height -= 5;
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
     default: {
       return state;
     }

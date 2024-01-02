@@ -21,6 +21,7 @@ export enum Actions {
   CHAN0E_FONT_FAMILY = "CHAN0E_FONT_FAMILY",
   CHANGE_ROTATION = "CHANGE_ROTATION",
   FOCUS_PRIMITIVE = "FOCUS_PRIMITIVE",
+  CHANGE_SIZE = "CHANGE_SIZE",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -139,6 +140,13 @@ export type SelectOneSlideAction = {
   };
 };
 
+export type ChangeSizeAction = {
+  type: Actions.CHANGE_SIZE;
+  payload: {
+    size: "up" | "down";
+  };
+};
+
 export type Action =
   | ChangeTitleAction
   | FocusPrimitiveAction
@@ -159,4 +167,5 @@ export type Action =
   | ChangeRotationAction
   | MovePrimitivesAction
   | UpdateSlidesAction
-  | SelectOneSlideAction;
+  | SelectOneSlideAction
+  | ChangeSizeAction;

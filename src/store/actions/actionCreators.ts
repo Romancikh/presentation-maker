@@ -7,6 +7,7 @@ import {
   ChangeFontFamilyAction,
   ChangeItalicAction,
   ChangeRotationAction,
+  ChangeSizeAction,
   ChangeSizeTextAction,
   ChangeTextAction,
   ChangeTitleAction,
@@ -177,4 +178,13 @@ export function createUpdateSlidesAction(slides: TSlide[]): UpdateSlidesAction {
 
 export function createSelectOneSlideAction(slide: TSlide): SelectOneSlideAction {
   return { type: Actions.SELECT_ONE_SLIDE, payload: { slide } };
+}
+
+export function createChangeSizeAction(size: "up" | "down"): ChangeSizeAction {
+  return {
+    type: Actions.CHANGE_SIZE,
+    payload: {
+      size,
+    },
+  };
 }
